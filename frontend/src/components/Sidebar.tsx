@@ -11,12 +11,6 @@ const pages = ['Хяналтын самбар', 'Захиалга', 'Орлог�
 
 const Sidebar = () => {
 
-    const [isActive, setIsActive] = useState(0);
-
-    const handleColor = (index: number) => {
-     setIsActive(index)
-   };
-
     const router = useRouter()
     const movepage = () => {
         router.push(`dashboard`);
@@ -33,7 +27,7 @@ const Sidebar = () => {
     const b = () => {
         router.push(`settings`);
     };
-    const [expanded, setExpanded] = useState(true)
+
     return (
         <div className="w-[222px] bg-white h-screen">
             <div className="flex flex-col gap-[16px] pt-4">
