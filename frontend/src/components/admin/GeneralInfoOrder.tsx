@@ -1,4 +1,4 @@
-import IconOrder from "./icons/IconOrder"
+import IconOrder from "../../assets/icons/IconOrder"
 
 export default function GeneralInfoOrder() {
     return(
