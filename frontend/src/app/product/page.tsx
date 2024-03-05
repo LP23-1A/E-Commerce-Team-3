@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 
-const Order = () => {
+const Product = () => {
     return(
         <div  className="w-screen h-screen bg-gray-200 justify-center items-center">
             <Sidebar/>
@@ -8,4 +8,4 @@ const Order = () => {
     )
 }
 
-export default Order;
+export default Product;
