@@ -1,10 +1,12 @@
 import GeneralInfo from "@/components/admin/GeneralInfo";
 import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 
 const DashBoard = () => {
   return (
     <div className="w-screen h-screen bg-gray-200 justify-center items-center">
-      <div className="flex gap-20">
+      <Navbar/>
+      <div className="flex gap-6">
         <Sidebar />
         <GeneralInfo />
       </div>
