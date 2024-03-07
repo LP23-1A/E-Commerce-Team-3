@@ -1,8 +1,14 @@
+"use client";
+
 import GeneralInfo from "@/components/admin/GeneralInfo";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
+import withAuth from "@/components/Test";
 
 const DashBoard = () => {
+  const {user}= useAuth0()
+  console.log(user)
   return (
     <div className="w-screen h-screen bg-gray-200 justify-center items-center">
       <Navbar/>
@@ -14,7 +20,7 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default withAuth(DashBoard);
 // "use client"
 // import React, { useState } from 'react';
 

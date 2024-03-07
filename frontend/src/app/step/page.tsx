@@ -3,8 +3,13 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { useState } from "react";
-
-const steps = ["Market Name", "Location", "Information"];
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios'
+import { useRouter } from "next/navigation";
+import logo from "../../../public/img/Pinecone Logo.png";
+import { withMiddlewareAuthRequired, getSession } from '@auth0/nextjs-auth0/edge';
+import withAuth from "@/components/Test";
+const steps = ["Байршил", "Мэдээлэл"];
 
 const StepPage = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -17,10 +22,9 @@ const StepPage = () => {
       zipCode:"",
       cardId:''
   })
-
-  const {user}= useAuth0()
-console.log(user)
-
+const router = useRouter()
+  const {isAuthenticated}= useAuth0()
+console.log(isAuthenticated)
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -28,8 +32,23 @@ console.log(user)
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSubmit = () => {
-    console.log("test");
+  const handleSubmit =  async() => {
+    router.push('/dashboard')
+  // const address = `${data.khoroo},${data.district},${data.city} `
+  // try {
+  //   const res = await axios.post('http://localhost:8000/sign',{
+  //   username:user?.given_name,
+  //   email:user?.email,
+  //   phoneNumber:data.phoneNumber,
+  //   address:address,
+  //   zipCode:data.zipCode,
+  //   cardId:data.cardId,
+  //   createdAt:Date
+
+  //   })
+  // } catch (error) {
+  //   console.log(error)
+  // }
   };
 
   return (
@@ -79,7 +98,7 @@ console.log(user)
               )}
             </div>
             <div className="flex justify-center gap-[200px] mt-6">
-              <button className="bg-[#F7F7F8]  rounded-lg px-[30px] py-3 text-[#1C2024] hover:bg-black hover:text-white" disabled={activeStep === 0} onClick={handleBack}>
+              <button className="bg-[#F7F7F8] rounded-lg px-[30px] py-3 text-[#1C2024] hover:bg-black hover:text-white" disabled={activeStep === 0} onClick={handleBack}>
                 {"<"}
               </button>
               <button className="bg-[#F7F7F8]  rounded-lg px-[30px] py-3 text-[#1C2024] hover:bg-black hover:text-white"
@@ -87,7 +106,7 @@ console.log(user)
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
                 }
               >
-                {"daraah->"}
+                {"Дараах->"}
               </button>
             </div>
           </div>
