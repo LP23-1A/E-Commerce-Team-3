@@ -8,6 +8,18 @@ const steps = ["Market Name", "Location", "Information"];
 
 const StepPage = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [data,setData]=useState({
+    district:'',
+    khoroo:'',
+    city:'',
+      phoneNumber:'',
+      address:"",
+      zipCode:"",
+      cardId:''
+  })
+
+  const {user}= useAuth0()
+console.log(user)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -22,13 +34,19 @@ const StepPage = () => {
 
   return (
     <div>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      <img src={logo.src} className="px-[44px] py-[44px]" alt="" />
+     <div className="flex items-center justify-center mb-8">
+        <div className="flex gap-[400px] justify-center">
+          {steps.map((label, index) => (
+            <div key={label} className={`text-center flex  flex-col items-center ${index === activeStep ? 'text-white font-bold' : 'text-gray-500'}`}>
+              <div  className={`w-8 h-8 flex items-center justify-center rounded-full border-2 border-black ${index=== activeStep ? 'bg-black':'bg-white'}`}>
+                {index + 1}
+              </div>
+              <p className="mt-1 text-black ">{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="flex justify-center">
         {activeStep === steps.length ? (
           <div></div>
@@ -36,42 +54,35 @@ const StepPage = () => {
           <div>
             <div>
               {activeStep === 0 && (
-                <div>
-                  <p>Дэлгүүрийн мэдээлэл</p>
-                  <p>Танай дэлгүүрийн нэр юу вэ?</p>
-                  <input type="text" placeholder="Market Name" />
-                </div>
+                <div className="mt-[100px]"> 
+                  <p className=" font-[700] text-[34px]">Бүс нутгийн мэдээлэл</p>
+                  <p className=" font-[700] text-[16px]" >Хот/Аймаг</p>
+                  <input className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px] rounded-lg px-[20px] py-5 text-[#1C2024]" type="text" value={data.city} onChange={(e)=> setData({...data ,city:e.target.value})} placeholder="City" />
+                  <p className=" font-[700] text-[16px]" >Сум/Дүүрэг</p>
+                  <input className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px]  rounded-lg px-[20px] py-5 text-[#1C2024]" type="text" value={data.district} onChange={(e)=> setData({...data , district:e.target.value})} placeholder="District" />
+                  <p className=" font-[700] text-[16px]">Хороо</p>
+                  <input className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px]  rounded-lg px-[20px] py-5 text-[#1C2024]" type="text" value={data.khoroo} onChange={(e)=> setData({...data , khoroo:e.target.value})} placeholder="Khoroo" />
+                </div> 
               )}
               {activeStep === 1 && (
-                <div>
-                  <p>Бүс нутгийн мэдээлэл</p>
-                  <p>Хот/Аймаг</p>
-                  <input type="text" placeholder="City" />
-                  <p>Сум/Дүүрэг</p>
-                  <input type="text" placeholder="District" />
-                  <p>Хороо</p>
-                  <input type="text" placeholder="Khoroo" />
-                </div>
-              )}
-              {activeStep === 2 && (
-                <div>
-                  <p>Жоохон танилцья</p>
-                  <p>
-                    Энэ мэдээллийг дэлгүүрийн тохиргоонд туслах зорилгоор
-                    ашиглана.
-                  </p>
-                  <p>Та борлуулалт хийж байсан туршлагатай юу?</p>
-                  <select name="experience" id=""></select>
-                  <p>Та ямар төрлийн бүтээгдэхүүн борлуулах вэ?</p>
-                  <select name="products" id=""></select>
+                <div  className="mt-[100px]">
+                  <p className=" font-[700] text-[34px]">Мэдээлэл</p>
+                  <p className=" font-[700] text-[16px]" >Phone Number</p>
+
+                  <input placeholder="Phone Numnber" className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px] rounded-lg px-[20px] py-5 text-[#1C2024]"  type="cardId" value={data.phoneNumber} onChange={(e)=> setData({...data , phoneNumber:e.target.value})}  />
+              
+                  <p className=" font-[700] text-[16px]" >Card number</p>
+               <input placeholder="Card number" className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px] rounded-lg px-[20px] py-5 text-[#1C2024]"  type="cardId" value={data.cardId} onChange={(e)=> setData({...data , cardId:e.target.value})}  />
+                  <p className=" font-[700] text-[16px]">Zipcode  </p>
+              <input placeholder="ZipCode" className="bg-[#F7F7F8] border-solid border-2 border-black w-[450px] rounded-lg px-[20px] py-5 text-[#1C2024]"  type="number" value={data.zipCode} onChange={(e)=> setData({...data , zipCode:e.target.value})} />
                 </div>
               )}
             </div>
-            <div className="flex gap-10">
-              <button disabled={activeStep === 0} onClick={handleBack}>
+            <div className="flex justify-center gap-[200px] mt-6">
+              <button className="bg-[#F7F7F8]  rounded-lg px-[30px] py-3 text-[#1C2024] hover:bg-black hover:text-white" disabled={activeStep === 0} onClick={handleBack}>
                 {"<"}
               </button>
-              <button
+              <button className="bg-[#F7F7F8]  rounded-lg px-[30px] py-3 text-[#1C2024] hover:bg-black hover:text-white"
                 onClick={
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
                 }
