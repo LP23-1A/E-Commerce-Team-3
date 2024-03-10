@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import aws, { S3 } from "aws-sdk"
 import dotenv from "dotenv"
-import multer from "multer"
-import multerS3 from "multer-s3"
-import crypto, { randomBytes } from "crypto"
+import {promisify} from "util"
+import crypto from "crypto"
 import { productModel } from "../model/product";
 
 dotenv.config()
+
+const randomBytes = promisify(crypto.randomBytes)
 
 const s3 = new aws.S3({
 
