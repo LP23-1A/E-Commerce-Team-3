@@ -7,9 +7,9 @@ import dotenv from "dotenv"
 dotenv.config()
 const createUserMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name, email,  phoneNumber, role ,address,zipCode,cardId,createdAt,updateAt} = req.body;
+    const { username, email,  phoneNumber, role ,address,zipCode,cardId,createdAt,updateAt} = req.body;
     const newUser = new userModel({
-      name,
+      username,
       email,
       phoneNumber,
       role,

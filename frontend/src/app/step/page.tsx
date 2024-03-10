@@ -7,7 +7,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios'
 import { useRouter } from "next/navigation";
 import logo from "../../../public/img/Pinecone Logo.png";
-import { withMiddlewareAuthRequired, getSession } from '@auth0/nextjs-auth0/edge';
 import withAuth from "@/components/Test";
 const steps = ["Байршил", "Мэдээлэл"];
 
@@ -22,33 +21,39 @@ const StepPage = () => {
       zipCode:"",
       cardId:''
   })
+
 const router = useRouter()
-  const {isAuthenticated}= useAuth0()
-console.log(isAuthenticated)
+  const {user}= useAuth0()
+console.log(user)
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleSubmit =  async() => {
-    router.push('/dashboard')
-  // const address = `${data.khoroo},${data.district},${data.city} `
-  // try {
-  //   const res = await axios.post('http://localhost:8000/sign',{
-  //   username:user?.given_name,
-  //   email:user?.email,
-  //   phoneNumber:data.phoneNumber,
-  //   address:address,
-  //   zipCode:data.zipCode,
-  //   cardId:data.cardId,
-  //   createdAt:Date
+  
 
-  //   })
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  const address = `${data.khoroo},${data.district},${data.city} `
+  try {
+    const res = await axios.post('http://localhost:8000/sign',{
+    username:user?.given_name,
+    email:user?.email,
+    phoneNumber:data.phoneNumber,
+    address:address,
+    zipCode:data.zipCode,
+    cardId:data.cardId,
+    createdAt:Date
+
+    }
+    )
+    router.push('/dashboard')
+  } catch (error) {
+    console.log(error)
+  }
   };
 
   return (
