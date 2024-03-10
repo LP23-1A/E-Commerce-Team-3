@@ -1,5 +1,39 @@
 import { Request, Response } from "express";
+import aws, { S3 } from "aws-sdk"
+import dotenv from "dotenv"
+import multer from "multer"
+import multerS3 from "multer-s3"
+import crypto, { randomBytes } from "crypto"
 import { productModel } from "../model/product";
+
+dotenv.config()
+
+const s3 = new aws.S3({
+
+  region : process.env.REGION,
+  accessKeyId : process.env.ACCESS_KEY,
+  secretAccessKey : process.env.SECRET_ACCESS_KEY,
+  signatureVersion : "v4"
+
+})
+
+
+const bucketName = "team3-ecommerce"
+
+export const generateUrl = async () => {
+
+  const rawBytes =  randomBytes(16)
+  const ImageName = rawBytes.toString('hex') 
+  const params = ({
+    Bucket : bucketName,
+    key : ImageName ,
+    expires : 60
+  })
+
+  const uploadUrl = await s3.getSignedUrlPromise("putObject" , params)
+  return uploadUrl
+
+}
 
 
 type ProductType = {
@@ -16,15 +50,20 @@ type ProductType = {
 
 }
 
+
+
 export const createProduct = async (req: Request, res: Response) => {
     try {
-      const {productName , description , price , quantity , categoryId} : Required <ProductType> = req.body
+
+
+      const {productName , description , price , quantity , categoryId, images} : Required <ProductType> = req.body
     const newProduct = await productModel.create({
       productName ,
       description ,
       price ,
       quantity ,
-      categoryId 
+      categoryId,
+      images ,
    
     })
     newProduct.save()
