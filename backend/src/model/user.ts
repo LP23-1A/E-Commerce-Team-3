@@ -19,5 +19,5 @@ const userSchema = new mongoose.Schema({
     createdAt: Date,
     updateAt: Date
 })
-const userModel = mongoose.model('users', userSchema)
+const userModel = mongoose.model('user', userSchema)
 export { userModel }
