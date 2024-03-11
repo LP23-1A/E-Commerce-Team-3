@@ -37,7 +37,7 @@ const CreateProduct = ({ onClick }: any) => {
 
     return (
         <div className='flex flex-col  h-fit '>
-            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4'>
+            <div onClick={onClick} className='flex bg-[#FFFFFF] w-full p-4 gap-4'>
                 <ArrowBackIosIcon />
                 <p>Бүтээгдэхүүн нэмэх</p>
             </div>

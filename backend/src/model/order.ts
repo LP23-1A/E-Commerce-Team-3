@@ -17,7 +17,7 @@ const OrderSchema = new mongoose.Schema({
         enum: ['Ordered', 'Preparing to ship', 'Shipped', 'Delivered'],
         default: 'Preparing to ship'
     },
-    phoneNumber3213: Number,
+    phoneNumber: Number,
     deliveryDate: Date,
     amountPaid: Number,
     amountToPaid: Number,
