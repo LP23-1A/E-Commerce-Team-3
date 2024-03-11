@@ -7,7 +7,6 @@ const ToggleCreateProduct = ({onClick}:any) => {
         const [page , setPage] = useState(false)
         const togglePage = () => {
             setPage(!page);
-            console.log(page);
           };
 
 
