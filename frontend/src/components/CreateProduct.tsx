@@ -20,6 +20,7 @@ const CreateProduct = ({ onClick }: any) => {
         price: "",
         quantity: "",
         categoryId: "",
+<<<<<<< HEAD
         image: "",
         product_id:""    
      })
@@ -32,21 +33,49 @@ const CreateProduct = ({ onClick }: any) => {
         categotyId: input.categoryId,
         image: input.image,
         product_id:input.product_id
+=======
+        image:""
+    })
+
+    const keys = {
+        productName : input.productName,
+        description : input.description,
+        price : input.price,
+        quantity : input.quantity,
+        categotyId : input.categoryId,
+        image : input.image
+>>>>>>> 3451148 (s3 uploader bug)
     }
+
+  
+
+    const handleFileChange = (e:any) => {
+        const file = e.target.files[0];
+        setInput(file);
+        input.image = e.target.value
+      };
+
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
+<<<<<<< HEAD
             const res = await axios.post(api, { ...keys })
             router.push('/product')
 
+=======
+            const res = await axios.post(api, { ...keys } )
+            console.log(res, "success");
+          
+>>>>>>> 3451148 (s3 uploader bug)
 
         } catch (error) {
             console.log(error);
         }
     }
 
+ 
 
 
     return (
@@ -82,8 +111,8 @@ const CreateProduct = ({ onClick }: any) => {
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
                             </div>
-                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
-                                <InsertPhotoOutlinedIcon />
+                            <div defaultValue={input.image} onChange={handleFileChange} className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                                <InsertPhotoOutlinedIcon  />
                             </div>
                             <div className='px-10'><div className=" flex justify-center h-[32px] w-[32px] bg-[#ECEDF0] p-1 rounded-[50%]">+</div></div>
                         </div>
