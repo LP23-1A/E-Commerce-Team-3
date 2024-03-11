@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { connectDataBase } from './utils/data'
 import { product } from './router/product'
+import { user } from './router/user'
 dotenv.config()
 const start =()=>{
     connectDataBase()
@@ -12,7 +13,7 @@ const start =()=>{
     app.use(cors());
     app.use(express.json())
     app.use("/product" , product)
-
+    app.use('/sign',user)
     const PORT = process.env.PORT || 8000
     app.get('/',(req,res)=>{
         res.status(200).send({succes:true, msg:'hi'})
