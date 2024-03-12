@@ -21,8 +21,8 @@ const Product = () => {
             <Navbar/>
             <div className="flex  items-start">
                 <Sidebar />
-                <div className="flex flex-col">
-                   {addbutton &&  <ToggleCreateProduct onClick={toggleButton}/>}
+                <div className="flex flex-col" onClick={toggleButton}>
+                   {addbutton &&  <ToggleCreateProduct/>}
                 </div>
             </div>
         </div>
