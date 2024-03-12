@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import CreateProduct from "@/components/CreateProduct";
 import ToggleCreateProduct from "@/components/ToggleCreateProduct";
+import ProductTableNavbar from "@/components/ProductTableNavbar";
+import ProductNavbarFilterButton from "@/components/ProductNavbarFilterButton";
+import ProductList from "@/components/ProductList";
 
 const Product = () => {
 
@@ -23,6 +26,10 @@ const Product = () => {
                 <Sidebar />
                 <div className="flex flex-col" onClick={toggleButton}>
                    {addbutton &&  <ToggleCreateProduct/>}
+                  <div className="mt-6 ml-5 flex flex-col gap-2"  >
+                   <ProductTableNavbar/>
+                   <ProductList/>
+                  </div>
                 </div>
             </div>
         </div>
