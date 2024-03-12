@@ -1,6 +1,6 @@
 "use client";
 
-import GeneralInfo from "@/components/admin/GeneralInfo";
+import GeneralInfo from "@/components/GeneralInfo";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";

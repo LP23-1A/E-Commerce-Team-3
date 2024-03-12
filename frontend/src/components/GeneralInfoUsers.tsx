@@ -1,4 +1,4 @@
-import IconUser from "../../assets/icons/IconUser"
+import IconUser from "../assets/IconUser"
 
 export default function GeneralInfoUsers(){
     return(

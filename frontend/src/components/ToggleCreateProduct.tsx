@@ -16,9 +16,9 @@ const ToggleCreateProduct = ({onClick}:any) => {
                         <button className="px-5 py-5 border-b border-solid border-current font-semibold"> Бүтээгдэхүүн</button>
                         <button className="px-5 py-5 text-light">Ангилал</button>
                     </div>
-                    {!page ?  <div className="w-[280px] h-[48px] text-white rounded-xl bg-black flex items-center justify-center gap-2 mt-6 ml-5">
+                    {!page ? <div className="w-[280px] h-[48px] text-white rounded-xl bg-black flex items-center justify-center gap-2 mt-6 ml-5 cursor-pointer" onClick={togglePage}>
                         <AddOutlinedIcon/>
-                        <button onClick={togglePage}>Бүтээгдэхүүн нэмэх</button>
+                        <button >Бүтээгдэхүүн нэмэх</button>
                         
                     </div> : <CreateProduct onClick={togglePage}/> }
                 

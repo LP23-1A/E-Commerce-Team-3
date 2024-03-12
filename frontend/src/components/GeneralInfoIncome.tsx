@@ -1,4 +1,4 @@
-import IconIncome from "../../assets/icons/IconIncome";
+import IconIncome from "../assets/IconIncome";
 
 export default function GeneralInfoIncome() {
     return(

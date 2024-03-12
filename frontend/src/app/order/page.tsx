@@ -17,10 +17,12 @@ const Order = () => {
             <Navbar/>
           <div className="flex  w-screen">
               <Sidebar/>
-              <div className="w-screen">
+              <div className="">
               <OrderNavbar data={data}/>
-              <OrderDayFilter/>
-          <OrderHistory data={data}/>
+       <div className="mt-8">
+            <OrderDayFilter/>
+            <OrderHistory data={data}/>
+       </div>
               </div>
   
           </div>    
