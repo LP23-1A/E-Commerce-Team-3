@@ -14,47 +14,59 @@ const CreateProduct = ({ onClick }: any) => {
         router.push(`product`);
     };
 
+
+    const requestUrl = "https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/008c3ca7-89d2-4058-9555-1730ec4d031b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAYS2NWDJJ2TVU44MQ%2F20240312%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240312T033120Z&X-Amz-Expires=3600&X-Amz-Signature=6b3465a7d6451d082f8ef970bb89eea96c88e4d667bb294050ea0a01f8eb2d7f&X-Amz-SignedHeaders=host&x-amz-acl=public-read&x-id=PutObject"
+
+
+const [images, setImages] = useState<File[]>();
+
+const onUpload = async () => {
+    const res = await axios.put('requestUrl', images[0], {
+        headers: {
+            'Content-Type': (images[0] as File).type
+        }
+    });
+    console.log(res);
+};
+
+
     const [input, setInput] = useState({
         productName: "",
         description: "",
         price: "",
         quantity: "",
         categoryId: "",
-        image:""
+        image: ""
     })
 
     const keys = {
-        productName : input.productName,
-        description : input.description,
-        price : input.price,
-        quantity : input.quantity,
-        categotyId : input.categoryId,
-        image : input.image
+        productName: input.productName,
+        description: input.description,
+        price: input.price,
+        quantity: input.quantity,
+        categotyId: input.categoryId,
+        image: input.image
     }
 
-  
 
-    const handleFileChange = (e:any) => {
-        const file = e.target.files[0];
-        setInput(file);
-        input.image = e.target.value
-      };
+
+
 
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
-            const res = await axios.post(api, { ...keys } )
+            const res = await axios.post(api, { ...keys })
             console.log(res, "success");
-          
+
 
         } catch (error) {
             console.log(error);
         }
     }
 
- 
+
 
 
     return (
@@ -90,8 +102,8 @@ const CreateProduct = ({ onClick }: any) => {
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
                             </div>
-                            <div defaultValue={input.image} onChange={handleFileChange} className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
-                                <InsertPhotoOutlinedIcon  />
+                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                                <InsertPhotoOutlinedIcon />
                             </div>
                             <div className='px-10'><div className=" flex justify-center h-[32px] w-[32px] bg-[#ECEDF0] p-1 rounded-[50%]">+</div></div>
                         </div>

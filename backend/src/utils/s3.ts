@@ -42,7 +42,7 @@ const generateUrl = async (req: Request, res: Response) => {
     const signUrl = await getSignedUrl(
       s3,
       new PutObjectCommand({
-        Bucket: 'test',
+        Bucket: 'team3-ecommerce',
         Key: key,
         ACL: 'public-read',
       }),
