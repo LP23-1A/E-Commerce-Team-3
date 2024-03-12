@@ -20,20 +20,6 @@ const CreateProduct = ({ onClick }: any) => {
         price: "",
         quantity: "",
         categoryId: "",
-<<<<<<< HEAD
-        image: "",
-        product_id:""    
-     })
-
-    const keys = {
-        productName: input.productName,
-        description: input.description,
-        price: input.price,
-        quantity: input.quantity,
-        categotyId: input.categoryId,
-        image: input.image,
-        product_id:input.product_id
-=======
         image:""
     })
 
@@ -44,7 +30,6 @@ const CreateProduct = ({ onClick }: any) => {
         quantity : input.quantity,
         categotyId : input.categoryId,
         image : input.image
->>>>>>> 3451148 (s3 uploader bug)
     }
 
   
@@ -60,15 +45,9 @@ const CreateProduct = ({ onClick }: any) => {
 
     const createProduct = async () => {
         try {
-<<<<<<< HEAD
-            const res = await axios.post(api, { ...keys })
-            router.push('/product')
-
-=======
             const res = await axios.post(api, { ...keys } )
             console.log(res, "success");
           
->>>>>>> 3451148 (s3 uploader bug)
 
         } catch (error) {
             console.log(error);
