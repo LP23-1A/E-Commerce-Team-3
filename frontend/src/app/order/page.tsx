@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import OrderHistory from "@/components/OrderHistory";
 import OrderNavbar from "@/components/OrderNavbar";
 import Sidebar from "@/components/Sidebar";
+import OrderDayFilter from "@/components/OrderDayFilter";
 
 const Order = () => {
     const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -14,10 +15,11 @@ const Order = () => {
     return(
         <div  className="w-screen h-screen bg-gray-200 ">
             <Navbar/>
-          <div className="flex">
+          <div className="flex  w-screen">
               <Sidebar/>
-              <div>
+              <div className="w-screen">
               <OrderNavbar data={data}/>
+              <OrderDayFilter/>
           <OrderHistory data={data}/>
               </div>
   
