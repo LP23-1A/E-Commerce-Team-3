@@ -3,23 +3,27 @@ import Edit from "@/assets/Edit"
 import { useState } from "react";
 import useSWR from "swr";
 import ToggleDelete from "./ToggleDelete";
+import EditProduct from "./EditProduct";
 
 
 const ProductList = () => {
 
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
-
   const [isDeleteModalShow, setIsDeleteModalShow] = useState(false)
+  const [isEditModalShow, setIsEditModalShow] = useState(false)
 
 
-  const deleteProductHandler = (productId: string) => {
+  const deleteModalHandler = (productId: string) => {
     setSelectedProductId(productId)
     setIsDeleteModalShow(!isDeleteModalShow)
-    console.log(isDeleteModalShow);
-
   }
 
-console.log(selectedProductId);
+  const editModalHandler = (productId: string) => {
+    setSelectedProductId(productId)
+    setIsEditModalShow(!isEditModalShow)
+  }
+
+
 
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -50,15 +54,15 @@ console.log(selectedProductId);
             <p className="w-fit text-sm text-[#3F4145]">{e.createdAt}</p>
             
             <div className="flex gap-2 items-center ">
-              <button onClick={() => deleteProductHandler(e._id)} >
+              <button onClick={() => deleteModalHandler(e._id)} >
               <Delete  />
               </button>
-              <button>
+              <button onClick={() => editModalHandler(e.id)}>
               <Edit />
               </button>
             </div>
-            {/* <ToggleDelete/> */}
-            { isDeleteModalShow && selectedProductId === e._id &&( <ToggleDelete selectedProductId={selectedProductId}  onClick={deleteProductHandler} />)}
+            { isDeleteModalShow && selectedProductId === e._id &&( <ToggleDelete selectedProductId={selectedProductId}  onClick={deleteModalHandler} />)}
+            { isDeleteModalShow && selectedProductId === e._id &&( <EditProduct selectedProductId={selectedProductId}  onClick={editModalHandler} />)}
           </div>
         )
       })}

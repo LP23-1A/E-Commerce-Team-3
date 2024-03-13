@@ -1,11 +1,9 @@
 "use client"
 
 import axios from "axios"
-import { useState } from "react"
 
 const ToggleDelete = ({ onClick, selectedProductId }: any) => {
 
-console.log(selectedProductId);
 
   const deleteHandler = async () => {
     try {

@@ -34,8 +34,9 @@ const onUpload = async () => {
         price: "",
         quantity: "",
         categoryId: "",
-        image: ""
-    })
+        image: "",
+        product_id:""    
+     })
 
     const keys = {
         productName: input.productName,
@@ -43,7 +44,8 @@ const onUpload = async () => {
         price: input.price,
         quantity: input.quantity,
         categotyId: input.categoryId,
-        image: input.image
+        image: input.image,
+        product_id:input.product_id
     }
 
 
@@ -56,7 +58,7 @@ const onUpload = async () => {
     const createProduct = async () => {
         try {
             const res = await axios.post(api, { ...keys })
-            console.log(res, "success");
+           
             onClick(onClick)
 
 
@@ -87,7 +89,7 @@ const onUpload = async () => {
                         </div>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Барааны код</p>
-                            <input className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
+                            <input  value={input.description} onChange={(e) => setInput((prev) => ({ ...prev, product_id: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
                         </div>
                     </div>
                     <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] w-[563px]" >
