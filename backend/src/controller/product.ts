@@ -39,13 +39,13 @@ export const createProduct = async (req: Request, res: Response) => {
 
     })
     newProduct.save()
-    return res.status(200).send({ success: true })
+    res.status(200).send({ success: true })
 
 
   } catch (error) {
     console.log(error);
 
-    return res.status(500).send({ success: false, error: "Create product failed" });
+     res.status(500).send({ success: false, error: "Create product failed" });
   }
 };
 
