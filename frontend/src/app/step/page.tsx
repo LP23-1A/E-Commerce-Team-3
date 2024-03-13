@@ -37,7 +37,7 @@ console.log(user)
   const handleSubmit =  async() => {
   
 
-  const address = `${data.khoroo},${data.district},${data.city} `
+  const address = `${data.city},${data.district},${data.khoroo} `
   try {
     const res = await axios.post('http://localhost:8000/sign',{
     username:user?.given_name,

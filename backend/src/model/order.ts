@@ -5,12 +5,10 @@ const OrderSchema = new mongoose.Schema({
         ref: 'e-user',
         required: true
     },
-    products: {
+    products: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'product',
-        require: true
-    },
-
+        ref: 'product'
+    }],
     orderNumber: String,
     status: {
         type: String,
@@ -25,6 +23,7 @@ const OrderSchema = new mongoose.Schema({
     description: String,
     orderType: String,
     details: String,
+    quantity : Number,
     createdAt: Date,
     updatedAt: Date
 

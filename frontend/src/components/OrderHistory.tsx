@@ -3,16 +3,18 @@ import axios from "axios"
 import { useState } from "react";
 import StatusBar from "./StatusBar";
 import ChevronRight from "@/assets/ChevronRight";
+import { useRouter } from "next/navigation";
 
 const OrderHistory = ({ data }: any) => {
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
   const [statusModal, setStatusModal]=useState(false)
 
+  const router = useRouter()
+console.log(data)
   const statusModalHandler =(orderId:string)=>{
     setSelectedOrderId(orderId)
     setStatusModal(!statusModal)
   }
-
   return (
     <div className="bg-white w-[1170px] rounded-lg  ml-5 h-auto pb-20 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>
@@ -28,7 +30,6 @@ const OrderHistory = ({ data }: any) => {
         </div>
       {data && data.map((e) => (
         <div key={e._id} className="flex justify-between px-[80px]  py-3 "> 
-         
           <p className="w-[100px] text-semibold text-sm">#{e?.orderNumber}</p> 
           <div className="w-fit flex flex-col">
           <p className="text-black w-fit text-semibold text-sm">{e?.userId?.username}</p>
@@ -41,7 +42,7 @@ const OrderHistory = ({ data }: any) => {
           <p className="w-fit">{e?.amountPaid}₮</p>
           <p onClick={()=> statusModalHandler(e?._id)} className="w-fit cursor-pointer rounded-lg py-[2px] px-2">{e?.status}</p>
           {statusModal && selectedOrderId === e?._id && <StatusBar selectedOrderId={selectedOrderId} onClick={statusModalHandler}/>}
-          <div className="cursor-pointer">
+          <div onClick={ ()=> router.push(`/${e?._id}`)} className="cursor-pointer">
           <ChevronRight/>
           </div>
           <hr />   

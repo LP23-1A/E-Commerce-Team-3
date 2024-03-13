@@ -5,7 +5,6 @@ import OrderHistory from "@/components/OrderHistory";
 import OrderNavbar from "@/components/OrderNavbar";
 import Sidebar from "@/components/Sidebar";
 import OrderDayFilter from "@/components/OrderDayFilter";
-
 const Order = () => {
     const fetcher = (url: string) => fetch(url).then((r) => r.json());
     const { data, error, isLoading } = useSWR(
