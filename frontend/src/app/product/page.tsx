@@ -7,6 +7,7 @@ import ToggleCreateProduct from "@/components/ToggleCreateProduct";
 import ProductTableNavbar from "@/components/ProductTableNavbar";
 import ProductNavbarFilterButton from "@/components/ProductNavbarFilterButton";
 import ProductList from "@/components/ProductList";
+import EditProduct from "@/components/EditProduct";
 
 const Product = () => {
 
@@ -20,17 +21,20 @@ const Product = () => {
 
 
     return(
-        <div  className="w-screen h-screen bg-gray-200 justify-center items-center">
+        <div  className="w-full h-screen bg-gray-200 justify-center items-center">
             <Navbar/>
             <div className="flex  items-start">
                 <Sidebar />
-                <div className="flex flex-col" onClick={toggleButton}>
-                   {addbutton &&  <ToggleCreateProduct/>}
-                  <div className="mt-6 ml-5 flex flex-col gap-2"  >
+               <div className="flex flex-col">
+               <div className="flex flex-col w-full" >
+                  <ToggleCreateProduct/>
+                </div>
+                <div className="mt-6 ml-5 flex flex-col gap-2"  >
                    <ProductTableNavbar/>
                    <ProductList/>
+                   
                   </div>
-                </div>
+               </div>
             </div>
         </div>
     )

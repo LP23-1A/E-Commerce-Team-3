@@ -6,7 +6,7 @@ import React from "react"
 import Search from "@/assets/Search"
 const ProductTableNavbar:React.FC  = () => {
     return(
-   <div className="flex justify-between w-screen ">
+   <div className="flex justify-between w-[1170px] ">
          <div className="flex gap-2 ">
             <ProductNavbarFilterButton text="Ангилал" iconSvg={<AngilalIcon/>}/>
             <ProductNavbarFilterButton text="Үнэ" iconSvg={<DollarIcon/>}/>
