@@ -15,19 +15,37 @@ const CreateProduct = ({ onClick }: any) => {
     };
 
 
-    const requestUrl = "https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/008c3ca7-89d2-4058-9555-1730ec4d031b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAYS2NWDJJ2TVU44MQ%2F20240312%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240312T033120Z&X-Amz-Expires=3600&X-Amz-Signature=6b3465a7d6451d082f8ef970bb89eea96c88e4d667bb294050ea0a01f8eb2d7f&X-Amz-SignedHeaders=host&x-amz-acl=public-read&x-id=PutObject"
+    const requestUrl = "https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/06f38f00-b354-448f-8dbd-ab9cb1a3ffca?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAYS2NWDJJ2TVU44MQ%2F20240313%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240313T053515Z&X-Amz-Expires=3600&X-Amz-Signature=3267ab4e15469e1ee7ce891813ceb70346d5316f9b9d21c8cdd2a9fadef0e6c6&X-Amz-SignedHeaders=host&x-amz-acl=public-read&x-id=PutObject"
 
 
 const [images, setImages] = useState<File[]>();
 
 const onUpload = async () => {
-    const res = await axios.put('requestUrl', images[0], {
-        headers: {
-            'Content-Type': (images[0] as File).type
-        }
-    });
-    console.log(res);
-};
+    // const res = await axios.put('requestUrl', images[0], {
+    //     headers: {
+    //         'Content-Type': (images[0] as File).type
+    //     }
+    // });
+    // console.log(res);
+    if (!images || images.length === 0) {
+        console.error('No image selected');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('image', images[0]);
+
+      try {
+        const res = await axios.put(requestUrl, formData, {
+          headers: {
+            'Content-Type': images[0].type,
+          },
+        });
+        console.log(res);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    };
+
 
 
     const [input, setInput] = useState({
@@ -38,6 +56,7 @@ const onUpload = async () => {
         categoryId: "",
         image: ""
     })
+  
 
     const keys = {
         productName: input.productName,
@@ -95,9 +114,10 @@ const onUpload = async () => {
                     <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] w-[563px]" >
                         <p className="font-bold text-[18px]">Бүтээгдэхүүний зураг</p>
                         <div className="flex gap-2 items-center">
-                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                            <div onClick={onUpload} className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
-                                <input type="file" src="" alt="" className='border border-2 h-14 w-24'/>
+                                <input type="file" src="" alt="" onChange={(e) => setImages(e.target.files)}
+                  className="border-2 h-14 w-24 "/>
                             </div>
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
@@ -108,7 +128,7 @@ const onUpload = async () => {
                             <div className='px-10'><div className=" flex justify-center h-[32px] w-[32px] bg-[#ECEDF0] p-1 rounded-[50%]">+</div></div>
                         </div>
                     </div>
-                    <div className="flex gap-4 w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
+                    <div className="flex  w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үндсэн үнэ</p>
                             <input value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
