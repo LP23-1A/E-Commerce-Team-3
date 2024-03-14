@@ -10,11 +10,12 @@ const OrderHistory = ({ data }: any) => {
   const [statusModal, setStatusModal]=useState(false)
 
   const router = useRouter()
-console.log(data)
+
   const statusModalHandler =(orderId:string)=>{
     setSelectedOrderId(orderId)
     setStatusModal(!statusModal)
   }
+  
   return (
     <div className="bg-white w-[1170px] rounded-lg  ml-5 h-auto pb-20 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>

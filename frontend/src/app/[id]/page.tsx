@@ -1,16 +1,14 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import useSWR from "swr";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import ChevronLeft from "@/assets/ChevronLeft";
 import ChevronDown from "@/assets/ChevronDown";
-import image from "../../assets/Image.png";
-import Car from "@/assets/Car";
-import { useRouter } from "next/navigation";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useParams } from "next/navigation";
-import useSWR from "swr";
 import PayDetail from "@/components/PayDetail";
 import DeliveryDetail from "@/components/DeliveryDetail";
+
 
 const OrderDetail = () => {
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -20,6 +18,7 @@ const OrderDetail = () => {
     `http://localhost:8000/order${pathname}`,
     fetcher
   );
+  
   const handleBack = () => {
     router.push(`order`);
   };
@@ -43,13 +42,13 @@ const OrderDetail = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-gray-200 justify-center items-center">
+    <div className=" h-screen bg-gray-200 justify-center items-center">
       <Navbar />
       <div className="flex">
         <Sidebar />
         <div className="flex flex-col">
           <div
-            className="flex bg-white h-[56px] pl-5 items-center gap-5 cursor-pointer "
+            className="flex bg-white  h-[56px] pl-5 items-center gap-5 cursor-pointer "
             onClick={handleBack}
           >
             <ChevronLeft />
