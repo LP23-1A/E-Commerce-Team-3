@@ -19,5 +19,5 @@ const DashBoard = () => {
   );
 };
 
-export default withAuth(DashBoard);
+export default DashBoard;
 
