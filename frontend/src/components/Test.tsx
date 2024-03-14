@@ -7,13 +7,11 @@ const withAuth = (WrappedComponent) => {
     const Router = useRouter();
     const { isAuthenticated ,user }= useAuth0()
     console.log(isAuthenticated,user,'middleware')
-
     useEffect(() => {
       if (!isAuthenticated) {
         Router.replace('/signup');
       }
     }, [isAuthenticated, Router]);
-
     return isAuthenticated === true ? <WrappedComponent {...props} /> : null;
   };
 };
