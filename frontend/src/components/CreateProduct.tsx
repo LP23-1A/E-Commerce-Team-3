@@ -3,30 +3,16 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { useState } from 'react';
 import axios from "axios"
-import { CleaningServices } from '@mui/icons-material';
-import { log } from 'console';
-
+import { useRouter } from "next/navigation";
 
 
 
 
 const CreateProduct = ({ onClick }: any) => {
-
-
-    const requestUrl = "https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/008c3ca7-89d2-4058-9555-1730ec4d031b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAYS2NWDJJ2TVU44MQ%2F20240312%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240312T033120Z&X-Amz-Expires=3600&X-Amz-Signature=6b3465a7d6451d082f8ef970bb89eea96c88e4d667bb294050ea0a01f8eb2d7f&X-Amz-SignedHeaders=host&x-amz-acl=public-read&x-id=PutObject"
-
-
-const [images, setImages] = useState<File[]>();
-
-const onUpload = async () => {
-    const res = await axios.put('requestUrl', images[0], {
-        headers: {
-            'Content-Type': (images[0] as File).type
-        }
-    });
-    console.log(res);
-};
-
+    const router = useRouter()
+    const movepage = () => {
+        router.push(`product`);
+    };
 
     const [input, setInput] = useState({
         productName: "",
@@ -48,11 +34,6 @@ const onUpload = async () => {
         product_id:input.product_id
     }
 
-
-
-
-
-
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
@@ -71,7 +52,7 @@ const onUpload = async () => {
 
     return (
         <div className='flex flex-col  h-fit '>
-            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4'>
+            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >
                 <ArrowBackIosIcon />
                 <p>Бүтээгдэхүүн нэмэх</p>
             </div>
@@ -89,7 +70,7 @@ const onUpload = async () => {
                         </div>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Барааны код</p>
-                            <input  value={input.description} onChange={(e) => setInput((prev) => ({ ...prev, product_id: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
+                            <input  value={input.product_id} onChange={(e) => setInput((prev) => ({ ...prev, product_id: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
                         </div>
                     </div>
                     <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] w-[563px]" >

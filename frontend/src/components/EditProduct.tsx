@@ -1,5 +1,4 @@
 "use client"
-
 import axios from "axios"
 import { useState } from "react"
 
@@ -28,16 +27,13 @@ const EditProduct = ({ onClick, selectedProductId }: any) => {
 
     const editProduct = async () => {
         try {
-
             const res = await axios.put(`http://localhost:8000/product/${selectedProductId}`, {...keys })
             onClick(onClick)
-
         } catch (error) {
             
         }
 
     }
-
 
     return (
         <div className="flex w-fit flex-col gap-4 bg-[#fffffF] justify-center items-center p-4 rounded-xl">
