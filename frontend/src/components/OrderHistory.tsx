@@ -15,7 +15,21 @@ const OrderHistory = ({ data }: any) => {
     setSelectedOrderId(orderId)
     setStatusModal(!statusModal)
   }
-  
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   return (
     <div className="bg-white w-[1170px] rounded-lg  ml-5 h-auto pb-20 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>
@@ -37,9 +51,9 @@ const OrderHistory = ({ data }: any) => {
           <p className="text-black w-fit">{e?.userId?.email}</p>
           </div>
           <div>
-            <p className="w-fit">2023-01-09</p>
+            <p className="w-fit">{formatDate(e.createdAt)}</p>
           </div>
-          <p className="w-fit">10:58</p>
+          <p className="w-fit">{formatTime(e.createdAt)}</p>
           <p className="w-fit">{e?.amountPaid}₮</p>
           <p onClick={()=> statusModalHandler(e?._id)} className="w-fit cursor-pointer rounded-lg py-[2px] px-2">{e?.status}</p>
           {statusModal && selectedOrderId === e?._id && <StatusBar selectedOrderId={selectedOrderId} onClick={statusModalHandler}/>}
