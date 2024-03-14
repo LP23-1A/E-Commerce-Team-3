@@ -3,7 +3,7 @@ import React from 'react'
 const DeliveryDetail = ({data}:any) => {
   return (
 
-    <div className="bg-white w-[519px] h-auto rounded-xl border border-slate-300 pb-4">
+    <div className="bg-white w-[800px] h-auto rounded-xl border border-slate-300 pb-4">
     <div className="border-b border-inherit-300">
         <p className="py-4 px-6">Хүргэлтийн мэдээлэл</p>
     </div>

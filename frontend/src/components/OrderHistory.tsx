@@ -31,7 +31,7 @@ const OrderHistory = ({ data }: any) => {
   };
 
   return (
-    <div className="bg-white w-[1170px] rounded-lg  ml-5 h-auto pb-20 ">
+    <div className="bg-white w-full  rounded-lg  ml-5 h-auto py-2 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>
       <div className="">
         <div className="flex bg-[#F7F7F8] py-4 justify-between px-6 border-b border-slate-300">
