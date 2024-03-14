@@ -4,18 +4,30 @@ import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import withAuth from "@/components/withAuth";
+import IconOrder from "../../assets/IconOrder"
+import IconIncome from "../../assets/IconIncome";
+import IconUser from "../../assets/IconUser"
+
 const DashBoard = () => {
   const {user}= useAuth0()
   console.log(user)
   return (
-    <div className="w-screen h-screen bg-gray-200 justify-center items-center">
+    <div className=" bg-gray-200 justify-center items-center">
       <Navbar/>
       <div className="flex gap-6">
         <Sidebar />
-        <GeneralInfo />
+       <div className="w-full flex justify-between px-6">
+       <GeneralInfo desc="Орлого"  amount="235,000₮" date="Өнөөдөр" icon={<IconIncome/>}/>
+        <GeneralInfo desc="Захиалга"  amount="58" date="Өнөөдөр" icon={<IconOrder/>}/>
+        <GeneralInfo desc="Хэрэглэгч"  amount="980" date="Өнөөдөр" icon={<IconUser/>}/>
+       </div>
       </div>
     </div>
   );
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 753ed5fef16b6c84157d1876643078e14a6f5d8e
 export default DashBoard;
 

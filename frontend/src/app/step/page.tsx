@@ -37,19 +37,17 @@ const StepPage = () => {
 
   const handleSubmit = async () => {
 
-
-    const address = `${data.khoroo},${data.district},${data.city} `
-    try {
-      const res = await axios.post('http://localhost:8000/sign', {
-        username: user?.given_name,
-        email: user?.email,
-        phoneNumber: data.phoneNumber,
-        address: address,
-        zipCode: data.zipCode,
-        cardId: data.cardId,
-        createdAt: Date
-
-      }
+  const address = `${data.city},${data.district},${data.khoroo} `
+  try {
+    const res = await axios.post('http://localhost:8000/sign',{
+    username:user?.given_name,
+    email:user?.email,
+    phoneNumber:data.phoneNumber,
+    address:address,
+    zipCode:data.zipCode,
+    cardId:data.cardId,
+    createdAt:Date
+  }
       )
       router.push('/dashboard')
     } catch (error) {

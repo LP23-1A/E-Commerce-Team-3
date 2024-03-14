@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref : "category"
     },
-    price : Number,
+    price : Number, 
     quantity : Number,
     thumbnails:String,
     images: String,
