@@ -28,25 +28,17 @@ const getAllUsers = async (req: Request, res: Response) => {
 };
 const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const user: any = await userModel.findOne({ email }).select('+password');
+    const { email } = req.body;
+    const user: any = await userModel.findOne({ email })
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    const hashedPassword = await bcrypt.compare(password, user.password);
-
-    if (!hashedPassword) {
-      return res.status(401).send("Username or password incorrect");
-    }
-
     const payload = {
       email: user.email,
       role: user.role,
       id:user._id
     }
-
     const token = jwt.sign({ payload }, SECRET_KEY, { expiresIn: '1hr' })
 
     res.status(200).json({ token });

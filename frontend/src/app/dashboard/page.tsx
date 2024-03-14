@@ -3,8 +3,7 @@ import GeneralInfo from "@/components/GeneralInfo";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
-import withAuth from "@/components/Test";
-
+import withAuth from "@/components/withAuth";
 const DashBoard = () => {
   const {user}= useAuth0()
   console.log(user)
@@ -18,6 +17,5 @@ const DashBoard = () => {
     </div>
   );
 };
-
-export default withAuth(DashBoard);
+export default DashBoard;
 

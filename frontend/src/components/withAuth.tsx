@@ -10,7 +10,7 @@ const withAuth = (WrappedComponent) => {
 
     useEffect(() => {
       if (!isAuthenticated) {
-        Router.replace('/signup');
+        Router.replace('/login');
       }
     }, [isAuthenticated, Router]);
 

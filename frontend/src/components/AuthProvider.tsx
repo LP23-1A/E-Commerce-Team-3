@@ -9,7 +9,7 @@ type Props = {
       domain="dev-38aa32ihcs2hbtoe.us.auth0.com"
       clientId="oozFMxOD7tpeJzxNBSOXZpd9XcNz3NAj"
       authorizationParams={{
-        redirect_uri: window.location.origin + '/step'
+        redirect_uri: window.location.origin + '/checkrole'
       }}
     >
         {children}
