@@ -50,11 +50,11 @@ const OrderDetail = () => {
   };
 
   return (
-    <div className=" h-screen bg-gray-200 justify-center items-center">
+    <div className=" h-screen  bg-gray-200 justify-center items-center">
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <div
             className="flex bg-white  h-[56px] pl-5 items-center gap-5 cursor-pointer "
             onClick={handleBack}
@@ -62,8 +62,8 @@ const OrderDetail = () => {
             <ChevronLeft />
             <p className="">Захиалгын дэлгэрэнгүй</p>
           </div>
-          <div className="flex gap-10 ">
-            <div className="bg-white mt-10 w-[627px] h-[800px] rounded-xl py-6 px-5 ml-5 border border-slate-300">
+          <div className="flex justify-between w-full px-20 ">
+            <div className="bg-white mt-10 w-[800px] h-[600px] rounded-xl py-6 px-5 ml-5 border border-slate-300">
               <div className="flex items-center justify-between ">
                 <div className="flex flex-col">
                   <p className="font-extralight">Захиалгын ID дугаар:</p>

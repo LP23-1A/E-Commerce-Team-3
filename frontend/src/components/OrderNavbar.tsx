@@ -2,8 +2,8 @@ import React from 'react'
 
 const OrderNavbar = ({data}:any) => {
   return (
-    <div className=''>
-        <div className='flex gap-5 border-b border-slate-300'>
+    
+        <div className='flex  justify-between border-b border-slate-300'>
         <button className='p-[16px] text-[14px]'>Бүгд</button>
       <button className='p-[16px] text-[14px] font-normal'>Шинэ захиалага</button>
       <button className='p-[16px] text-[14px] font-normal'>Бэлтгэгдэж байна</button>
@@ -12,7 +12,7 @@ const OrderNavbar = ({data}:any) => {
       <button className='p-[16px] text-[14px] font-normal'>Цуцлагдсан</button>
         </div>
 
-    </div>
+   
   )
 }
 

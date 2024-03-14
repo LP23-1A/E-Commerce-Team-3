@@ -8,7 +8,7 @@ const Income = () => {
             <div className="flex">
                  <Sidebar/>
                 <div className="flex flex-col items-center mt-5 ml-40">
-                    <div className="bg-white w-[724px] h-[160px] rounded-xl">
+                    <div className="bg-white w-[1200px] h-[160px] rounded-xl">
                         <div className="flex justify-between p-6 border-b-[1px] items-center">
                             <h2 className="text-xl font-semibold text-[#121316]">Орлого</h2>
                             <button className="w-[144px] h-[36px] rounded-lg bg-[#E4E7EB]">Хуулга татах</button>
@@ -23,7 +23,7 @@ const Income = () => {
                         </div>
                     </div>
                     <div className="flex flex-col items-center mt-5 ">
-                       <div className="bg-white w-[724px] h-[160px] rounded-xl">
+                       <div className="bg-white w-[1200px] h-[160px] rounded-xl">
                             <div className="flex py-3 px-6 border-b-[1px] items-center">
                                 <p className="text-xs font-normal text-[#3F4145] w-[169px]">Захиалгын ID дугаар</p>
                                 <p className="text-xs font-normal text-[#3F4145] w-[268px] px-6">Захиалагч</p>

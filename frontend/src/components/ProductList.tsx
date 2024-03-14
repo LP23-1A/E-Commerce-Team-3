@@ -39,8 +39,8 @@ const ProductList = () => {
   }
 
   return (
-    <div className="flex w-[1170px] flex-col mt-8  ">
-      <div className="flex bg-[#F7F7F8] py-4 justify-between px-20 border-b border-slate-300 rounded-tl-2xl rounded-tr-2xl">
+    <div className="flex w-full flex-col mt-8  ">
+      <div className="flex bg-[#F7F7F8] py-4 justify-between px-40 border-b border-slate-300 rounded-tl-2xl rounded-tr-2xl">
         <p className="w-fit text-sm text-[#3F4145]">Бүтээгдэхүүн</p>
         <p className="w-fit text-sm text-[#3F4145]">Ангилал</p>
         <p className=" w-fit text-sm text-[#3F4145]">Үнэ</p>
@@ -50,7 +50,7 @@ const ProductList = () => {
       </div>
       {data && data.map((e: any) => {
         return (
-          <div key={e._id} className="flex items-center  bg-[#F7F7F8] py-4  pl-6 border-b border-slate-300 ">
+          <div key={e._id} className="flex justify-between items-center  bg-[#F7F7F8] py-4  pl-6 border-b border-slate-300 ">
             <input  type="checkbox"></input>
             <div className=" pl-11 text-sm text-[#3F4145] w-[254px]" >{e.productName}</div>
             <div className="w-[175px] text-sm text-[#3F4145]">{e.description}</div>
