@@ -39,8 +39,7 @@ const CreateProduct = ({ onClick }: any) => {
     const createProduct = async () => {
         try {
             const res = await axios.post(api, { ...keys })
-           
-            onClick(onClick)
+            router.push('/product')
 
 
         } catch (error) {
