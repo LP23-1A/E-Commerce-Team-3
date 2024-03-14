@@ -1,15 +1,13 @@
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { useState } from 'react';
 import CreateProduct from './CreateProduct';
-import { useRouter } from 'next/navigation';
 
-const ToggleCreateProduct = () => {
+const ToggleCreateProduct = ({onClick}:any) => {
 
-          const router = useRouter()
-          
-          const addproduct = () => {
-          router.push("addproduct")
-          }
+        const [page , setPage] = useState(false)
+        const togglePage = () => {
+            setPage(!page);
+          };
 
 
     return(
@@ -18,11 +16,11 @@ const ToggleCreateProduct = () => {
                         <button className="px-5 py-5 border-b border-solid border-current font-semibold"> Бүтээгдэхүүн</button>
                         <button className="px-5 py-5 text-light">Ангилал</button>
                     </div>
-                    <div className="w-[280px] h-[48px] text-white rounded-xl bg-black flex items-center justify-center gap-2 mt-6 ml-5 cursor-pointer" >
+                    {!page ? <div className="w-[280px] h-[48px] text-white rounded-xl bg-black flex items-center justify-center gap-2 mt-6 ml-5 cursor-pointer" onClick={togglePage}>
                         <AddOutlinedIcon/>
-                        <button onClick={addproduct} >Бүтээгдэхүүн нэмэх</button>
+                        <button >Бүтээгдэхүүн нэмэх</button>
                         
-                    </div> 
+                    </div> : <CreateProduct onClick={togglePage}/> }
                 
         </div>
     )

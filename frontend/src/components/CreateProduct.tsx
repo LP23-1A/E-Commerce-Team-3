@@ -1,46 +1,33 @@
-"use client"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { useState } from 'react';
 import axios from "axios"
-import { useRouter } from "next/navigation";
-
-
 
 
 const CreateProduct = ({ onClick }: any) => {
-    const router = useRouter()
-    const movepage = () => {
-        router.push(`product`);
-    };
 
     const [input, setInput] = useState({
         productName: "",
         description: "",
         price: "",
         quantity: "",
-        categoryId: "",
-        image: "",
-        product_id:""    
-     })
+        categoryId: ""
+    })
 
     const keys = {
-        productName: input.productName,
-        description: input.description,
-        price: input.price,
-        quantity: input.quantity,
-        categotyId: input.categoryId,
-        image: input.image,
-        product_id:input.product_id
+        productName : input.productName,
+        description : input.description,
+        price : input.price,
+        quantity : input.quantity,
+        categotyId : input.categoryId
     }
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
-            const res = await axios.post(api, { ...keys })
-            router.push('/product')
-
+            const res = await axios.post(api, { ...keys } )
+            console.log(res, "success");
 
         } catch (error) {
             console.log(error);
@@ -48,10 +35,9 @@ const CreateProduct = ({ onClick }: any) => {
     }
 
 
-
     return (
         <div className='flex flex-col  h-fit '>
-            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >
+            <div onClick={onClick} className='flex bg-[#FFFFFF] w-full p-4 gap-4'>
                 <ArrowBackIosIcon />
                 <p>Бүтээгдэхүүн нэмэх</p>
             </div>
@@ -60,16 +46,16 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className='flex flex-col gap-4 p-4 bg-[#FFFFFF] rounded-[12px] '>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Бүтээгдэхүүний нэр</p>
-                            <input value={input.productName} onChange={(e) => setInput((prev) => ({ ...prev, productName: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Нэр' />
-
+                            <input value={input.productName} onChange={(e) => setInput((prev) => ({...prev, productName : e.target.value}))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Нэр' />
+                            
                         </div>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Нэмэлт мэдээлэл</p>
-                            <input value={input.description} onChange={(e) => setInput((prev) => ({ ...prev, description: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full h-[72px] text-fit' placeholder='Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар.' />
+                            <input value={input.description} onChange={(e) => setInput((prev) => ({...prev, description : e.target.value}))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full h-[72px] text-fit' placeholder='Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар.' />
                         </div>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Барааны код</p>
-                            <input  value={input.product_id} onChange={(e) => setInput((prev) => ({ ...prev, product_id: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
+                            <input  className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
                         </div>
                     </div>
                     <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] w-[563px]" >
@@ -77,7 +63,6 @@ const CreateProduct = ({ onClick }: any) => {
                         <div className="flex gap-2 items-center">
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
-                                <input type="file" src="" alt="" className='border border-2 h-14 w-24'/>
                             </div>
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
@@ -91,11 +76,11 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className="flex gap-4 w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үндсэн үнэ</p>
-                            <input value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
+                            <input value={input.price}  onChange={(e) => setInput((prev) => ({...prev, price : e.target.value}))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үлдэгдэл тоо ширхэг</p>
-                            <input value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
+                            <input value={input.quantity}  onChange={(e) => setInput((prev) => ({...prev, quantity : e.target.value}))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
                         </div>
                     </div>
                 </div>
@@ -103,7 +88,7 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className="flex flex-col gap-4 w-[515px] p-4  bg-[#FFFFFF] rounded-[12px]  ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Ерөнхий ангилал</p>
-                            <input value={input.categoryId} onChange={(e) => setInput((prev) => ({ ...prev, categoryId: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
+                            <input value={input.categoryId} onChange={(e) => setInput((prev) => ({...prev, categoryId : e.target.value}))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Дэд ангилал</p>

@@ -43,7 +43,7 @@ const OrderHistory = ({ data }: any) => {
           <p className="w-fit text-sm text-[#3F4145]">Статус</p>
           <p className=" w-fit text-sm text-[#3F4145]">Дэлгэрэнгүй</p>
         </div>
-      {data && data.map((e:any) => (
+      {data && data.map((e) => (
         <div key={e._id} className="flex justify-between px-[80px]  py-3 "> 
           <p className="w-[100px] text-semibold text-sm">#{e?.orderNumber}</p> 
           <div className="w-fit flex flex-col">
