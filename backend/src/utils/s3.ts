@@ -8,7 +8,7 @@ import { Request, Response } from "express";
 
 dotenv.config()
 
-const randomBytes = promisify(crypto.randomBytes)
+
 
 const s3 = new S3Client({
   region: process.env.REGION,
@@ -20,22 +20,10 @@ const s3 = new S3Client({
 })
 
 
-const bucketName = "team3-ecommerce"
 
 const generateUrl = async (req: Request, res: Response) => {
 
   try {
-    // const rawBytes = randomBytes(16)
-    // const ImageName = rawBytes.toString()
-
-    // const params = ({
-    //   Bucket: bucketName,
-    //   key: ImageName,
-    //   expires: 60
-    // })
-
-    // const uploadUrl = await s3.getSignedUrlPromise("putObject", params)
-    // console.log(uploadUrl);
 
     const key = v4()
 
@@ -51,8 +39,8 @@ const generateUrl = async (req: Request, res: Response) => {
       }
     )
 
-
     return res.json({ signUrl })
+   
 
   } catch (error: unknown) {
     console.log(error)

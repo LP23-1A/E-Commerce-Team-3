@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { productModel } from "../model/product";
 import { generateUrl } from "../utils/s3";
-import { CloudWatchLogs } from "aws-sdk";
+import axios from "axios";
+
 
 
 type ProductType = {
@@ -10,7 +11,7 @@ type ProductType = {
   price: number,
   quantity: number,
   thumbnails: string,
-  images: string,
+  images: [string],
   coupon: string,
   salePercent: number,
   description: string,
@@ -24,18 +25,15 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
 
 
-    const { productName, description, price, quantity, categoryId }: Required<ProductType> = req.body
-
-    const imageUrl = await generateUrl(req, res)
-
-
+    const { productName, description, price, quantity, categoryId, images }: Required<ProductType> = req.body
     const newProduct = await productModel.create({
       productName,
       description,
       price,
       quantity,
       categoryId,
-      // images: imageUrl,
+      images
+
 
     })
     newProduct.save()
@@ -45,7 +43,7 @@ export const createProduct = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
 
-     res.status(500).send({ success: false, error: "Create product failed" });
+    res.status(500).send({ success: false, error: "Create product failed" });
   }
 };
 

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from "axios"
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useRouter } from "next/navigation";
 =======
 import dotenv from "dotenv"
@@ -35,6 +36,11 @@ type SignedUrls = {
       return data as SignedUrls;
     }
   
+=======
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import { CleaningServices } from '@mui/icons-material';
+>>>>>>> 093d7cc (s3 type  bug)
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -42,41 +48,14 @@ const CreateProduct = ({ onClick }: any) => {
         router.push(`product`);
     };
 
-    const [images, setImages] = useState<File[]>();
-
-    const onUpload = async () => {
-        if (!images) {
-            console.error('No images selected.');
-            return;
-          }
-     try {
-        const { uploadUrls, accessUrls } = await uploadImageIntoS3(images.length);
-        console.log(uploadUrls, accessUrls);
-        await Promise.all(
-          uploadUrls.map((url, index) => {
-            return axios.put(url, images[index], {
-              headers: {
-                'Content-Type': images[index] .type,
-              },
-            });
-          })
-        )
-         console.log('Images uploaded successfully.');
-     } catch (error) {
-        console.error('Error uploading images:', error);
-     }
-    };
-
-
     const [input, setInput] = useState({
         productName: "",
         description: "",
         price: "",
         quantity: "",
         categoryId: "",
-        image: ""
+        images: null
     })
-  
 
     const keys = {
         productName: input.productName,
@@ -84,15 +63,38 @@ const CreateProduct = ({ onClick }: any) => {
         price: input.price,
         quantity: input.quantity,
         categotyId: input.categoryId,
-        image: input.image
+        images: input.images
     }
-
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
-            const res = await axios.post(api, { ...keys })
+           
+
+
+            const signedUrls = await axios.get('/api/upload-image');
+
+            console.log(signedUrls);
+
+            Promise.all([signedUrls].map(async (url, index) => {
+                return await axios.put(url.data.uploadUrls, input.images, {
+                    headers: {
+                        'Content-Type': input.images.type
+                    }
+                });
+            }))
+
+
+            // const res = await axios.post(api, { ...keys })
+            // const requestUrl = res.data.signUrl
+
+
+
+            // console.log(imageupload);
+            // console.log(res);
+
+
 
         } catch (error) {
             console.log(error);
@@ -130,8 +132,10 @@ const CreateProduct = ({ onClick }: any) => {
                         <div className="flex gap-2 items-center">
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
-                                <input type="file" src="" alt="" onChange={(e) => setImages(e.target.files)} multiple className="border-2 h-14 w-24 "/>
-                                <button onClick={onUpload}>upload</button>
+                                <input type="file" src="" alt=""  onChange={(e) => {
+                                    setInput((prev) => ({ ...prev, images: e.target.files[0] }))
+                                }} multiple className="border-2 h-14 w-24 " />
+                                <button >upload</button>
                             </div>
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
@@ -145,11 +149,11 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className="flex  w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үндсэн үнэ</p>
-                            <input value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
+                            <input type='Number' value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үлдэгдэл тоо ширхэг</p>
-                            <input value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
+                            <input type='Number' value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
                         </div>
                     </div>
                 </div>
