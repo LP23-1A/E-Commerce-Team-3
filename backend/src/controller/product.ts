@@ -11,7 +11,7 @@ type ProductType = {
   price: number,
   quantity: number,
   thumbnails: string,
-  images: [string],
+  images: string,
   coupon: string,
   salePercent: number,
   description: string,

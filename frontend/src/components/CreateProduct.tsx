@@ -39,8 +39,11 @@ type SignedUrls = {
 =======
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+<<<<<<< HEAD
 import { CleaningServices } from '@mui/icons-material';
 >>>>>>> 093d7cc (s3 type  bug)
+=======
+>>>>>>> 0ff22c9 (added s3 image uploader)
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -54,7 +57,7 @@ const CreateProduct = ({ onClick }: any) => {
         price: "",
         quantity: "",
         categoryId: "",
-        images: null
+        images:  null as File | null
     })
 
     const keys = {
@@ -70,40 +73,43 @@ const CreateProduct = ({ onClick }: any) => {
 
     const createProduct = async () => {
         try {
-           
-
-
+        
             const signedUrls = await axios.get('/api/upload-image');
 
-            console.log(signedUrls);
+            console.log(signedUrls.data.objectUrl);
+            const imageUrl = signedUrls.data.objectUrl
+            keys.images = imageUrl
 
             Promise.all([signedUrls].map(async (url, index) => {
                 return await axios.put(url.data.uploadUrls, input.images, {
                     headers: {
-                        'Content-Type': input.images.type
+                        'Content-Type': input.images!.type
                     }
                 });
             }))
 
+            const res = await axios.post(api, { ...keys })
+            console.log(res);
+            
 
-            // const res = await axios.post(api, { ...keys })
-            // const requestUrl = res.data.signUrl
-
-
-
-            // console.log(imageupload);
-            // console.log(res);
-
-
+            // const imageUrl = keys.images
+        
+            // console.log(res.data.objectUrl);
+            // imageUrl(res.data.objectUrl)
+            // console.log(keys.images);
+            
 
         } catch (error) {
             console.log(error);
         }
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 0ff22c9 (added s3 image uploader)
     return (
         <div className='flex flex-col  h-fit '>
             <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >
