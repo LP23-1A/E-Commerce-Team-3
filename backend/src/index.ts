@@ -5,24 +5,22 @@ import { connectDataBase } from './utils/data'
 import { product } from './router/product'
 import { user } from './router/user'
 import { order } from './router/order'
+
+const app = express()
 dotenv.config()
-const start = () => {
-    connectDataBase()
+connectDataBase()
 
-    const app = express()
 
-    app.use(cors());
-    app.use(express.json())
-    app.use("/product", product)
-    app.use('/sign', user)
-    app.use("/", order)
-    const PORT = process.env.PORT || 8000
-    app.get('/', (req, res) => {
-        res.status(200).send({ succes: true, msg: 'hi' })
-    })
-    app.listen(PORT, () => {
-        console.log(`${PORT} server on`);
+app.use(cors());
+app.use(express.json())
+app.use("/product", product)
+app.use('/sign', user)
+app.use("/", order)
+const PORT = process.env.PORT || 8000
+app.get('/', (req, res) => {
+    res.status(200).send({ succes: true, msg: 'hi' })
+})
+app.listen(PORT, () => {
+    console.log(`${PORT} server on`);
 
-    })
-}
-start()
+})
