@@ -6,10 +6,10 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const s3 = new S3Client({
-    region: process.env.REGION,
+    region: "ap-southeast-1",
     credentials: {
-        accessKeyId: process.env.ACCESS_KEY_ID || '',
-        secretAccessKey: process.env.SECRET_ACCESS_KEY || '',
+        accessKeyId: process.env.AWSID || '',
+        secretAccessKey: process.env.AWSSECRETID || '',
     },
 });
 
@@ -40,7 +40,6 @@ export async function GET(request: Request) {
         console.log(error);
         return Response.json({
             error,
-            // accessUrls: keys.map((key) => process.env.PUB_URL + key),
         });
     }
 

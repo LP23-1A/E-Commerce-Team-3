@@ -76,7 +76,6 @@ const CreateProduct = ({ onClick }: any) => {
         
             const signedUrls = await axios.get('/api/upload-image');
 
-            console.log(signedUrls.data.objectUrl);
             const imageUrl = signedUrls.data.objectUrl
             keys.images = imageUrl
 
@@ -89,15 +88,6 @@ const CreateProduct = ({ onClick }: any) => {
             }))
 
             const res = await axios.post(api, { ...keys })
-            console.log(res);
-            
-
-            // const imageUrl = keys.images
-        
-            // console.log(res.data.objectUrl);
-            // imageUrl(res.data.objectUrl)
-            // console.log(keys.images);
-            
 
         } catch (error) {
             console.log(error);
