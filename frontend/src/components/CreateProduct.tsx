@@ -1,12 +1,49 @@
 "use client"
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { useState } from 'react';
 import axios from "axios"
+<<<<<<< HEAD
+<<<<<<< HEAD
 import { useRouter } from "next/navigation";
+=======
+import dotenv from "dotenv"
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+>>>>>>> e04ed03 (s3 bug)
 
+dotenv.config()
 
+type SignedUrls = {
+    uploadUrls: string[];
+    accessUrls: string[];
+  };
 
+  const requestUrl = process.env.REQUEST_URL
+  
+  export async function uploadImageIntoS3(count: number) {
+    
+      const response = await fetch(requestUrl + `?count=${count}`, {
+        method: 'GET',
+        cache: 'no-cache',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+    
+      const data = await response.json();
+      console.log(data);
+      
+    
+      return data as SignedUrls;
+    }
+  
+=======
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+<<<<<<< HEAD
+import { CleaningServices } from '@mui/icons-material';
+>>>>>>> 093d7cc (s3 type  bug)
+=======
+>>>>>>> 0ff22c9 (added s3 image uploader)
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -20,9 +57,8 @@ const CreateProduct = ({ onClick }: any) => {
         price: "",
         quantity: "",
         categoryId: "",
-        image: "",
-        product_id:""    
-     })
+        images:  null as File | null
+    })
 
     const keys = {
         productName: input.productName,
@@ -30,25 +66,40 @@ const CreateProduct = ({ onClick }: any) => {
         price: input.price,
         quantity: input.quantity,
         categotyId: input.categoryId,
-        image: input.image,
-        product_id:input.product_id
+        images: input.images
     }
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
-            const res = await axios.post(api, { ...keys })
-            router.push('/product')
+        
+            const signedUrls = await axios.get('/api/upload-image');
 
+            const imageUrl = signedUrls.data.objectUrl
+            keys.images = imageUrl
+
+            Promise.all([signedUrls].map(async (url, index) => {
+                return await axios.put(url.data.uploadUrls, input.images, {
+                    headers: {
+                        'Content-Type': input.images!.type
+                    }
+                });
+            }))
+
+            const res = await axios.post(api, { ...keys })
 
         } catch (error) {
             console.log(error);
         }
     }
 
+<<<<<<< HEAD
 
 
+
+=======
+>>>>>>> 0ff22c9 (added s3 image uploader)
     return (
         <div className='flex flex-col  h-fit '>
             <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >
@@ -77,7 +128,10 @@ const CreateProduct = ({ onClick }: any) => {
                         <div className="flex gap-2 items-center">
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
-                                <input type="file" src="" alt="" className='border border-2 h-14 w-24'/>
+                                <input type="file" src="" alt=""  onChange={(e) => {
+                                    setInput((prev) => ({ ...prev, images: e.target.files[0] }))
+                                }} multiple className="border-2 h-14 w-24 " />
+                                <button >upload</button>
                             </div>
                             <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
@@ -88,14 +142,14 @@ const CreateProduct = ({ onClick }: any) => {
                             <div className='px-10'><div className=" flex justify-center h-[32px] w-[32px] bg-[#ECEDF0] p-1 rounded-[50%]">+</div></div>
                         </div>
                     </div>
-                    <div className="flex gap-4 w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
+                    <div className="flex  w-[563px] p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үндсэн үнэ</p>
-                            <input value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
+                            <input type='Number' value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Үлдэгдэл тоо ширхэг</p>
-                            <input value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
+                            <input type='Number' value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
                         </div>
                     </div>
                 </div>
@@ -131,8 +185,6 @@ const CreateProduct = ({ onClick }: any) => {
                         <button className=" hover:bg-black hover:text-[#FFFFFF] border-2 font-bold text-[18px] border-[#D6D8DB] rounded-[8px] w-[113px] h-[56px] bg-[#FFFFFF]">Ноорог</button>
                         <button onClick={createProduct} className="  hover:bg-black hover:text-[#FFFFFF] border-2 font-bold text-[18px] border-[#D6D8DB] rounded-[8px] w-[113px] h-[56px] bg-[#FFFFFF]">Нийтлэх</button>
                     </div>
-
-
 
                 </div>
             </div>
