@@ -3,7 +3,7 @@ import GeneralInfo from "@/components/GeneralInfo";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
-import withAuth from "@/components/Test";
+import withAuth from "@/components/withAuth";
 import IconOrder from "../../assets/IconOrder"
 import IconIncome from "../../assets/IconIncome";
 import IconUser from "../../assets/IconUser"
@@ -25,6 +25,9 @@ const DashBoard = () => {
     </div>
   );
 };
+<<<<<<< HEAD
+=======
 
+>>>>>>> 753ed5fef16b6c84157d1876643078e14a6f5d8e
 export default DashBoard;
 

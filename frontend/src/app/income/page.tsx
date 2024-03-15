@@ -1,5 +1,7 @@
+'use client'
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
+import withAuth from "@/components/withAuth";
 
 const Income = () => {
     return(
