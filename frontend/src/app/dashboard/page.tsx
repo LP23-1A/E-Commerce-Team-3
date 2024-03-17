@@ -7,7 +7,7 @@ import IconIncome from "../../assets/IconIncome";
 import IconOrder from "../../assets/IconOrder";
 import IconUser from "../../assets/IconUser";
 import BestSeller from "@/components/BestSeller";
-import ChartComponent from "@/components/Chart";
+
 
 const DashBoard = () => {
   const { user } = useAuth0();
@@ -26,7 +26,7 @@ const DashBoard = () => {
           <div className="flex gap-5">
             <BestSeller/>
             <div className="flex flex-col">
-              <ChartComponent/>
+          
             </div>
           </div>
         </div>
