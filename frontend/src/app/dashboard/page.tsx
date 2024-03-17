@@ -7,6 +7,7 @@ import IconIncome from "../../assets/IconIncome";
 import IconOrder from "../../assets/IconOrder";
 import IconUser from "../../assets/IconUser";
 import BestSeller from "@/components/BestSeller";
+import App from "@/components/Chart";
 
 
 const DashBoard = () => {
@@ -19,14 +20,30 @@ const DashBoard = () => {
         <Sidebar />
         <div className="flex flex-col">
           <div className="flex gap-6 items-center">
-            <GeneralInfoIncome desc="Орлого" amount="235,000₮" date="Өнөөдөр" icon={<IconIncome />} />
-            <GeneralInfoIncome desc="Захиалга" amount="58" date="Өнөөдөр" icon={<IconOrder />} />
-            <GeneralInfoIncome desc="Хэрэглэгч" amount="980" date="Өнөөдөр" icon={<IconUser />}/>
+            <GeneralInfoIncome
+              desc="Орлого"
+              amount="235,000₮"
+              date="Өнөөдөр"
+              icon={<IconIncome />}
+            />
+            <GeneralInfoIncome
+              desc="Захиалга"
+              amount="58"
+              date="Өнөөдөр"
+              icon={<IconOrder />}
+            />
+            <GeneralInfoIncome
+              desc="Хэрэглэгч"
+              amount="980"
+              date="Өнөөдөр"
+              icon={<IconUser />}
+            />
           </div>
           <div className="flex gap-5">
-            <BestSeller/>
+            <BestSeller />
             <div className="flex flex-col">
-          
+              <App />
+
             </div>
           </div>
         </div>
