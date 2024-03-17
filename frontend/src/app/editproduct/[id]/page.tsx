@@ -3,14 +3,16 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 import { useState } from 'react';
 import axios from "axios"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 
 
 
-const editProduct = ({ onClick ,selectecId }: any) => {
+const editProduct = ({ onClick}:any) => {
+    const pathname = usePathname();
+
     const router = useRouter()
     const movepage = () => {
         router.push(`product`);
@@ -38,11 +40,13 @@ const editProduct = ({ onClick ,selectecId }: any) => {
 
 
 
-    const editProduct = async (selectecId:any) => {
-        const api = `http://localhost:8000/product${product_id}`
+    const editProductById = async () => {
+        const api = `http://localhost:8000/product/${pathname}`
 
         try {
             const res = await axios.put(api, { ...keys })
+            console.log(res);
+            
             router.push('/product')
 
 
@@ -136,7 +140,7 @@ const editProduct = ({ onClick ,selectecId }: any) => {
                     </div>
                     <div className="flex gap-4 justify-end">
                         <button className=" hover:bg-black hover:text-[#FFFFFF] border font-semibold text-[16px] border-[#D6D8DB] rounded-[8px] w-[113px] h-[56px] bg-[#FFFFFF]">Ноорог</button>
-                        <button onClick={()=>editProduct( selectecId = selectecId)} className="  hover:bg-black hover:text-[#FFFFFF] border font-semibold text-[18px] border-[#D6D8DB] rounded-[8px] w-[113px] h-[56px] bg-[#FFFFFF]">Шинэчлэх</button>
+                        <button onClick={editProductById} className="  hover:bg-black hover:text-[#FFFFFF] border font-semibold text-[18px] border-[#D6D8DB] rounded-[8px] w-[113px] h-[56px] bg-[#FFFFFF]">Шинэчлэх</button>
                     </div>
 
 

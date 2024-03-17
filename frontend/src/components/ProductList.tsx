@@ -7,21 +7,7 @@ import { useRouter } from "next/navigation";
 
 
 const ProductList = () => {
-
-  const [selectedProduct , setselectedProduct] = useState("")
-
   const router = useRouter()
-  const movepage = () => {
-      router.push(`product`);
-  };
-  const move = async (product_Id:string) => {
-    router.push(`editproduct`);
-  setselectedProduct(product_Id)
-  console.log(selectedProduct);
-  
-    
-};
-
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data, error, isLoading } = useSWR(
     "http://localhost:8000/product",
@@ -30,9 +16,9 @@ const ProductList = () => {
 
   const deleteHandler = async (productId:string) => {
     try { 
-      await axios.delete(`http://localhost:8000/product/${productId}`, {
-
+     const deleted = await axios.delete(`http://localhost:8000/product/${productId}`, {
       })
+
     } catch (error) {
       console.log(error)
     }
@@ -60,10 +46,10 @@ const ProductList = () => {
             <p className="pr-10 text-sm text-[#3F4145]">2024.01.20</p>
             
             <div className="flex gap-2 items-center ">
-              <button {...e._id} onClick={()=>deleteHandler(e._id)} >
+              <button {...e._id } onClick={()=>deleteHandler(e._id)} >
               <Delete  />
               </button>
-              <button  {...e._id = selectedProduct }  onClick={() => move(e._id)}>
+              <button  onClick={()=> router.push(`editproduct/${e?._id}`)} >
               <Edit />
               </button>
             </div>

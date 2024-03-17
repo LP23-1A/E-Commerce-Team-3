@@ -1,49 +1,12 @@
 "use client"
 import { useState } from 'react';
-import axios from "axios"
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { useRouter } from "next/navigation";
-=======
-import dotenv from "dotenv"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
->>>>>>> e04ed03 (s3 bug)
+import axios from "axios"
+import dotenv from "dotenv"
 
 dotenv.config()
-
-type SignedUrls = {
-    uploadUrls: string[];
-    accessUrls: string[];
-  };
-
-  const requestUrl = process.env.REQUEST_URL
-  
-  export async function uploadImageIntoS3(count: number) {
-    
-      const response = await fetch(requestUrl + `?count=${count}`, {
-        method: 'GET',
-        cache: 'no-cache',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      });
-    
-      const data = await response.json();
-      console.log(data);
-      
-    
-      return data as SignedUrls;
-    }
-  
-=======
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-<<<<<<< HEAD
-import { CleaningServices } from '@mui/icons-material';
->>>>>>> 093d7cc (s3 type  bug)
-=======
->>>>>>> 0ff22c9 (added s3 image uploader)
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -94,12 +57,6 @@ const CreateProduct = ({ onClick }: any) => {
         }
     }
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 0ff22c9 (added s3 image uploader)
     return (
         <div className='flex flex-col  h-fit '>
             <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >

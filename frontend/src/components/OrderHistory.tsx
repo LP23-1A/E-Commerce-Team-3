@@ -10,16 +10,10 @@ const OrderHistory = ({ data }: any) => {
   const [statusModal, setStatusModal]=useState(false)
 
   const router = useRouter()
-<<<<<<< HEAD
-
-=======
-console.log(data)
->>>>>>> 8dcc916 (detail heseg holbov)
   const statusModalHandler =(orderId:string)=>{
     setSelectedOrderId(orderId)
     setStatusModal(!statusModal)
   }
-<<<<<<< HEAD
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -35,8 +29,6 @@ console.log(data)
     return `${hours}:${minutes}`;
   };
 
-=======
->>>>>>> 8dcc916 (detail heseg holbov)
   return (
     <div className="bg-white w-full  rounded-lg  ml-5 h-auto py-2 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>
