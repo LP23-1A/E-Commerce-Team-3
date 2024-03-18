@@ -1,7 +1,7 @@
 import Delete from "@/assets/Delete"
 import Edit from "@/assets/Edit"
 import { useEffect, useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -32,6 +32,7 @@ const ProductList = () => {
     try { 
      const res = await axios.delete(`http://localhost:8000/product/${productId}`, {
       })
+      mutate( "http://localhost:8000/product")
      
     } catch (error) {
       console.log(error)
