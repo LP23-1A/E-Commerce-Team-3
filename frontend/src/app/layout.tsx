@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
+import { OrderFilterProvider } from "@/components/OrderByStatusProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-
-      <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <OrderFilterProvider>{children}</OrderFilterProvider>
+        </body>
       </AuthProvider>
     </html>
   );
