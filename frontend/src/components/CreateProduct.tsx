@@ -11,26 +11,26 @@ dotenv.config()
 type SignedUrls = {
     uploadUrls: string[];
     accessUrls: string[];
-  };
+};
 
-  const requestUrl = process.env.REQUEST_URL
-  
-  export async function uploadImageIntoS3(count: number) {
-    
-      const response = await fetch(requestUrl + `?count=${count}`, {
+const requestUrl = process.env.REQUEST_URL
+
+export async function uploadImageIntoS3(count: number) {
+
+    const response = await fetch(requestUrl + `?count=${count}`, {
         method: 'GET',
         cache: 'no-cache',
         headers: {
-          'Content-type': 'application/json',
+            'Content-type': 'application/json',
         },
-      });
-    
-      const data = await response.json();
-      console.log(data);
-      
-    
-      return data as SignedUrls;
-    }
+    });
+
+    const data = await response.json();
+    console.log(data);
+
+
+    return data as SignedUrls;
+}
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -44,8 +44,14 @@ const CreateProduct = ({ onClick }: any) => {
         price: "",
         quantity: "",
         categoryId: "",
-        images:  null as File | null
+        images: [null as File | null],
+        productId: "",
+        tag: "",
+        mainCategory: "",
+        subCategory: ""
     })
+
+    const [image, setImage] = useState<FileList | []>([]);
 
     const keys = {
         productName: input.productName,
@@ -53,28 +59,35 @@ const CreateProduct = ({ onClick }: any) => {
         price: input.price,
         quantity: input.quantity,
         categotyId: input.categoryId,
-        images: input.images
+        images: input.images,
+        productId: input.productId,
+        tag: input.tag,
+        mainCategory: input.mainCategory,
+        subCategory: input.subCategory
     }
 
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
         try {
-        
-            const signedUrls = await axios.get('/api/upload-image');
 
+            const signedUrls = await axios.get('/api/upload-image');
             const imageUrl = signedUrls.data.objectUrl
             keys.images = imageUrl
 
-            Promise.all([signedUrls].map(async (url, index) => {
-                return await axios.put(url.data.uploadUrls, input.images, {
+            signedUrls.data.uploadUrls.map(async (uploadUrl, index) => {
+                
+                console.log(uploadUrl, 'upload')
+                return await axios.put(uploadUrl, image[index], {
                     headers: {
-                        'Content-Type': input.images!.type
+                        'Content-Type': image[index]!.type
                     }
                 });
-            }))
+            })
 
             const res = await axios.post(api, { ...keys })
+            console.log("product created");
+
 
         } catch (error) {
             console.log(error);
@@ -83,7 +96,7 @@ const CreateProduct = ({ onClick }: any) => {
 
     return (
         <div className='flex flex-col  h-fit '>
-            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer'onClick={movepage} >
+            <div className='flex bg-[#FFFFFF] w-full p-4 gap-4 cursor-pointer' onClick={movepage} >
                 <ArrowBackIosIcon />
                 <p>Бүтээгдэхүүн нэмэх</p>
             </div>
@@ -101,24 +114,32 @@ const CreateProduct = ({ onClick }: any) => {
                         </div>
                         <div className='w-[515px] flex flex-col gap-2'>
                             <p className='text-sm font-bold'>Барааны код</p>
-                            <input  value={input.product_id} onChange={(e) => setInput((prev) => ({ ...prev, product_id: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
+                            <input value={input.productId} onChange={(e) => setInput((prev) => ({ ...prev, productId: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
                         </div>
                     </div>
                     <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] w-[563px]" >
                         <p className="font-bold text-[18px]">Бүтээгдэхүүний зураг</p>
                         <div className="flex gap-2 items-center">
-                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                            <div className=" flex justify-center p-2 items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
-                                <input type="file" src="" alt=""  onChange={(e) => {
-                                    setInput((prev) => ({ ...prev, images: e.target.files[0] }))
+                                <input type="file" src="" alt="" onChange={(e) => {
+                                    setImage(prev => [...prev, e.target.files[0]])
                                 }} multiple className="border-2 h-14 w-24 " />
-                                <button >upload</button>
+
                             </div>
-                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                            <div className=" flex justify-center p-2  items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
+                                <input type="file" src="" alt="" onChange={(e) => {
+                                    setImage(prev => [...prev, e.target.files[0]])
+                                }} multiple className="border-2 h-14 w-24 " />
+
                             </div>
-                            <div className=" flex justify-center items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
+                            <div className=" flex justify-center p-2  items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                                 <InsertPhotoOutlinedIcon />
+                                <input type="file" src="" alt="" onChange={(e) => {
+                                    setImage(prev => [...prev, e.target.files[0]])
+                                }} multiple className="border-2 h-14 w-24 " />
+
                             </div>
                             <div className='px-10'><div className=" flex justify-center h-[32px] w-[32px] bg-[#ECEDF0] p-1 rounded-[50%]">+</div></div>
                         </div>
@@ -138,11 +159,11 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className="flex flex-col gap-4 w-[515px] p-4  bg-[#FFFFFF] rounded-[12px]  ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Ерөнхий ангилал</p>
-                            <input value={input.categoryId} onChange={(e) => setInput((prev) => ({ ...prev, categoryId: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
+                            <input value={input.mainCategory} onChange={(e) => setInput((prev) => ({ ...prev, mainCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Дэд ангилал</p>
-                            <input className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
+                            <input value={input.subCategory} onChange={(e) => setInput((prev) => ({ ...prev, subCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
                         </div>
                     </div>
                     <div className="p-6 bg-[#FFFFFF] flex flex-col rounded-[12px] gap-6 ">
@@ -159,7 +180,7 @@ const CreateProduct = ({ onClick }: any) => {
                     </div>
                     <div className="flex flex-col gap-2  p-4 h-[195px]  bg-[#FFFFFF] rounded-[12px] ">
                         <p className='text-sm font-bold'>Таг</p>
-                        <input className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Таг нэмэх...' />
+                        <input value={input.tag} onChange={(e) => setInput((prev) => ({ ...prev, tag: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Таг нэмэх...' />
                         <p>Санал болгох: Гутал , Цүнх , Эмэгтэй </p>
                     </div>
                     <div className="flex gap-4 justify-end">
