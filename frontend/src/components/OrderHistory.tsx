@@ -9,38 +9,43 @@ import { useInputOrderFilter } from "./OrderFilterProvider";
 const OrderHistory = ({ data }: any) => {
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
   const [statusModal, setStatusModal] = useState(false);
-  const { filters } = useInputOrderFilter()
+  const { filters } = useInputOrderFilter();
   const { statusFilter } = useOrderFilter();
 
-  // const filteredData = data
-  //   ? data.filter((order) => {
-  //       if (!statusFilter) return true;
-  //       return order.status === statusFilter;
-  //     })
-  //   : [];
+  const formatDate = (dateString): any => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+  const formatDateToWeek = (date: Date): number => {
+    const year = date.getFullYear();
+    const weekNumber = Math.ceil((((date - new Date(year, 0, 1)) / 86400000) + 1) / 7);
+    return weekNumber;
+  }
+
+  const filteredData = data
+    ? data.filter((order) => {
+        const filterByDay =!filters.filterByDay ||formatDate(order.createdAt) === formatDate(new Date());
+        const filterByUsername =!filters.filterByUsername || order.userId.email.toLowerCase().includes(filters.filterByUsername.toLowerCase());
+        const filterByStatus = !statusFilter || order.status === statusFilter;
+
+        return filterByDay && filterByUsername && filterByStatus;
+      })
+    : [];
+
   const router = useRouter();
   const statusModalHandler = (orderId: string) => {
     setSelectedOrderId(orderId);
     setStatusModal(!statusModal);
   };
-  const formatDate  = (dateString):any => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;}
-    const filteredData = data ? data.filter((order) => {
-      const filterByDay = !filters.filterByDay || formatDate(order.createdAt) === formatDate(new Date());
-      const filterByUsername = !filters.filterByUsername || order.userId.email.toLowerCase().includes(filters.filterByUsername.toLowerCase());
-    
-      return filterByDay && filterByUsername ;
-    }):[]
 
-
-
-return (
-  <div className="bg-white w-full  rounded-lg  ml-5 h-auto py-2 ">
-      <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">Захиалга</p>
+  return (
+    <div className="bg-white w-full  rounded-lg  ml-5 h-auto py-2 ">
+      <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">
+        Захиалга
+      </p>
       <div className="">
         <div className="flex bg-[#F7F7F8] py-4 justify-between px-6 border-b border-slate-300">
           <p className="w-fit text-sm text-[#3F4145]">Захиалгын ID дугаар</p>
@@ -51,26 +56,44 @@ return (
           <p className="w-fit text-sm text-[#3F4145]">Статус</p>
           <p className=" w-fit text-sm text-[#3F4145]">Дэлгэрэнгүй</p>
         </div>
-      {filteredData && filteredData.map((e:any) => (
-        <div key={e._id} className="flex justify-between px-[80px]  py-3 "> 
-          <p className="w-[100px] text-semibold text-sm">#{e?.orderNumber}</p> 
-          <div className="w-fit flex flex-col">
-          <p className="text-black w-fit text-semibold text-sm">{e?.userId?.username}</p>
-          <p className="text-black w-fit">{e?.userId?.email}</p>
-          </div>
-          <div>
-            <p className="w-fit">{formatDate(e.createdAt)}</p>
-          </div>
-          <p className="w-fit">{formatDate(e.createdAt)}</p>
-          <p className="w-fit">{e?.amountPaid}₮</p>
-          <p onClick={()=> statusModalHandler(e?._id)} className="w-fit cursor-pointer rounded-lg py-[2px] px-2">{e?.status}</p>
-          {statusModal && selectedOrderId === e?._id && <StatusBar selectedOrderId={selectedOrderId} onClick={statusModalHandler}/>}
-          <div onClick={ ()=> router.push(`/${e?._id}`)} className="cursor-pointer">
-          <ChevronRight/>
-          </div>
-          <hr />   
-        </div>
-      ))}
+        {filteredData &&
+          filteredData.map((e: any) => (
+            <div key={e._id} className="flex justify-between px-[80px]  py-3 ">
+              <p className="w-[100px] text-semibold text-sm">
+                #{e?.orderNumber}
+              </p>
+              <div className="w-fit flex flex-col">
+                <p className="text-black w-fit text-semibold text-sm">
+                  {e?.userId?.username}
+                </p>
+                <p className="text-black w-fit">{e?.userId?.email}</p>
+              </div>
+              <div>
+                <p className="w-fit">{formatDate(e.createdAt)}</p>
+              </div>
+              <p className="w-fit">{formatDate(e.createdAt)}</p>
+              <p className="w-fit">{e?.amountPaid}₮</p>
+              <p
+                onClick={() => statusModalHandler(e?._id)}
+                className="w-fit cursor-pointer rounded-lg py-[2px] px-2"
+              >
+                {e?.status}
+              </p>
+              {statusModal && selectedOrderId === e?._id && (
+                <StatusBar
+                  selectedOrderId={selectedOrderId}
+                  onClick={statusModalHandler}
+                />
+              )}
+              <div
+                onClick={() => router.push(`/${e?._id}`)}
+                className="cursor-pointer"
+              >
+                <ChevronRight />
+              </div>
+              <hr />
+            </div>
+          ))}
       </div>
     </div>
   );
