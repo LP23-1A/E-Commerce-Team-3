@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react';
 
 const OrderFilterContext = createContext({});
 
-export const useOrderFilter = () => useContext(OrderFilterContext);
+export const useInputOrderFilter = () => useContext(OrderFilterContext);
 
 export const OrderInputFilterProvider = ({ children }:any) => {
   const [filters, setFilters] = useState({

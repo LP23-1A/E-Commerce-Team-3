@@ -1,10 +1,10 @@
 import React from 'react'
 import ChevronDown from '@/assets/ChevronDown'
 import Search from '@/assets/Search'
-import { useOrderFilter } from './OrderFilterProvider'
+import { useInputOrderFilter } from './OrderFilterProvider'
 
 const  OrderDayFilter =() =>{
-    const { filters, setFilters } = useOrderFilter();
+    const { filters, setFilters } = useInputOrderFilter();
   
     const handleDayFilter = () => {
       setFilters({ ...filters, filterByDay: true });
