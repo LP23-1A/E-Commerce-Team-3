@@ -1,15 +1,15 @@
 import Delete from "@/assets/Delete"
 import Edit from "@/assets/Edit"
 import { useEffect, useState } from "react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
 const ProductList = () => {
 
-  const [selectedProduct , setselectedProduct] = useState("")
-
+  const [selectedProduct , setselectedProduct] = useState<string | null>(null);
+  
   const router = useRouter()
   const movepage = () => {
       router.push(`product`);
@@ -30,9 +30,10 @@ const ProductList = () => {
 
   const deleteHandler = async (productId:string) => {
     try { 
-      await axios.delete(`http://localhost:8000/product/${productId}`, {
-
+     const res = await axios.delete(`http://localhost:8000/product/${productId}`, {
       })
+      mutate( "http://localhost:8000/product")
+     
     } catch (error) {
       console.log(error)
     }
@@ -60,10 +61,10 @@ const ProductList = () => {
             <p className="pr-10 text-sm text-[#3F4145]">2024.01.20</p>
             
             <div className="flex gap-2 items-center ">
-              <button {...e._id} onClick={()=>deleteHandler(e._id)} >
+              <button  onClick={()=>deleteHandler(e._id)} >
               <Delete  />
               </button>
-              <button  {...e._id = selectedProduct }  onClick={() => move(e._id)}>
+              <button    onClick={() => move(e._id)}>
               <Edit />
               </button>
             </div>
