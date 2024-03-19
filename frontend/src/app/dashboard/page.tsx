@@ -18,8 +18,8 @@ const DashBoard = () => {
       <Navbar />
       <div className="flex gap-6 ">
         <Sidebar />
-        <div className="flex flex-col">
-          <div className="flex gap-6 items-center">
+        <div className="flex flex-col w-[89%] ">
+          <div className="flex items-center justify-around ">
             <GeneralInfoIncome
               desc="Орлого"
               amount="235,000₮"
@@ -39,7 +39,7 @@ const DashBoard = () => {
               icon={<IconUser />}
             />
           </div>
-          <div className="flex gap-5">
+          <div className="flex justify-evenly">
             <BestSeller />
             <div className="flex flex-col">
               <App />
