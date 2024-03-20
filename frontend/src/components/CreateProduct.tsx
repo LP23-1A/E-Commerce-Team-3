@@ -4,11 +4,8 @@ import axios from "axios"
 import dotenv from "dotenv"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-<<<<<<< HEAD
-import { useRouter } from 'next/router';
-=======
+import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
->>>>>>> 8bdccdd (create product finished)
 
 dotenv.config()
 
@@ -93,11 +90,6 @@ const CreateProduct = ({ onClick }: any) => {
     useEffect(() => {
       mapCategory();
     }, []);
-
-
-
-    //   const getAllSubCategory = axios.get("http://localhost:8000/subCategory")
-    //   console.log(getAllSubCategory);
 
 
     return (
