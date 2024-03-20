@@ -10,19 +10,12 @@ const OrderHistory = ({ data }: any) => {
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
   const [statusModal, setStatusModal] = useState(false);
 
-  const { statusFilter } = useOrderFilter();
-
-  const filteredData = data
-    ? data.filter((order) => {
-        if (!statusFilter) return true;
-        return order.status === statusFilter;
-      })
-    : [];
-  const router = useRouter();
-  const statusModalHandler = (orderId: string) => {
-    setSelectedOrderId(orderId);
-    setStatusModal(!statusModal);
-  };
+  const router = useRouter()
+console.log(data)
+  const statusModalHandler =(orderId:string)=>{
+    setSelectedOrderId(orderId)
+    setStatusModal(!statusModal)
+  }
   return (
     <div className="bg-white w-full  rounded-lg  ml-5 h-auto py-2 ">
       <p className="text-[20px] font-[700] p-6  border-b border-slate-300 ">

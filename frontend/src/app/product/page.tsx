@@ -12,7 +12,7 @@ const Product = () => {
             <Navbar/>
             <div className="flex  items-start">
                 <Sidebar />
-               <div className="flex flex-col w-full">
+               <div className="flex flex-col w-full pt-10">
                <div className="flex flex-col w-full" >
                   <ToggleCreateProduct/>
                 </div>
