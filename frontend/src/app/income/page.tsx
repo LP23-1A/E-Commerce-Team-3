@@ -2,8 +2,22 @@
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import withAuth from "@/components/withAuth";
+import useSWR from "swr";
+import formatDate from "@/components/utils/FormatDate";
 
 const Income = () => {
+    const fetcher = (url: string) => fetch(url).then((r) => r.json());
+    const { data, error, isLoading } = useSWR(
+      "http://localhost:8000/order",
+      fetcher
+    );
+    const getTotalPrice = () => {
+        let totalPrice = 0;
+        data?.forEach((product) => {
+            totalPrice += product.amountToPaid * product.quantity;
+        });
+        return totalPrice;}
+        
     return(
         <div  className="w-screen h-screen bg-gray-200 justify-center items-center">
             <Navbar/>
@@ -16,7 +30,7 @@ const Income = () => {
                             <button className="w-[144px] h-[36px] rounded-lg bg-[#E4E7EB]">Хуулга татах</button>
                         </div>
                         <div className="flex justify-between p-6 items-center w-[724px]">
-                            <h2 className="text-3xl font-semibold text-[#121316]">235,000₮</h2>
+                            <h2 className="text-3xl font-semibold text-[#121316]">{getTotalPrice()}</h2>
                             <div className="flex gap-2">
                                 <button className="text-white bg-[#18BA51] w-[94px] h-[36px] rounded-lg">Өнөөдөр</button>
                                 <button className="w-[82px] h-[36px] rounded-lg border-[1px]">7 хоног</button>
@@ -33,7 +47,14 @@ const Income = () => {
                                 <p className="text-xs font-normal text-[#3F4145] w-[150px] px-6">Огноо</p>
                             </div>
                             <div>
-
+                                    {data && data.map((e, index) => (
+                                        <div className="flex justify-between py-2 " key={index}>
+                                          <p className="text-xs font-normal text-[#3F4145] w-[150px] px-6">#{e.orderNumber}</p>
+                                          <p className="text-xs font-normal text-[#3F4145] w-[150px] px-6">{e.userId.email}</p>
+                                          <p className="text-xs font-normal text-[#3F4145] w-[150px] px-8">{e.amountToPaid}₮</p>
+                                          <p className="text-xs font-normal text-[#3F4145] w-[150px] px-6" >{formatDate(e.createdAt)}</p>
+                                        </div>
+                                      ))}
                             </div>
                        </div>
                     </div>
