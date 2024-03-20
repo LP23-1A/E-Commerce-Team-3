@@ -9,9 +9,9 @@ const Income = () => {
             <Navbar/>
             <div className="flex ">
                  <Sidebar/>
-                <div className="flex flex-col items-center mt-5 ml-40">
-                    <div className="bg-white w-[724px] h-[160px] rounded-xl">
-                        <div className="flex justify-between p-6 border-b-[1px] items-center w-[724px]">
+                <div className="flex flex-col items-center mt-5 ml-40 py-10">
+                    <div className="bg-white w-[1200px] h-[160px] rounded-xl">
+                        <div className="flex justify-between p-6 border-b-[1px] items-center">
                             <h2 className="text-xl font-semibold text-[#121316]">Орлого</h2>
                             <button className="w-[144px] h-[36px] rounded-lg bg-[#E4E7EB]">Хуулга татах</button>
                         </div>
