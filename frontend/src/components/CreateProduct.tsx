@@ -1,10 +1,10 @@
 "use client"
 import { useState } from 'react';
 import axios from "axios"
-import { useRouter } from "next/navigation";
 import dotenv from "dotenv"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import { useRouter } from 'next/router';
 
 dotenv.config()
 

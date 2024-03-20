@@ -18,7 +18,7 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="w-[10%] bg-white h-screen">
+        <div className="relative w-[222px] bg-white h-screen pt-10">
             <div className="flex flex-col gap-[16px] pt-4">
                 {pages.map((page, index) => (
                     <div className="hover:bg-[#F6F6F6]" key={index}>

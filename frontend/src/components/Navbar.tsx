@@ -4,7 +4,7 @@
  
 const Navbar =()=>{
     return(
-        <div className=' flex justify-between items-center px-10 py-[10px] bg-black'>
+        <div className='absolute z-10 flex justify-between items-center px-10 py-[10px] bg-black w-screen'>
         <img className='w-[24px] h-[20px]' src={logo.src}/>
         <div className='flex gap-6'>
             <NotificationsNoneOutlinedIcon sx={{color:'white'}}/>

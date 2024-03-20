@@ -4,7 +4,7 @@ import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
-function App() {
+function ActivityCity() {
   const data = {
     labels: ['01/06', '01/07', '01/08', '01/09', '01/10', '01/11'],
     datasets: [
@@ -51,4 +51,4 @@ function App() {
   )
 }
 
-export default App;
+export default ActivityCity;

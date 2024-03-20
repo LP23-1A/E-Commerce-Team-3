@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation'
 import useSWR from "swr";
 import PayDetail from "@/components/PayDetail";
 import DeliveryDetail from "@/components/DeliveryDetail";
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
 const OrderDetail = () => {
     const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -24,18 +25,18 @@ const OrderDetail = () => {
     const o = () => {
         router.push(`order`);
     };
-    const getOneTotalPrice = (qty, price) => {
+    const getOneTotalPrice = (qty: number, price: number) => {
         return qty * price;
     };
     const getTotalPrice = () => {
         let totalPrice = 0;
-        data?.products?.forEach((product) => {
+        data?.products?.forEach((product: { price: number; }) => {
           totalPrice += product?.price * data?.quantity;
         });
         return totalPrice;
       };
 
-    const formatDate = (dateString) => {
+    const formatDate = (dateString: string | number | Date) => {
         const date = new Date(dateString);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -73,7 +74,7 @@ const OrderDetail = () => {
                                 </div>
                             </div>
                             {
-                                data && data?.products.map(product => (
+                                data && data?.products.map((product: { productName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; createdAt: string | number | Date; price: number; }) => (
                                     <div className="flex bg-[#ECEDF0] rounded-lg mt-8">
                                         <img src={image.src} alt="" className="rounded-s-lg" />
                                         <div className="w-full p-4">

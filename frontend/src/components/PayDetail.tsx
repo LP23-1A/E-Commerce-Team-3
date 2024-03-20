@@ -13,7 +13,7 @@ const PayDetail =({totalPrice,data}:any) =>{
         </div>
         <p className="pt-8 px-6 font-light text-base">Бүтээгдэхүүн</p>
         <div className="flex flex-col gap-4 px-6 py-3 border-b ">
-        {data && data?.products.map( product =>(
+        {data && data?.products.map( (product: { productName: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; price: { toLocaleString: () => string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }; }) =>(
                        <div className="flex items-center justify-between">
                        <div className="flex gap-8">
                            <p className="text-[#3F4145]">{product?.productName}</p>
