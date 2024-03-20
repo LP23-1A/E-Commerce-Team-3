@@ -9,7 +9,8 @@ export const OrderInputFilterProvider = ({ children }:any) => {
   const [filters, setFilters] = useState({
     filterByDay: false,
     filterByUsername: '',
-    filterByWeek:false
+    filterByWeek:false,
+    filterByMonth :false
   });
 
   return (
