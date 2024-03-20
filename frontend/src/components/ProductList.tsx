@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useSWR, { mutate } from "swr";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { log } from "console";
 
 
 const ProductList = () => {
@@ -16,10 +17,10 @@ const ProductList = () => {
   };
   const move = async (product_Id: string) => {
     router.push(`editproduct`);
-    setselectedProduct(product_Id)
-    console.log(selectedProduct);
-
-
+    const getId = product_Id
+    localStorage.setItem( "productId" , getId)
+    
+   
   };
 
   const fetcher = (url: string) => fetch(url).then((r) => r.json());

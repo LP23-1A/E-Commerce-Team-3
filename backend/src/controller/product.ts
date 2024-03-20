@@ -24,7 +24,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
 
 
     const products = await productModel.find().populate('mainCategory')
-    console.log(products);
+    
 
     res.status(200).json(products);
 

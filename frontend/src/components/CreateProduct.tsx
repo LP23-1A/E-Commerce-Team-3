@@ -1,16 +1,11 @@
 "use client"
 import { useEffect, useState } from 'react';
 import axios from "axios"
-import dotenv from "dotenv"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-<<<<<<< HEAD
-import { useRouter } from 'next/router';
-=======
+import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
->>>>>>> 8bdccdd (create product finished)
 
-dotenv.config()
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -66,6 +61,7 @@ const CreateProduct = ({ onClick }: any) => {
             })
 
             const res = await axios.post(api, { ...keys })
+            router.push("/product")
             console.log("product created");
 
 
@@ -93,12 +89,6 @@ const CreateProduct = ({ onClick }: any) => {
     useEffect(() => {
       mapCategory();
     }, []);
-
-
-
-    //   const getAllSubCategory = axios.get("http://localhost:8000/subCategory")
-    //   console.log(getAllSubCategory);
-
 
     return (
         <div className='flex flex-col  h-fit '>
