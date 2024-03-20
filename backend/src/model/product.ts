@@ -1,22 +1,28 @@
-import mongoose  from 'mongoose'
-const productSchema = new mongoose.Schema ({
-    productName : String,
-    mainCategory : String,
-    subCategory : String,
-    price : Number, 
-    quantity : Number,
-    thumbnails:String,
-    images: {
-    type : [String]
+import mongoose from 'mongoose'
+const productSchema = new mongoose.Schema({
+    productName: String,
+    mainCategory: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'mainCategory'
     },
-    coupon : String,
-    salePercent : Number,
-    description : String,
-    viewsCount : Number,
-    productId : String,
-    tag : String
+    subCategory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'subCategory'
+    }],
+    price: Number,
+    quantity: Number,
+    thumbnails: String,
+    images: {
+        type: [String]
+    },
+    coupon: String,
+    salePercent: Number,
+    description: String,
+    viewsCount: Number,
+    productId: String,
+    tag: String
 
-},{timestamps:true})
+}, { timestamps: true })
 
-const productModel = mongoose.model ("product" , productSchema)
-export {productModel}
+const productModel = mongoose.model("product", productSchema)
+export { productModel }

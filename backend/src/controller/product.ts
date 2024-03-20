@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
 import { productModel } from "../model/product";
-import { generateUrl } from "../utils/s3";
-import axios from "axios";
+import { mainCategoryModel } from "../model/mainCategory";
 
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-   
+
     const newProduct = await productModel.create(req.body)
-        res.status(201).json(newProduct)
+    res.status(201).json(newProduct)
 
 
   } catch (error) {
@@ -22,7 +21,11 @@ export const createProduct = async (req: Request, res: Response) => {
 export const getAllProducts = async (req: Request, res: Response) => {
 
   try {
-    const products = await productModel.find();
+
+
+    const products = await productModel.find().populate('mainCategory')
+    console.log(products);
+
     res.status(200).json(products);
 
   } catch (error) {
