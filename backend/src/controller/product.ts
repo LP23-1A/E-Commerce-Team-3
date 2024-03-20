@@ -1,43 +1,13 @@
 import { Request, Response } from "express";
 import { productModel } from "../model/product";
-import { generateUrl } from "../utils/s3";
-import axios from "axios";
-
-
-
-type ProductType = {
-  productName: string,
-  categoryId: string,
-  price: number,
-  quantity: number,
-  thumbnails: string,
-  images: string,
-  coupon: string,
-  salePercent: number,
-  description: string,
-  viewsCount: number,
-
-}
-
+import { mainCategoryModel } from "../model/mainCategory";
 
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
 
-
-    const { productName, description, price, quantity, categoryId, images }: Required<ProductType> = req.body
-    const newProduct = await productModel.create({
-      productName,
-      description,
-      price,
-      quantity,
-      categoryId,
-      images
-
-
-    })
-    newProduct.save()
-    res.status(200).send({ success: true })
+    const newProduct = await productModel.create(req.body)
+    res.status(201).json(newProduct)
 
 
   } catch (error) {
@@ -51,7 +21,11 @@ export const createProduct = async (req: Request, res: Response) => {
 export const getAllProducts = async (req: Request, res: Response) => {
 
   try {
-    const products = await productModel.find();
+
+
+    const products = await productModel.find().populate('mainCategory')
+    console.log(products);
+
     res.status(200).json(products);
 
   } catch (error) {
