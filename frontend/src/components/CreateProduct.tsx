@@ -1,36 +1,16 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios"
 import dotenv from "dotenv"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+<<<<<<< HEAD
 import { useRouter } from 'next/router';
+=======
+import useSWR from 'swr';
+>>>>>>> 8bdccdd (create product finished)
 
 dotenv.config()
-
-type SignedUrls = {
-    uploadUrls: string[];
-    accessUrls: string[];
-};
-
-const requestUrl = process.env.REQUEST_URL
-
-export async function uploadImageIntoS3(count: number) {
-
-    const response = await fetch(requestUrl + `?count=${count}`, {
-        method: 'GET',
-        cache: 'no-cache',
-        headers: {
-            'Content-type': 'application/json',
-        },
-    });
-
-    const data = await response.json();
-    console.log(data);
-
-
-    return data as SignedUrls;
-}
 
 const CreateProduct = ({ onClick }: any) => {
     const router = useRouter()
@@ -38,12 +18,14 @@ const CreateProduct = ({ onClick }: any) => {
         router.push(`product`);
     };
 
+    const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
+
     const [input, setInput] = useState({
         productName: "",
         description: "",
         price: "",
         quantity: "",
-        categoryId: "",
         images: [null as File | null],
         productId: "",
         tag: "",
@@ -58,7 +40,6 @@ const CreateProduct = ({ onClick }: any) => {
         description: input.description,
         price: input.price,
         quantity: input.quantity,
-        categotyId: input.categoryId,
         images: input.images,
         productId: input.productId,
         tag: input.tag,
@@ -75,9 +56,8 @@ const CreateProduct = ({ onClick }: any) => {
             const imageUrl = signedUrls.data.objectUrl
             keys.images = imageUrl
 
-            signedUrls.data.uploadUrls.map(async (uploadUrl, index) => {
-                
-                console.log(uploadUrl, 'upload')
+            signedUrls.data.uploadUrls.map(async (uploadUrl: string, index: number) => {
+
                 return await axios.put(uploadUrl, image[index], {
                     headers: {
                         'Content-Type': image[index]!.type
@@ -93,6 +73,32 @@ const CreateProduct = ({ onClick }: any) => {
             console.log(error);
         }
     }
+
+    const { data, error, isLoading } = useSWR(
+        "http://localhost:8000/mainCategory",
+        fetcher
+    );
+
+    const [subCategory, setSubCategory] = useState();
+    
+    const mapCategory = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/subCategory");
+        setSubCategory(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    useEffect(() => {
+      mapCategory();
+    }, []);
+
+
+
+    //   const getAllSubCategory = axios.get("http://localhost:8000/subCategory")
+    //   console.log(getAllSubCategory);
+
 
     return (
         <div className='flex flex-col  h-fit '>
@@ -159,11 +165,19 @@ const CreateProduct = ({ onClick }: any) => {
                     <div className="flex flex-col gap-4 w-[515px] p-4  bg-[#FFFFFF] rounded-[12px]  ">
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Ерөнхий ангилал</p>
-                            <input value={input.mainCategory} onChange={(e) => setInput((prev) => ({ ...prev, mainCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
+                            <select value={input.mainCategory} onChange={(e) => setInput((prev) => ({ ...prev, mainCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
+                                <option>choose</option>
+                                {data && data.map((el: any) => <option value={el._id}>{el.mainCategoryName}</option>)}
+                            </select>
+
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className='text-sm font-bold'>Дэд ангилал</p>
-                            <input value={input.subCategory} onChange={(e) => setInput((prev) => ({ ...prev, subCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Сонгох' />
+                            <select value={input.subCategory} onChange={(e) => setInput((prev) => ({ ...prev, subCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
+                                <option>choose</option>
+                                {subCategory && subCategory.map((e) => <option value={e._id}>{e.subCategoryName}</option>)}
+                            </select>
+
                         </div>
                     </div>
                     <div className="p-6 bg-[#FFFFFF] flex flex-col rounded-[12px] gap-6 ">

@@ -18,39 +18,21 @@ export async function GET(request: Request) {
 
 
     try {
-        // const key = v4()
-
-        // const commands = new Array(3).map( async () => {
-
-        //     const url = await getSignedUrl(
-        //         s3,
-        //         new PutObjectCommand({
-        //             Bucket: 'team3-ecommerce',
-        //             Key: key,
-        //             ACL: 'public-read',
-        //         }),
-        //         {
-        //             expiresIn: 60 * 60,
-        //         }
-        //     )
-        //     return url
-        // })
-
-        // console.log(commands, 'commands')
         const objectUrls: any = [];
         const urls = await Promise.all(
-            ["image1.png", "image2.png", "image3.png"].map((key) => {
+            ["image1.png", "image2.png", "image3.png"].map((_) => {
+                const key = v4()
+                const command = new PutObjectCommand({
+                    Bucket: "team3-ecommerce",
+                    Key: `${key}`,
+                    ACL: 'public-read',
+                });
 
-              const command = new PutObjectCommand({
-                Bucket: "team3-ecommerce",
-                Key: `${key}`,
-                ACL: 'public-read',
-              });
-              objectUrls.push(`https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/${key}`)
-        
-              return getSignedUrl(s3, command, { expiresIn: 3600 });
+                objectUrls.push(`https://team3-ecommerce.s3.ap-southeast-1.amazonaws.com/${key}`)
+
+                return getSignedUrl(s3, command, { expiresIn: 3600 });
             })
-          );
+        );
 
 
         return Response.json({
