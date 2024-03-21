@@ -12,6 +12,7 @@ import useSWR from "swr";
 import PayDetail from "@/components/PayDetail";
 import DeliveryDetail from "@/components/DeliveryDetail";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
+import formatDate from "@/components/utils/FormatDate";
 
 const OrderDetail = () => {
     const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -35,14 +36,7 @@ const OrderDetail = () => {
         });
         return totalPrice;
       };
-
-    const formatDate = (dateString: string | number | Date) => {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
+;
 
     return (
         <div className="w-screen h-screen bg-gray-200 justify-center items-center">

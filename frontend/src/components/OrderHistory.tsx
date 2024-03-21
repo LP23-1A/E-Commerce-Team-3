@@ -95,7 +95,7 @@ const OrderHistory = ({ data }: any) => {
                 <td className="w-[100px]">
                   {formatTime(e.createdAt)}
                 </td>
-                <td className="w-[100px]">
+                <td className="w-[5 0px]">
                   {e?.amountPaid}₮
                 </td>
                 <td
