@@ -1,25 +1,22 @@
 import ChevronRight from "@/assets/ChevronRight";
-import { useState } from "react";
+import { Key, useState } from "react";
+import useSWR from "swr";
 
-interface Product {
-  _id: string;
-  productName: string;
-  productId: string;
-  amountPaid: number;
-}
+const BestSellers = () => {
+  const fetcher = (url: string) => fetch(url).then((r) => r.json());
+  const { data } = useSWR(
+    "http://localhost:8000/product",
+    fetcher,
+  );
+  // const { data: orderData } = useSWR(
+  //   "http://localhost:8000/order",
+  //   fetcher
+  // );
+  // console.log(orderData);
 
-interface Props {
-  data: Product[];
-}
+  console.log(data, "test");
 
-const BestSellers = ({ data }: Props) => {
-  const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
-  const [statusModal, setStatusModal] = useState(false);
 
-  const toggleStatusModal = (orderId: string) => {
-    setSelectedOrderId(orderId);
-    setStatusModal(prevState => !prevState);
-  };
 
   return (
     <div className="w-[581px] bg-white rounded-xl mt-10 pb-6">
@@ -34,18 +31,22 @@ const BestSellers = ({ data }: Props) => {
           <p className="text-[#3F4145] text-xs font-normal">Ordered</p>
           <p className="text-[#3F4145] text-xs font-normal">Price</p>
         </div>
-        {data &&
-          data.map((product: Product) => (
-            <div key={product._id} className="flex justify-around border-b border-slate-300 py-3">
-              <p className="text-sm">1</p>
+        {data && data.map((e: any, index: number) => (
+
+
+          <div key={index} className="flex justify-around mx-4 py-4">
+            <p className="text-[#3F4145] text-xs font-normal">{index + 1}</p>
+            <div className="flex gap-2 items-center">
+              <img className="rounded-3xl" height={"40px"} width={"40px"} src={e.images[1]}></img>
               <div className="flex flex-col">
-                <p className="text-black w-fit text-semibold text-sm">{product.productName}</p>
-                <p className="text-black w-fit">#{product.productId}</p>
+                <div className=" font-bold text-sm text-[#3F4145]">{e.productName}</div>
+                <p className="text-[#3F4145] text-xs font-normal">#{e.productId}</p>
               </div>
-              <p className="text-sm">200</p>
-              <p className="text-sm">{product.amountPaid}</p>
             </div>
-          ))}
+            <p className="text-[#3F4145] text-xs font-normal">{e.ordered}</p>
+            <p className="text-[#3F4145] text-xs font-normal"> {e.price}₮</p>
+          </div>
+        ))}
       </div>
     </div>
   );
