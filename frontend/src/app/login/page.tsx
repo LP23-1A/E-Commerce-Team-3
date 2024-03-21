@@ -5,6 +5,8 @@ import Arrow from "@/assets/Arrow";
 import { useRef } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import jwt from "jsonwebtoken"
+
 
 const  Login = () => {
     const router = useRouter()
@@ -22,7 +24,16 @@ const  Login = () => {
             email:input.current.email,
             password:input.current.password,
                 })
-            router.push('/dashboard')
+                
+                const { data } = res;
+                const token = data.token;
+              const code = jwt.decode(token)
+              if (code.payload.role as String === 'admin') {
+                router.push('/dashboard');
+              } else {
+                router.push('/signup');
+                console.log('wrong')
+              }
     } catch (error) {
     }
    }
@@ -43,7 +54,7 @@ const  Login = () => {
           <input
           onChange={(e)=> handleBack('password', e.target.value)}
             placeholder="Password"
-            type="name"
+            type="password"
             className="bg-[#F7F7F8] border-solid border border-slate-200 w-[350px] rounded-lg px-[20px] h-[56px] py-5 text-[#1C2024]"
           />
         </div>

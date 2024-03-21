@@ -28,11 +28,15 @@ const getAllUsers = async (req: Request, res: Response) => {
 };
 const login = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
+    const { email ,password } = req.body;
     const user: any = await userModel.findOne({ email })
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (user.password !== password) {
+      return res.status(401).send("Username or password incorrect");
     }
     const payload = {
       email: user.email,
