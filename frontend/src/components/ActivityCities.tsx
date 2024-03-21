@@ -1,54 +1,37 @@
 import ChevronRight from "@/assets/ChevronRight";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
-import { Bar } from 'react-chartjs-2';
+import * as React from 'react';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
+const citiesData = [
+  { name: "Улаанбаатар", percentage: 70 },
+  { name: "Эрдэнэт", percentage: 20 },
+  { name: "Дархан", percentage: 10 },
+  { name: "Бусад", percentage: 0 }
+];
+
+const percent = ['70', '20', '10', '0']
+
+const CityProgressBar = ({ name, percentage }) => (
+  <div className="flex items-center justify-between p-6">
+    <p className="w-[100px]">{name}</p>
+    <div className="h-2 w-[353px] bg-slate-100 rounded-3xl">
+      <div className="h-2 bg-black rounded-3xl " />
+    </div>
+    <p>{percentage}%</p>
+  </div>
+);
 
 function ActivityCity() {
-  const data = {
-    labels: ['01/06', '01/07', '01/08', '01/09', '01/10', '01/11'],
-    datasets: [
-      {
-        label: '200',
-        data: [7, 5, 9, 5, 5.5, 9],
-        backgroundColor: 'black',
-        borderRadius: 20,
-        barPercentage: 0.1,
-
-      }
-    ]
-  }
-
-  const config = {
-    type: 'bar',
-    options: {
-      indexAxis: 'y',
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            maxTicksLimit: 300,
-            callback: ((context: string, index: any) => {
-              console.log(context)
-              return context + 'K'
-            }
-            )
-          }
-        }
-      }
-    }
-  }
-
   return (
-
-    <div className="bg-white w-[565px] mt-10 rounded-xl">
-      <div className="flex justify-between items-center py-5 pl-5 mr-3 mb-3">
-        <h1 className="font-semibold leading-6 text-lg">Борлуулалт</h1>
+    <div className="bg-[#fff] rounded-xl">
+      <div className="flex items-center justify-between p-6">
+        <h1>Идэвхтэй бүс нутаг</h1>
         <ChevronRight />
       </div>
-      <Bar style={{ padding: 10 }} data={data}></Bar>
+      {citiesData.map(city => (
+        <CityProgressBar key={city.name} name={city.name} percentage={city.percentage} />
+      ))}
     </div>
-  )
+  );
 }
 
 export default ActivityCity;

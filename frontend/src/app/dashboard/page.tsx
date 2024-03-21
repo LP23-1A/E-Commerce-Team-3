@@ -25,8 +25,8 @@ const DashBoard = () => {
             <GeneralInfoIncome desc="Хэрэглэгч" amount="980" date="Өнөөдөр" icon={<IconUser />} />
           </div>
           <div className="flex w-[1200px]  justify-between">
-            <BestSeller />
-            <div className="flex flex-col gap-2">
+            <BestSeller/>
+            <div className="flex flex-col gap-8">
               <App />
               <ActivityCity />
             </div>
