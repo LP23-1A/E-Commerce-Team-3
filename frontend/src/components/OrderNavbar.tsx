@@ -5,14 +5,14 @@ import { useOrderFilter } from "./OrderByStatusProvider";
 const OrderNavbar = ({ data }: any) => {
   const { setStatusFilter } = useOrderFilter();
   const [selectedStatus, setSelectedStatus] = useState("");
-  const handleStatusFilter = (status) => {
+  const handleStatusFilter = (status:any) => {
     setStatusFilter(status);
     setSelectedStatus(status);
   };
   return (
     <div className="flex  justify-between border-b pt-[20px] border-slate-300 ">
       <button
-        className={`p-[16px] text-[14px] ${
+        className={`px-[16px] py-2 text-[14px] ${
           selectedStatus === "" ? "border-b border-black" : "border-b  "
         }`}
         onClick={() => handleStatusFilter("")}
@@ -20,7 +20,7 @@ const OrderNavbar = ({ data }: any) => {
         Бүгд
       </button>
       <button
-        className={`p-[16px] text-[14px] font-normal ${
+        className={`px-[16px] py-2  text-[14px] font-normal ${
           selectedStatus === "new" ? "border-b  border-black" : "border-b  "
         }`}
         onClick={() => handleStatusFilter("new")}
@@ -28,7 +28,7 @@ const OrderNavbar = ({ data }: any) => {
         Шинэ захиалага
       </button>
       <button
-        className={`p-[16px] text-[14px] font-normal ${
+        className={`px-[16px] py-2  text-[14px] font-normal ${
           selectedStatus === "Preparing to ship"
             ? "border-b  border-black"
             : "border-b  "
@@ -38,7 +38,7 @@ const OrderNavbar = ({ data }: any) => {
         Бэлтгэгдэж байна
       </button>
       <button
-        className={`p-[16px] text-[14px] font-normal ${
+        className={`px-[16px] py-2  text-[14px] font-normal ${
           selectedStatus === "Shipped" ? "border-b  border-black" : "border-b  "
         }`}
         onClick={() => handleStatusFilter("Shipped")}
@@ -46,7 +46,7 @@ const OrderNavbar = ({ data }: any) => {
         Хүргэлтэнд гарсан
       </button>
       <button
-        className={`p-[16px] text-[14px] font-normal ${
+        className={`px-[16px] py-2  text-[14px] font-normal ${
           selectedStatus === "Delivered"
             ? "border-b  border-black"
             : "border-b  "
@@ -56,7 +56,7 @@ const OrderNavbar = ({ data }: any) => {
         Хүргэгдсэн
       </button>
       <button
-        className={`p-[16px] text-[14px] font-normal ${
+        className={`px-[16px] py-2  text-[14px] font-normal ${
           selectedStatus === "Cancelled"
             ? "border-b  border-black"
             : "border-b  "

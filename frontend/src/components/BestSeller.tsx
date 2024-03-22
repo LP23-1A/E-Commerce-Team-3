@@ -34,17 +34,17 @@ const BestSellers = () => {
         {data && data.map((e: any, index: number) => (
 
 
-          <div key={index} className="flex justify-around mx-4 py-4">
-            <p className="text-[#3F4145] text-xs font-normal">{index + 1}</p>
-            <div className="flex gap-2 items-center">
+          <div key={index} className="flex mx-4 py-4 items-center border-b border-gray-200">
+            <p className="text-[#3F4145] text-xs font-normal w-28 flex items-center justify-center">{index + 1}</p>
+            <div className="flex gap-2 items-center ml-5 w-48">
               <img className="rounded-3xl" height={"40px"} width={"40px"} src={e.images[1]}></img>
               <div className="flex flex-col">
                 <div className=" font-bold text-sm text-[#3F4145]">{e.productName}</div>
                 <p className="text-[#3F4145] text-xs font-normal">#{e.productId}</p>
               </div>
             </div>
-            <p className="text-[#3F4145] text-xs font-normal">{e.ordered}</p>
-            <p className="text-[#3F4145] text-xs font-normal"> {e.price}₮</p>
+            <p className="text-[#3F4145] text-xs font-normal flex items-center  w-32 pl-2">30</p>
+            <p className="text-[#3F4145] text-xs font-normal w-24 pl-2"> {e.price}₮</p>
           </div>
         ))}
       </div>
