@@ -2,11 +2,7 @@ import CreateProduct from "@/components/CreateProduct";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 
- 
- 
  const addproduct = () => {
-
-
   return(
       <div  className="w-full h-screen bg-gray-200 justify-center items-center">
           <Navbar/>
@@ -19,5 +15,4 @@ import Sidebar from "@/components/Sidebar";
       </div>
   )
 }
-
 export default addproduct;
