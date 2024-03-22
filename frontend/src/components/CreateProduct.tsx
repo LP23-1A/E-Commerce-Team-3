@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useRouter } from 'next/navigation';
@@ -65,27 +65,6 @@ const CreateProduct = () => {
         } catch (error) {
         }
     }
-    
-<<<<<<< HEAD
-    const mapCategory = async () => {
-      try {
-        const res = await axios.get("http://localhost:8000/subCategory");
-        setSubCategory(res.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    useEffect(() => {
-      mapCategory();
-    }, []);
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 6b765b8 (edited product but needs review)
-=======
->>>>>>> c59865a (buteegdehuun editeldeg bolov)
     return (
         <div className='flex flex-col pt-10   h-fit '>
             <div className='flex bg-[#FFFFFF] w-[1857px] p-6 gap-4 cursor-pointer' onClick={movepage} >

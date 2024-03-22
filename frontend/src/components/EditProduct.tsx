@@ -10,25 +10,16 @@ const EditProduct = () => {
     const router = useRouter();
 
     const movepage = () => {
-        router.push(`product`);
+        router.push("/product");
     };
 
-    const [input, setInput] = useState({
-        productName: "",
-        description: "",
-        price: "",
-        quantity: "",
-        images: [null],
-        productId: "",
-        tag: "",
-        mainCategory: "",
-        subCategory: ""
-    });
 
     const [image, setImage] = useState<FileList | []>([]);
 
     const fetchProduct = async (productId: string) => {
         const api = `http://localhost:8000/product/${productId}`;
+        console.log(productId);
+        
         try {
             const response = await axios.get(api);
             const productData = response.data;
@@ -44,21 +35,37 @@ const EditProduct = () => {
                 subCategory: productData.subCategory
             });
         } catch (error) {
+            console.log("failed to fetch product");
+            
         }
     };
+    const [input, setInput] = useState({
+        productName: "",
+        description: "",
+        price: "",
+        quantity: "",
+        images: [null],
+        productId: "",
+        tag: "",
+        mainCategory: "",
+        subCategory: ""
+    });
 
-    const productId = localStorage.getItem("productId");
+    const id = localStorage.getItem("productId");
     useEffect(() => {
        
-        if (productId) {
-            fetchProduct(productId);
+        if (id) {
+            fetchProduct(id);
         }
-    }, []);
+    }, [id]);
 
 
 
     const editProduct = async () => {
-        const api = `http://localhost:8000/product/${productId}`;
+
+        const api = `http://localhost:8000/product/${id}`;
+        console.log(id);
+        
         try {
             const signedUrls = await axios.get('/api/upload-image');
             const imageUrl = signedUrls.data.objectUrl;
@@ -78,8 +85,12 @@ const EditProduct = () => {
             );
 
             const res = await axios.put(api, keys);
+            console.log(res);
+            
             router.push("/product");
         } catch (error) {
+            console.log("failed");
+            
         }
     };
 
@@ -91,7 +102,7 @@ const EditProduct = () => {
             </div>
 
             <ProductForm
-                title='Хадгалах'
+                title='Шинэчлэх'
                 onClick={editProduct}
                 input={input}
                 setInput={setInput}

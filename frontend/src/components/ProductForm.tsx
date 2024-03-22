@@ -67,10 +67,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
     input.description.trim() !== "" &&
     input.productId.trim() !== "" &&
     input.images !== null &&
-    input.price.trim() !== "" &&
-    input.quantity.trim() !== "" &&
-    input.mainCategory.trim() !== ""
-    input.subCategory.trim() !== ""
+    input.price !== "" &&
+    input.quantity !== "" &&
+    input.mainCategory !== ""
+    input.subCategory !== ""
     input.tag.trim() !== "";
 
     return (
