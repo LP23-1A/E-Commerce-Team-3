@@ -37,7 +37,7 @@ const BestSellers = () => {
                 <img className="rounded-3xl" height={"40px"} width={"40px"} src={e?.images[1]} ></img>
                 ))}
                 <div className='flex flex-col'>
-                  {e?.products.map((e: { productName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; }) => (
+                  {e?.products.map((e: { productName: string }) => (
                     <div className='flex'>
                       <div className=" font-bold text-sm text-[#3F4145]">{e?.productName}</div>
                     </div>
