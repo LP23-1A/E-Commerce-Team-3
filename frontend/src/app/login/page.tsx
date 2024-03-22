@@ -32,7 +32,6 @@ const  Login = () => {
                 router.push('/dashboard');
               } else {
                 router.push('/signup');
-                console.log('wrong')
               }
     } catch (error) {
     }

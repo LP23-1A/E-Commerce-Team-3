@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import  { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
@@ -8,7 +8,8 @@ import jwt from "jsonwebtoken"
 const Page = () => {
     const { user } = useAuth0()
     const router = useRouter()
-    
+    const [loading, setLoading] = useState(true) 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,16 +26,18 @@ const Page = () => {
                 }
             } catch (error) {
                 console.error('Error:', error)
-
+            } finally {
+                setLoading(false);
             }
         }
-        
         fetchData();
     }, [user, router])
 
     return (
         <div>
-
+            {loading ? (
+                <div>Loading...</div>
+            ) : null}
         </div>
     )
 }
