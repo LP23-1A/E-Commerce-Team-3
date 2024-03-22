@@ -29,11 +29,11 @@ const OrderDetail = () => {
     const getTotalPrice = () => {
         let totalPrice = 0;
         data?.products?.forEach((product: { price: number; }) => {
-          totalPrice += product?.price * data?.quantity;
+            totalPrice += product?.price * data?.quantity;
         });
         return totalPrice;
-      };
-;
+    };
+    ;
 
     return (
         <div className="w-screen h-screen bg-gray-200 justify-center items-center">
@@ -64,16 +64,16 @@ const OrderDetail = () => {
                                     </div>
                                 </div>
                                 {
-                                    data && data?.products.map((product: { productName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined; createdAt: string | number | Date; price: number; }) => (
+                                    data && data?.products.map((products: any) => (
                                         <div className="flex bg-[#ECEDF0] rounded-lg mt-8">
-                                            <img src={product.images[1]} alt="" className="rounded-s-lg w-[180px] h-[156px]" />
+                                            <img src={products.images[1]} alt="" className="rounded-s-lg w-[180px] h-[156px]" />
                                             <div className="w-full p-4">
-                                                <h5 className="text-2xl font-bold"> {product?.productName}</h5>
-                                                <p className="font-light mt-2 text-sm">{formatDate(product?.createdAt)}</p>
+                                                <h5 className="text-2xl font-bold"> {products?.productName}</h5>
+                                                <p className="font-light mt-2 text-sm">{formatDate(products?.createdAt)}</p>
                                                 <p className="font-light text-sm">Бүтээгдэхүүний ID: 30340949903</p>
                                                 <div className="flex justify-between items-center mt-6">
-                                                    <p className="font-extralight">Тоо ширхэг:{data?.quantity} * {product?.price.toLocaleString()}₮</p>
-                                                    <p className="text-base font-semibold">{getOneTotalPrice(data?.quantity, product?.price).toLocaleString()}₮</p>
+                                                    <p className="font-extralight">Тоо ширхэг:{data?.quantity} * {products?.price.toLocaleString()}₮</p>
+                                                    <p className="text-base font-semibold">{getOneTotalPrice(data?.quantity, products?.price).toLocaleString()}₮</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,15 +82,15 @@ const OrderDetail = () => {
 
                             </div>
                             <div className="flex flex-col mt-10">
-                            <DeliveryDetail data={data}/>
-                            <PayDetail data={data} totalPrice={getTotalPrice()}/>
+                                <DeliveryDetail data={data} />
+                                <PayDetail data={data} totalPrice={getTotalPrice()} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        )
-    }
+    )
+}
 
-    export default OrderDetail
+export default OrderDetail
