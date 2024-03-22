@@ -33,8 +33,6 @@ const DashBoard = () => {
     return totalPrice;
   };
 
-  const { user } = useAuth0()
-  console.log(user)
   return (
     <div className=" bg-gray-200  items-center">
       <Navbar />

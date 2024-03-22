@@ -13,7 +13,6 @@ const StatusBar = ({ selectedOrderId, onClick }: any) => {
   ];
   const postHandler = async () => {
     try {
-      console.log(selected);
       const res = await axios.put(
         `http://localhost:8000/order/${selectedOrderId}`,
         {

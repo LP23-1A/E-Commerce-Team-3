@@ -5,12 +5,21 @@ import OrderHistory from "@/components/OrderHistory";
 import OrderNavbar from "@/components/OrderNavbar";
 import Sidebar from "@/components/Sidebar";
 import OrderDayFilter from "@/components/OrderDayFilter";
+
 const Order = () => {
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data, error, isLoading } = useSWR(
     "http://localhost:8000/order",
     fetcher
   );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+if (error) {
+  return <div>Error</div>
+  
+}
   return (
     <div className="w-screen h-screen bg-gray-200 ">
       <Navbar />
@@ -23,10 +32,9 @@ const Order = () => {
             <OrderHistory data={data} />
           </div>
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Order;

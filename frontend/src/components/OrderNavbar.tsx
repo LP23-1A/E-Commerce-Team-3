@@ -10,7 +10,7 @@ const OrderNavbar = ({ data }: any) => {
     setSelectedStatus(status);
   };
   return (
-    <div className="flex  justify-between border-b  border-slate-300 ">
+    <div className="flex  justify-between border-b pt-[20px] border-slate-300 ">
       <button
         className={`p-[16px] text-[14px] ${
           selectedStatus === "" ? "border-b border-black" : "border-b  "

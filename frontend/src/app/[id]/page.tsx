@@ -13,6 +13,7 @@ import PayDetail from "@/components/PayDetail";
 import DeliveryDetail from "@/components/DeliveryDetail";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 import formatDate from "@/components/utils/FormatDate";
+import statusCellStyle from "@/components/utils/StatusColor";
 
 const OrderDetail = () => {
     const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -22,8 +23,7 @@ const OrderDetail = () => {
         `http://localhost:8000/order${pathname}`,
         fetcher
     );
-    console.log(data)
-    const o = () => {
+    const handleBack = () => {
         router.push(`order`);
     };
     const getOneTotalPrice = (qty: number, price: number) => {
@@ -44,7 +44,7 @@ const OrderDetail = () => {
             <div className="flex">
                 <Sidebar />
                 <div className="flex flex-col">
-                    <div className="flex bg-white h-[56px] pl-5 items-center gap-5 cursor-pointer " onClick={o} >
+                    <div className="flex bg-white h-[56px] pl-5 items-center gap-5 cursor-pointer mt-10 " onClick={handleBack} >
                         <ChevronLeft />
                         <p className="">Захиалгын дэлгэрэнгүй</p>
                     </div>
@@ -55,7 +55,7 @@ const OrderDetail = () => {
                                     <p className="font-extralight">Захиалгын ID дугаар:</p>
                                     <p className="text-xl font-semibold">#{data?.orderNumber}</p>
                                 </div>
-                                <div className="flex gap-2 items-center bg-[#ECEDF0] py-2 px-3 rounded-full ">
+                                <div style={statusCellStyle(data?.status)} className="flex gap-2 items-center bg-[#ECEDF0] py-2 px-3 rounded-full ">
                                     <button>{data?.status}</button>
                                     <ChevronDown />
                                 </div>
@@ -74,7 +74,7 @@ const OrderDetail = () => {
                                         <div className="w-full p-4">
                                             <h5 className="text-2xl font-bold"> {product?.productName}</h5>
                                             <p className="font-light mt-2 text-sm">{formatDate(product?.createdAt)}</p>
-                                            <p className="font-light text-sm">Бүтээгдэхүүний ID: 30340949903</p>
+                                            <p className="font-light text-sm">Бүтээгдэхүүний ID: {product?.productId}</p>
                                             <div className="flex justify-between items-center mt-6">
                                                 <p className="font-extralight">Тоо ширхэг:{data?.quantity} * {product?.price.toLocaleString()}₮</p>
                                                 <p className="text-base font-semibold">{getOneTotalPrice(data?.quantity, product?.price).toLocaleString()}₮</p>
