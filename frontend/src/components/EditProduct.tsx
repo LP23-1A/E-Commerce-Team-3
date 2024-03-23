@@ -13,13 +13,12 @@ const EditProduct = () => {
         router.push("/product");
     };
 
-
     const [image, setImage] = useState<FileList | []>([]);
 
     const fetchProduct = async (productId: string) => {
+
         const api = `http://localhost:8000/product/${productId}`;
-        console.log(productId);
-        
+
         try {
             const response = await axios.get(api);
             const productData = response.data;
@@ -28,15 +27,13 @@ const EditProduct = () => {
                 description: productData.description,
                 price: productData.price,
                 quantity: productData.quantity,
-                images: [null], 
+                images: productData.images,
                 productId: productData.productId,
                 tag: productData.tag,
                 mainCategory: productData.mainCategory,
                 subCategory: productData.subCategory
             });
         } catch (error) {
-            console.log("failed to fetch product");
-            
         }
     };
     const [input, setInput] = useState({
@@ -44,7 +41,7 @@ const EditProduct = () => {
         description: "",
         price: "",
         quantity: "",
-        images: [null],
+        images: [],
         productId: "",
         tag: "",
         mainCategory: "",
@@ -63,8 +60,11 @@ const EditProduct = () => {
 
     const editProduct = async () => {
 
+        if (!id) {
+            return;
+        }
+
         const api = `http://localhost:8000/product/${id}`;
-        console.log(id);
         
         try {
             const signedUrls = await axios.get('/api/upload-image');
@@ -76,21 +76,25 @@ const EditProduct = () => {
 
             await Promise.all(
                 signedUrls.data.uploadUrls.map(async (uploadUrl: string, index: number) => {
-                    return await axios.put(uploadUrl, image[index], {
+
+                    const imageData = image[index];
+                    if (!imageData) {
+                        alert("Please insert images")
+                        return; 
+                    }
+
+                    return await axios.put(uploadUrl, imageData, {
                         headers: {
-                            'Content-Type': image[index]!.type
+                            'Content-Type': imageData.type
                         }
                     });
                 })
             );
 
-            const res = await axios.put(api, keys);
-            console.log(res);
-            
+            const res = await axios.put(api, keys); 
             router.push("/product");
+
         } catch (error) {
-            console.log("failed");
-            
         }
     };
 

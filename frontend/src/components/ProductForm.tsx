@@ -93,7 +93,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 </div>
                 <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] " >
                     <p className="font-bold text-[18px]">Бүтээгдэхүүний зураг</p>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex justify-between items-center">
                         <div className=" flex justify-center p-2 items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                             <InsertPhotoOutlinedIcon />
                             <input type="file" src="" alt="" onChange={(e) => {
@@ -121,11 +121,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 <div className="flex   p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Үндсэн үнэ</p>
-                        <input type='Number' value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
+                        <input type='number' min={0} value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Үлдэгдэл тоо ширхэг</p>
-                        <input type='Number' value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
+                        <input type='number' min={0} value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
                     </div>
                 </div>
             </div>
