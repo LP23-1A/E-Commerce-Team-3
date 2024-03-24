@@ -1,16 +1,20 @@
-import AngilalIcon from "@/assets/AngilalIcon"
-import ProductNavbarFilterButton from "../components/ProductNavbarFilterButton"
-import DollarIcon from "@/assets/DollarIcon"
-import DateTrackerIcon from "@/assets/DateTrackerIcon"
-import React from "react"
+import ProductFilterByCategory from "./ProductFilterByCategory"
+import React, { useState } from "react"
 import Search from "@/assets/Search"
-const ProductTableNavbar:React.FC  = () => {
+import ProductFilterByPrice from "./ProductFilterByPrice"
+import ProductFilterByMonth from "./ProductFilterByMonth"
+const ProductTableNavbar  = () => {
+  const [selected, setSelected] = useState("All Categories");
+  const handleChange = (filter:any) => {
+    setSelected(filter);
+  };
+
     return(
    <div className="flex justify-between  ">
          <div className="flex gap-2 ">
-            <ProductNavbarFilterButton text="Ангилал" iconSvg={<AngilalIcon/>}/>
-            <ProductNavbarFilterButton text="Үнэ" iconSvg={<DollarIcon/>}/>
-            <ProductNavbarFilterButton text="Сараар" iconSvg={<DateTrackerIcon/>}/>
+            <ProductFilterByCategory onCategoryChange={handleChange}/>
+            <ProductFilterByPrice onPriceChange={handleChange} />
+            <ProductFilterByMonth onMonthChange={handleChange} />
         </div>
         <div className='flex bg-white items-center px-4 py-1 gap-2 rounded-lg'>
           <Search/>
