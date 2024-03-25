@@ -25,7 +25,7 @@ if (error) {
       <Navbar />
       <div className="flex  w-screen">
         <Sidebar />
-        <div className="flex w-full flex-col p-6">
+        <div className="flex w-full flex-col p-6">x
           <OrderNavbar data={data} />
           <div className="mt-8 pr-6">
             <OrderDayFilter />

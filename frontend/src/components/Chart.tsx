@@ -1,16 +1,39 @@
 import ChevronRight from "@/assets/ChevronRight";
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2';
+import useSWR from "swr";
+import formatDate from "@/components/utils/FormatDate";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
 
-function App() {
-  const data = {
-    labels: ['01/06', '01/07', '01/08', '01/09', '01/10', '01/11'],
+
+const  App = () => {
+  const fetcher = (url: string) => fetch(url).then((r) => r.json());
+  const { data } = useSWR(
+    "http://localhost:8000/order",
+    fetcher
+  );
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+    if (data && data.length > 0) {
+      data.forEach((product: { amountToPaid: any; }) => {
+        const amount = product?.amountToPaid;
+        if (!isNaN(amount)) {
+          totalPrice += amount;
+        }
+      });
+    }
+    return totalPrice;
+  };
+  
+
+  const mockdata = {
+    labels: [],
     datasets: [
       {
         label: '200',
-        data: [7, 5, 9, 5, 5.5, 9],
+        data: [`${getTotalPrice()}`],
         backgroundColor: 'black',
         borderRadius: 20,
         barPercentage: 0.1,
@@ -25,16 +48,10 @@ function App() {
       indexAxis: 'y',
       scales: {
         y: {
-          beginAtZero: true,
-          ticks: {
-            maxTicksLimit: 300,
-            callback: ((context: string, index: any) => {
-              console.log(context)
-              return context + 'K'
-            }
-            )
-          }
-        }
+          type: 'linear',
+          min: 0,
+          max: 400
+      }
       }
     }
   }
@@ -46,9 +63,10 @@ function App() {
         <h1 className="font-semibold leading-6 text-lg">Борлуулалт</h1>
         <ChevronRight />
       </div>
-      <Bar style={{ padding: 10 }} data={data}></Bar>
+      <Bar style={{ padding: 10 }} data={mockdata}></Bar>
     </div>
   )
 }
 
 export default App;
+
