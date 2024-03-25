@@ -12,6 +12,8 @@ const Product = () => {
     const handleChange = (filter:any) => {
       setSelected(filter);
     };
+
+
     return(
         <div  className="w-full h-screen bg-gray-200 justify-center items-center">
             <Navbar/>
@@ -23,7 +25,7 @@ const Product = () => {
                 </div>
                 <div className="w-full mt-6 ml-5 flex flex-col gap-2 pr-10"  >
                    <ProductTableNavbar/>
-                   <ProductList  selectedCategory={selected} />
+                   {/* <ProductList  selectedCategory={selected} /> */}
                   </div>
                </div>
             </div>

@@ -37,13 +37,3 @@ export const ProductFilterProvider: React.FC<ProductFilterProviderProps> = ({ ch
   );
 };
 
- export const useFilter = () => {
-  const context = useContext(ProductFilterContext);
-  if (!context) {
-    throw new Error('useFilter must be used within a FilterProvider');
-  }
-  return context;
-};
-
-export default ProductFilterContext ;
-

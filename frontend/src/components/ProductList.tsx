@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const ProductList = ({selectedCategory}:any) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   
   const router = useRouter()
 
@@ -35,17 +35,20 @@ const ProductList = ({selectedCategory}:any) => {
   }, []);
 
   useEffect(() => {
-    // Filter products based on selected category
-    if (selectedCategory === "эрэгтэй") {
-      setFilteredProducts(products.filter((product: any) => product.mainCategory.mainCategoryName === "эрэгтэй"));
-    } else if (selectedCategory === "эмэгтэй") {
-      setFilteredProducts(products.filter((product: any) => product.mainCategory.mainCategoryName === "эмэгтэй"));
-    } else if (selectedCategory === "хүүхэд") {
-      setFilteredProducts(products.filter((product: any) => product.mainCategory.mainCategoryName === "хүүхэд"));
-    } else if( selectedCategory === "цахилгаан бараа") {
-      setFilteredProducts(products.filter((product:any) => product.mainCategory.mainCategoryName === "цахилгаан бараа"));
-    } else {
-      setFilteredProducts(products);
+    const filterProducts = () => {
+      if (!selectedCategory || selectedCategory === "эрэгтэй") {
+        setFilteredProducts(products);
+      } else {
+        setFilteredProducts(
+          products.filter(
+            (product: any) => product.mainCategory.mainCategoryName === selectedCategory
+          )
+        );
+      }
+    };
+
+    if (products.length > 0) {
+      filterProducts();
     }
   }, [selectedCategory, products]);
   
@@ -66,7 +69,7 @@ const ProductList = ({selectedCategory}:any) => {
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   }
 
-  if (Loading) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -80,7 +83,7 @@ const ProductList = ({selectedCategory}:any) => {
         <p className="w-fit text-sm text-[#3F4145]">Зарагдсан</p>
         <p className="w-fit text-sm text-[#3F4145]"> Нэмсэн огноо</p>
       </div>
-      {filteredProducts.length === 0 ? (   <div>No products found.</div>) :(
+      {filteredProducts.length === 0 ? (   <div>No products found.</div>) : (
        filteredProducts.map((product :any) => { 
         return (
           <div key={product._id} className="flex justify-between items-center  bg-[#F7F7F8] py-4  pl-6 border-b border-slate-300 ">
@@ -93,7 +96,7 @@ const ProductList = ({selectedCategory}:any) => {
               </div>
             </div>
             <div  className=" w-[175px] pl-20 text-sm text-[#3F4145]">{product.mainCategory.mainCategoryName}</div>
-            <p className="w-[148px] text-sm text-[#3F4145]">{product.price}</p>
+            <p className="w-[148px] text-sm  text-[#3F4145]">{product.price}</p>
             <p className="w-[185px] text-sm text-[#3F4145]">{product.quantity}</p>
             <p className="w-[195px] text-sm text-[#3F4145]">30</p>
             <p className="pr-10 text-sm text-[#3F4145]">{formatDate(product.createdAt)}</p>
