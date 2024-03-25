@@ -104,7 +104,7 @@ const OrderDetail = () => {
                         </p>
                         <div className="flex justify-between items-center mt-6">
                           <p className="font-extralight">
-                            Тоо ширхэг:{data?.quantity} *{" "}
+                            Тоо ширхэг:{data?.quantity}*{" "}
                             {products?.price.toLocaleString()}₮
                           </p>
                           <p className="text-base font-semibold">
