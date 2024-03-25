@@ -5,25 +5,25 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const UserNavbar = () => {
   return (
-    <div className='bg-[#7E37E0] text-white py-3 flex justify-between px-[120px]'>
+    <div className='bg-[#7E37E0] text-white py-3 flex justify-between px-[340px]'>
         <div className='flex gap-[15px]'>
-        <div className='flex '>
+        <div className='flex  gap-2'>
             <EmailIcon/>
             <p>
             info@ecommerce.mn
             </p>
         </div>
-        <div  className='flex'>
+        <div  className='flex gap-2'>
             <WifiCalling3Icon/>
             <p>77123456</p>
         </div>
         </div>
         <div className='flex gap-[15px]'>
-            <div className='flex items-center'>
+            <div className='flex gap-2 items-center'>
                 <button>Нэвтрэх</button>
                 <PersonOutlineIcon/>
             </div>
-            <div className='flex items-center'>
+            <div className='flex gap-2 items-center'>
                 <button>Хадгалах</button>
                 <FavoriteBorderOutlinedIcon/>
             </div>
