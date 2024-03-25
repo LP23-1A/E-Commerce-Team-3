@@ -33,7 +33,7 @@ const PayDetail =({totalPrice,data}:any) =>{
         </div>
         <div className="flex items-center justify-between px-6 py-3">
             <p className="font-semibold text-base">Нийт төлсөн дүн</p>
-            <p className="font-semibold text-base">{totalPrice.toLocaleString()}</p>
+            <p className="font-semibold text-base">{(totalPrice + DeliviryPrice).toLocaleString()}</p>
         </div>
     </div>
 
