@@ -3,6 +3,8 @@ import UserNavbar from "@/components/userComponents/Navbar";
 import useSWR from "swr";
 import axios from "axios";
 import Carousel from "@/components/userComponents/Carousel";
+import { UserFooter } from "@/components/userComponents/Footer";
+import { AbService } from "@/components/userComponents/AboutService";
 
 export default function Home() {
   const fetcher = (url: string) => axios.get(url).then(res => res.data)
@@ -15,8 +17,10 @@ export default function Home() {
     }
 
   return (
-    <div className="bg-slate-50 h-auto">
+    <div className=" h-auto">
       <UserNavbar/>
+      <AbService/>
+      <UserFooter/>
     </div>
   )
 }
