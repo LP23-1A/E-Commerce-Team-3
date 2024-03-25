@@ -18,8 +18,8 @@ const Order = () => {
   }
 if (error) {
   return <div>Error</div>
-  
 }
+
   return (
     <div className="w-screen h-screen bg-gray-200 ">
       <Navbar />
