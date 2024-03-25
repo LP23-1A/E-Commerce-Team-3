@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import UserNavbar from "@/components/userComponents/Navbar";
 import useSWR from "swr";
 import axios from "axios";
@@ -7,20 +7,20 @@ import { UserFooter } from "@/components/userComponents/Footer";
 import { AbService } from "@/components/userComponents/AboutService";
 
 export default function Home() {
-  const fetcher = (url: string) => axios.get(url).then(res => res.data)
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-  const { data , isLoading} = useSWR(
-    'http://localhost:8000/product',fetcher)
+  const { data, isLoading } = useSWR("http://localhost:8000/product", fetcher);
 
-    if (isLoading) {
-      return <div>LoadiinG....</div>
-    }
+  if (isLoading) {
+    return <div>LoadiinG....</div>;
+  }
 
   return (
     <div className=" h-auto">
-      <UserNavbar/>
-      <AbService/>
-      <UserFooter/>
+      <UserNavbar />
+      <Carousel data={data} />
+      <AbService />
+      <UserFooter />
     </div>
-  )
+  );
 }
