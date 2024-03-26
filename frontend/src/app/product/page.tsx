@@ -8,8 +8,8 @@ import ProductList from "@/components/ProductList";
 import axios from "axios";
 
 const Product = () => {
-    const [selected, setSelected] = useState("");
     const [productsData, setProductsData] = useState([]);
+    const [productsDataFiltered, setProductsDataFiltered] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,8 +35,8 @@ const Product = () => {
                         <ToggleCreateProduct />
                     </div>
                     <div className="w-full mt-6 ml-5 flex flex-col gap-2 pr-10">
-                        <ProductTableNavbar productsData={productsData} setProductsData={setProductsData} />
-                        <ProductList productsData={productsData} />
+                        <ProductTableNavbar productsData={productsData} setProductsData={setProductsDataFiltered} />
+                        <ProductList productsData={productsDataFiltered} />
                     </div>
                 </div>
             </div>
