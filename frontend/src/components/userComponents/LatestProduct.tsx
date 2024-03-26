@@ -19,9 +19,9 @@ const LatestProduct = ({ data }: any) => {
       <p className="text-[#151875] text-[42px] font-bold">Шинээр нэмэгдсэн</p>
       <div className="flex gap-6 justify-center flex-wrap w-[1200px] ">
         {filteredData.map((e) => (
-          <div key={e.id}>
+          <div key={e.id} className="relative group">
             <div className="w-[270px]  h-[280px] px-10 relative flex justify-center items-center rounded-md bg-[#F6F7FB] ">
-              <div className="bg-white p-1 absolute left-0 bottom-20 rounded-2xl ">
+              <div className="bg-white p-1 absolute left-0 bottom-20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
                 <button>
                   <ShoppingCartOutlinedIcon />
                 </button>
