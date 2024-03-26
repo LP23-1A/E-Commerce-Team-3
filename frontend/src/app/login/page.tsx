@@ -15,7 +15,6 @@ const  Login = () => {
     password:''
    })
    const handleBack = (field: string, value: string | number) =>{
-
     input.current = { ...input.current,[field]:value   }
    }
    const handlePost = async () =>{
@@ -24,7 +23,6 @@ const  Login = () => {
             email:input.current.email,
             password:input.current.password,
                 })
-
                 const { data } = res;
                 const token = data.token;
               const code = jwt.decode(token)
