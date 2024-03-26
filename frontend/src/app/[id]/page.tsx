@@ -100,11 +100,11 @@ const OrderDetail = () => {
                           {formatDate(products?.createdAt)}
                         </p>
                         <p className="font-light text-sm">
-                          Бүтээгдэхүүний ID: 30340949903
+                          Бүтээгдэхүүний ID: {products?.productId}
                         </p>
                         <div className="flex justify-between items-center mt-6">
                           <p className="font-extralight">
-                            Тоо ширхэг:{data?.quantity} *{" "}
+                            Тоо ширхэг:{data?.quantity}*{" "}
                             {products?.price.toLocaleString()}₮
                           </p>
                           <p className="text-base font-semibold">

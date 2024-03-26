@@ -4,13 +4,13 @@ import  { useEffect, useState } from 'react';
 
 const Carousel = ({ data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentSlide((prevSlide) => (prevSlide === data.length - 1 ? 0 : prevSlide + 1));
-//     }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide === data.length - 1 ? 0 : prevSlide + 1));
+    }, 5000);
 
-//     return () => clearInterval(interval);
-//   }, [data.length]);
+    return () => clearInterval(interval);
+  }, [data.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide === data.length - 1 ? 0 : prevSlide + 1));
