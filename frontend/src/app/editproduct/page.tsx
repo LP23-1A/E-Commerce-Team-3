@@ -15,4 +15,4 @@ import Sidebar from "@/components/Sidebar";
       </div>
   )
 }
-export default editproduct;
+export default editproduct

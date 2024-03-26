@@ -4,6 +4,11 @@ import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import { OrderFilterProvider } from "@/components/OrderByStatusProvider";
 import { OrderInputFilterProvider } from "@/components/OrderFilterProvider";
+import { ProductFilterProvider } from "@/components/ProductFilterContext";
+import ProductList from "@/components/ProductList";
+import ProductFilterByCategory from "@/components/ProductFilterByCategory";
+import ProductFilterByPrice from "@/components/ProductFilterByPrice";
+import ProductFilterByMonth from "@/components/ProductFilterByMonth";
 
 const inter = Inter({ subsets: ["latin"] });
 
