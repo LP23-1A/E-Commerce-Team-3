@@ -30,11 +30,11 @@ const userSignUp = () => {
             return true;
         }
     }
-    
+
     const handlePost = async () => {
-        if (!handleValidation()) {
-            return;
-        }
+ if (!handleValidation()) {
+        return;
+    }
         try {
             const res = await axios.post('http://localhost:8000/sign', {
                 email: input.current.email,

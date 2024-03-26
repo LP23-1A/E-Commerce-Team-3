@@ -16,7 +16,7 @@ export default function Home() {
   if (isLoading) {
     return <div>LoadiinG....</div>;
   }
-
+  
   return (
     <div className=" h-auto">
       <UserNavbar />
