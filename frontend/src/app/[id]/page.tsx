@@ -26,17 +26,17 @@ const OrderDetail = () => {
     `http://localhost:8000/order${pathname}`,
     fetcher
   );
-  console.log(data)
+  console.log(data);
   const handleBack = () => {
     router.push(`order`);
   };
-  const getOneTotalPrice = (qty: number, price: number) => {
-    return qty * price;
+  const getOneTotalPrice = (quantity: number, price: number) => {
+    return quantity * price;
   };
   const getTotalPrice = () => {
     let totalPrice = 0;
-    data?.products?.forEach((product: { price: number }) => {
-      totalPrice += product?.price * data?.quantity;
+    data?.products.forEach((product: any, index: number) => {
+      totalPrice += getOneTotalPrice(data.quantity[index], product.price);
     });
     return totalPrice;
   };
@@ -79,13 +79,12 @@ const OrderDetail = () => {
                       {data?.userId?.username}-
                     </p>
                     <p className="text-sm font-light">
-                      {" "}
                       {data?.userId?.email}, {data?.userId?.phoneNumber}
                     </p>
                   </div>
                 </div>
                 {data &&
-                  data?.products.map((products: any) => (
+                  data?.products.map((products: any, index: any) => (
                     <div className="flex bg-[#ECEDF0] rounded-lg mt-8">
                       <img
                         src={products.images[1]}
@@ -94,7 +93,6 @@ const OrderDetail = () => {
                       />
                       <div className="w-full p-4">
                         <h5 className="text-2xl font-bold">
-                          {" "}
                           {products?.productName}
                         </h5>
                         <p className="font-light mt-2 text-sm">
@@ -105,13 +103,13 @@ const OrderDetail = () => {
                         </p>
                         <div className="flex justify-between items-center mt-6">
                           <p className="font-extralight">
-                            Тоо ширхэг:{data?.quantity}*
-                            {products?.price.toLocaleString()}₮
+                            Тоо ширхэг: {data.quantity[index]}*
+                            {products.price.toLocaleString()}₮
                           </p>
                           <p className="text-base font-semibold">
                             {getOneTotalPrice(
-                              data?.quantity,
-                              products?.price
+                              data.quantity[index],
+                              products.price
                             ).toLocaleString()}
                             ₮
                           </p>
