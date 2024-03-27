@@ -1,8 +1,15 @@
 import { Button } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
+import {useRouter} from "next/navigation"
 
-const Topbar = () => {
+const Topbar = ({selectedCategory}:any) => {
+    const router = useRouter()
+
+    const handlecategory = () => {
+        router.push("/user/category")
+    } 
+ 
     return (
         <div className="flex flex-col   ">
             <div className="flex items-center px-[340px] justify-between py-6">
@@ -13,7 +20,7 @@ const Topbar = () => {
                         <button>Нүүр</button>
                         <ExpandMoreIcon/>
                     </div>
-                    <p className="text-#0D0E43 ">Ангилал</p>
+                    <p onClick={handlecategory} className="text-#0D0E43 ">Ангилал</p>
                 </div>
                </div>
                <div className="flex items-center w-[377px] h-[44px] bg-[#FFFFFF]  rounded-sm">
@@ -25,7 +32,7 @@ const Topbar = () => {
             </div>
            <div className="bg-[#F6F5FF] flex gap-6 py-10 px-[340px]">
             <p>Home</p>
-            <p className="text-[#FB2E86]">Электрон бараа</p>
+            <p className="text-[#FB2E86]">{ selectedCategory}</p>
            </div>
         </div>
     )
