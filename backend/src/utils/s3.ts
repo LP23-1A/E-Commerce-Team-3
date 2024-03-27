@@ -38,7 +38,7 @@ const generateUrl = async (req: Request, res: Response) => {
         expiresIn: 60 * 60,
       }
     )
-
+    
     return res.json({ signUrl })
    
 

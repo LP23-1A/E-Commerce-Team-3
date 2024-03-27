@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { generateToken } from "./generate";
 import { userModel } from "../model/user";
+import bcrypt from "bcrypt"
 
 import dotenv from "dotenv"
 
@@ -8,11 +9,12 @@ dotenv.config()
 const createUserMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { username, email, password, phoneNumber, role ,address,zipCode,cardId,createdAt,updateAt} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
       username,
       email,
       phoneNumber,
-      password,
+      password:hashedPassword,
       role,
       address,
       zipCode,
