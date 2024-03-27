@@ -1,8 +1,11 @@
 import { useMemo } from "react";
 import formatDate from "../utils/FormatDate";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useBasket } from "./OrderContext";
 
 const LatestProduct = ({ data }: any) => {
+  const { addToCart } = useBasket();
+
   const latest = useMemo(() => {
     const latest = new Date();
     latest.setDate(latest.getDate() - 5);
@@ -21,8 +24,8 @@ const LatestProduct = ({ data }: any) => {
         {filteredData.map((e) => (
           <div key={e.id} className="relative group">
             <div className="w-[270px]  h-[280px] px-10 relative flex justify-center items-center rounded-md bg-[#F6F7FB] ">
-              <div className="bg-white p-1 absolute left-0 bottom-20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                <button>
+              <div className="bg-white p-1  absolute left-3 bottom-3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                <button onClick={()=> addToCart(e)}>
                   <ShoppingCartOutlinedIcon />
                 </button>
               </div>
