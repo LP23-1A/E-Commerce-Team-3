@@ -5,7 +5,7 @@ import image from "../../assets/Image.png"
 import axios from "axios";
 import useSWR from "swr";
 
-const ProductListByCategory = () => {
+const ProductListByCategory = ({selectedCategory}:any) => {
 
     const fetcher = async (url: string) => {
         try {
@@ -24,9 +24,14 @@ const ProductListByCategory = () => {
         return <div>Loading...</div>;
       }
 
+      const filteredProducts = selectedCategory
+    ? data.filter((el:any) => el.mainCategory.mainCategoryName === selectedCategory)
+    : data;
+    
+
     return (
        <div>
-         {data.map((el:any) => {
+         {filteredProducts.map((el:any) => {
             return(
                 <div className="flex p-4">
             <div className="bg-[#EBF4F3] w-[270px] h-[270px] flex justify-center items-center p-4">

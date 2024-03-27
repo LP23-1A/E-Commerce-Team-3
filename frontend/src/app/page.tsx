@@ -7,6 +7,7 @@ import { UserFooter } from "@/components/userComponents/Footer";
 import { AbService } from "@/components/userComponents/AboutService";
 import LatestProduct from "@/components/userComponents/LatestProduct";
 import HighlightedProduct from "@/components/userComponents/HighlightedProduct";
+import Topbar from "@/components/userComponents/Topbar";
 
 export default function Home() {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <div className=" h-auto">
       {/* <UserNavbar /> */}
+      <Topbar/>
       <Carousel data={data} />
       <HighlightedProduct data={data} />
       <LatestProduct data={data} />
