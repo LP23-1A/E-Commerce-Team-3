@@ -7,6 +7,7 @@ import { UserFooter } from "@/components/userComponents/Footer";
 import { AbService } from "@/components/userComponents/AboutService";
 import LatestProduct from "@/components/userComponents/LatestProduct";
 import HighlightedProduct from "@/components/userComponents/HighlightedProduct";
+import ProductListByCategory from "@/components/userComponents/ProductListByCategory";
 
 export default function Home() {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
@@ -20,10 +21,11 @@ export default function Home() {
   return (
     <div className=" h-auto">
       <UserNavbar />
-      <Carousel data={data} />
+      <ProductListByCategory/>
+      {/* <Carousel data={data} />
       <HighlightedProduct data={data} />
       <LatestProduct data={data} />
-      <AbService />
+      <AbService /> */}
       <UserFooter />
     </div>
   );
