@@ -13,7 +13,7 @@ const UserNavbar = () => {
   const [user, setUser] = useState('')
   const router = useRouter();
   const { basket } = useBasket();
-  console.log(basket)
+
   useEffect(() => {
     const cookies = parseCookies();
     const token = cookies.token;
