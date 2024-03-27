@@ -34,8 +34,9 @@ const login = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+    const hashedPassword = await bcrypt.compare(password, user.password);
 
-    if (user.password !== password) {
+    if (!hashedPassword) {
       return res.status(401).send("Username or password incorrect");
     }
     const payload = {

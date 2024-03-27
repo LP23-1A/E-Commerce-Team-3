@@ -3,13 +3,26 @@ import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { setCookie } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import { useBasket } from "./OrderContext";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import jwt from 'jsonwebtoken'
 
 const UserNavbar = () => {
+  const [user, setUser] = useState('')
   const router = useRouter();
   const { basket } = useBasket();
+
+  useEffect(() => {
+    const cookies = parseCookies();
+    const token = cookies.token;
+    const code = jwt.decode(token)
+
+    if (code) {
+      setUser(code?.payload.email);
+    }
+  }, []);
 
   const saveBasketToCookie = () => {
     setCookie(null, "basket", JSON.stringify(basket), {
@@ -31,10 +44,17 @@ const UserNavbar = () => {
         </div>
       </div>
       <div className="flex gap-[15px]">
-        <div className="flex gap-2 items-center">
-          <button>Нэвтрэх</button>
-          <PersonOutlineIcon />
-        </div>
+        {user &&  user ? (
+          <div className="flex gap-2 items-center">
+            <p className="text-[16px] ">{user}</p>
+            <PersonOutlineIcon />
+          </div>
+        ) : (
+          <div className="flex gap-2 items-center">
+            <button onClick={() => router.push('/userLogin')}>Нэвтрэх</button>
+            <PersonOutlineIcon />
+          </div>
+        )}
         <div className="flex gap-2 items-center">
           <button>Хадгалах</button>
           <FavoriteBorderOutlinedIcon />
