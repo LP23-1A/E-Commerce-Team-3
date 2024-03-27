@@ -6,9 +6,13 @@ import {useRouter} from "next/navigation"
 const Topbar = ({selectedCategory}:any) => {
     const router = useRouter()
 
-    const handlecategory = () => {
+    const handleCategory = () => {
         router.push("/user/category")
     } 
+
+    const handleHome = () => {
+        router.push("/")
+    }
  
     return (
         <div className="flex flex-col   ">
@@ -16,11 +20,11 @@ const Topbar = ({selectedCategory}:any) => {
                <div className="flex gap-20">
                <p className="text-[#0D0E43] text-[34px] font-bold font-sans">Ecommerce</p>
                 <div className="flex items-center gap-10">
-                    <div className="flex items-center text-[#FB2E86] hover:[#FB2E86]">
+                    <div onClick={handleHome} className="flex items-center text-[#FB2E86] hover:[#FB2E86]">
                         <button>Нүүр</button>
                         <ExpandMoreIcon/>
                     </div>
-                    <p onClick={handlecategory} className="text-#0D0E43 ">Ангилал</p>
+                    <p onClick={handleCategory} className="text-#0D0E43 ">Ангилал</p>
                 </div>
                </div>
                <div className="flex items-center w-[377px] h-[44px] bg-[#FFFFFF]  rounded-sm">
