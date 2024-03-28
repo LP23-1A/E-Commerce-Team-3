@@ -69,7 +69,7 @@ const Income = () => {
             <div className="flex justify-between p-6 border-b-[1px] items-center">
               <h2 className="text-xl font-semibold text-[#121316]">Орлого</h2>
               <button className="w-[144px] h-[36px] rounded-lg bg-[#E4E7EB]">
-                Хуулга татах
+                Хуулга татах``
               </button>
             </div>
             <div className="flex justify-between p-6 items-center w-[724px]">
