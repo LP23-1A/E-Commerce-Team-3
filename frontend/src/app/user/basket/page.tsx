@@ -6,6 +6,7 @@ import {useRouter} from 'next/navigation'
 import { useEffect } from "react";
 import { parseCookies, destroyCookie, setCookie } from "nookies";
 import OrderButton from "@/components/userComponents/OrderButton";
+import Topbar from "@/components/userComponents/Topbar";
 
 const Basket = () => {
   const { basket, setBasket } = useBasket();
@@ -74,8 +75,9 @@ const Basket = () => {
   return (
     <div>
       <UserNavbar />
+      <Topbar/>
       <div className="mx-auto flex flex-col items-center">
-        <div className="flex w-[1240px] justify-between  font-bold  py-3">
+        <div className="flex w-[1240px] justify-between  font-bold  mt-[35px]  py-3">
           <div className="flex flex-col">
             <div className="flex justify-between w-[800px] ">
               <p className="text-[#151875] w-[200px]">Бүтээгдэхүүн</p>
@@ -142,7 +144,10 @@ const Basket = () => {
     <OrderButton totalPrices={totalPrices} totalPrice={totalPrice} onClick={handlePush} />
         </div>
       </div>
+      <div className="mt-[500px]">
+
       <UserFooter />
+      </div>
     </div>
   );
 };

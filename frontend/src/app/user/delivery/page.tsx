@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import jwt from "jsonwebtoken";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import Topbar from "@/components/userComponents/Topbar";
 
 const Order = () => {
   const { basket, setBasket } = useBasket();
@@ -91,8 +92,9 @@ const Order = () => {
   return (
     <>
       <UserNavbar />
-      <div className="flex justify-center gap-5">
-        <div>
+      <Topbar/>
+      <div className="flex justify-center gap-5 mt-7 mb-7">
+        <div > 
           <p className="text-[#151875] font-bold text-[18px]">Hekto Demo</p>
           <p className="text-[#151875] text-[18px]">
             Cart/ Information/ Shipping/ Payment

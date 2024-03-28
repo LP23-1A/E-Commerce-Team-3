@@ -1,8 +1,9 @@
 "use client";
 import Drop from "@/assets/Drop";
 import { useEffect, useState } from "react";
-
+import {useRouter} from "next/navigation"
 const Carousel = ({ data }) => {
+  const router = useRouter() 
   const [currentSlide, setCurrentSlide] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +26,13 @@ const Carousel = ({ data }) => {
       prevSlide === 0 ? data.length - 1 : prevSlide - 1
     );
   };
+
+  const productDetailPageHandler = ( productId : string) => {
+    router.push("/user/productDetail");
+    localStorage.setItem("productId", productId)
+
+}
+
   return (
     <div className="relative flex justify-center  bg-[#F2F0FF] py-10 ">
       <div className="flex overflow-hidden ">
@@ -47,7 +55,7 @@ const Carousel = ({ data }) => {
                   <p className="font-[700] text-[16px] w-[350px] text-[#8A8FB9]">
                     {e?.description}
                   </p>
-                  <button className="bg-[#FB2E86] w-[150px] text-[white] p-3">
+                  <button onClick={()=> productDetailPageHandler(e._id)} className="bg-[#FB2E86] w-[150px] text-[white] p-3">
                     Дэлгэрэнгүй
                   </button>
                 </div>

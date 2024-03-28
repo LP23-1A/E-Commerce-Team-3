@@ -41,7 +41,7 @@ const LatestProduct = ({ data }: any) => {
                 <p className="w-[10px] h-[10px] rounded-3xl bg-[#8568FF]"></p>
               </div>
               <p className="text-[18px] font-normal text-[#151875]">
-                {e.price}₮
+                {e.price.toLocaleString()}₮
               </p>
             </div>
           </div>

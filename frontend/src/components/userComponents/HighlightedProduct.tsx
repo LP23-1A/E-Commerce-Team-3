@@ -8,12 +8,12 @@ const HighlightedProduct = ({ data }: any) => {
       <p className="text-[#151875] text-[42px] font-bold">
         Онцлох бүтээгдэхүүн
       </p>
-      <div className="flex justify-center gap-4">
+      <div className="flex justify-center gap-6 flex-wrap w-[1200px]">
         {data &&
           data.map((e) => {
             return (
               <div key={e.id} className="relative group">
-    <div className="w-[270px]  h-[280px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
+    <div className="w-[270px]  h-[360px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
         <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
             <button onClick={()=> addToCart(e)}><ShoppingCartOutlinedIcon /></button>
         </div>
@@ -27,7 +27,7 @@ const HighlightedProduct = ({ data }: any) => {
                 {e.productName}
             </p>
             <p className="text-[18px] font-normal  text-[#2F1AC4] group-hover:text-white ">
-                {e.price}₮
+                {e.price.toLocaleString()}₮
             </p>
         </div>
     </div>

@@ -35,7 +35,7 @@ const Topbar = ({selectedCategory}:any) => {
             </div>
             </div>
            <div className="bg-[#F6F5FF] flex gap-6 py-10 px-[340px]">
-            <p>Home</p>
+            <p>Home</p><p className="text-[#fb2e86]">.  Shop Left Sidebar</p>
             <p className="text-[#FB2E86]">{ selectedCategory}</p>
            </div>
         </div>
