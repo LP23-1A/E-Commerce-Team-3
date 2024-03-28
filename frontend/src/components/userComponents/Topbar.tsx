@@ -24,7 +24,7 @@ const Topbar = ({selectedCategory}:any) => {
                         <button>Нүүр</button>
                         <ExpandMoreIcon/>
                     </div>
-                    <p onClick={handleCategory} className="text-#0D0E43 ">Ангилал</p>
+                    <p onClick={handleCategory} className="text-#0D0E43 cursor-pointer ">Ангилал</p>
                 </div>
                </div>
                <div className="flex items-center w-[377px] h-[44px] bg-[#FFFFFF]  rounded-sm">
