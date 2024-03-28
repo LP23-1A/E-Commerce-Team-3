@@ -5,8 +5,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useRouter } from 'next/navigation';
 import ProductForm from './ProductForm';
 
-
-
 const CreateProduct = () => {
 
     const router = useRouter()
@@ -44,8 +42,8 @@ const CreateProduct = () => {
     const api = "http://localhost:8000/product"
 
     const createProduct = async () => {
-        try {
 
+        try {
             const signedUrls = await axios.get('/api/upload-image');
             const imageUrl = signedUrls.data.objectUrl
             keys.images = imageUrl
@@ -71,9 +69,7 @@ const CreateProduct = () => {
                 <ArrowBackIosIcon />
                 <p>Буцах</p>
             </div>
-
             <ProductForm title='Нэмэх' onClick={createProduct}  input={input} setInput={setInput} image={image} setImage={setImage}/>
-          
         </div>
     );
 };
