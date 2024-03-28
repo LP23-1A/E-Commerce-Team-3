@@ -1,16 +1,9 @@
 'use client'
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { useRouter } from "next/navigation";
 import Drop from "@/assets/Drop";
 
 const Carousel = ({ data }) => {
-=======
-import {useRouter} from "next/navigation"
-
-const Carousel = ({ data }) => {
-
->>>>>>> b9ed825 (removed log and deleted unused files)
   const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
 
@@ -38,7 +31,6 @@ const Carousel = ({ data }) => {
 
   const productDetailPageHandler = (productId) => {
     router.push("/user/productDetail");
-<<<<<<< HEAD
     localStorage.setItem("productId", productId);
   };
 
@@ -77,46 +69,6 @@ const Carousel = ({ data }) => {
                   src={e.images[1]}
                   alt=""
                 />
-=======
-    localStorage.setItem("productId", productId)
-
-}
-
-  return (
-    <div className="relative flex justify-center  bg-[#F2F0FF] py-10 ">
-      <div className="flex overflow-hidden ">
-        {data &&
-          data.map((e, index) => (
-            <div
-              key={index}
-              className={
-                index === currentSlide ? "slide block" : "slide hidden"
-              }
-            >
-              <div  className="flex items-center  gap-[100px]">
-                <div className="flex flex-col gap-5">
-                  <p className="font-[700] text-[16px] text-[#FB2E86]">
-                    Тав тухтай орчинг таны амьдралд
-                  </p>
-                  <p className="font-[800] text-[53px] ">
-                    2024 оны хамгийн шинэ загвар
-                  </p>
-                  <p className="font-[700] text-[16px] w-[350px] text-[#8A8FB9]">
-                    {e?.description}
-                  </p>
-                  <button onClick={()=>productDetailPageHandler(e._id)} className="bg-[#FB2E86] w-[150px] text-[white] p-3">
-                    Дэлгэрэнгүй
-                  </button>
-                </div>
-                <div className="relative">
-                  {e.salePercent && <Drop discount={e.salePercent} />}
-                  <img
-                    className="w-[629px] h-[629px]"
-                    src={e.images[1]}
-                    alt=""
-                  />
-                </div>
->>>>>>> b9ed825 (removed log and deleted unused files)
               </div>
             </div>
           </div>
