@@ -2,9 +2,17 @@
 import Drop from "@/assets/Drop";
 import { useEffect, useState } from "react";
 import {useRouter} from "next/navigation"
+<<<<<<< HEAD
 const Carousel = ({ data }) => {
   const router = useRouter() 
+=======
+
+const Carousel = ({ data }) => {
+
+>>>>>>> 0eea9c0 ( productdetail)
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter()
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) =>
@@ -30,6 +38,10 @@ const Carousel = ({ data }) => {
   const productDetailPageHandler = ( productId : string) => {
     router.push("/user/productDetail");
     localStorage.setItem("productId", productId)
+<<<<<<< HEAD
+=======
+    console.log(productId);
+>>>>>>> 0eea9c0 ( productdetail)
 
 }
 
@@ -44,7 +56,7 @@ const Carousel = ({ data }) => {
                 index === currentSlide ? "slide block" : "slide hidden"
               }
             >
-              <div className="flex items-center  gap-[100px]">
+              <div  className="flex items-center  gap-[100px]">
                 <div className="flex flex-col gap-5">
                   <p className="font-[700] text-[16px] text-[#FB2E86]">
                     Тав тухтай орчинг таны амьдралд
@@ -55,7 +67,11 @@ const Carousel = ({ data }) => {
                   <p className="font-[700] text-[16px] w-[350px] text-[#8A8FB9]">
                     {e?.description}
                   </p>
+<<<<<<< HEAD
                   <button onClick={()=> productDetailPageHandler(e._id)} className="bg-[#FB2E86] w-[150px] text-[white] p-3">
+=======
+                  <button onClick={()=>productDetailPageHandler(e._id)} className="bg-[#FB2E86] w-[150px] text-[white] p-3">
+>>>>>>> 0eea9c0 ( productdetail)
                     Дэлгэрэнгүй
                   </button>
                 </div>

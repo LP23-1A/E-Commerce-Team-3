@@ -2,7 +2,10 @@
 import Category from "@/components/userComponents/Category"
 import { UserFooter } from "@/components/userComponents/Footer"
 import UserNavbar from "@/components/userComponents/Navbar"
+<<<<<<< HEAD
 import { useBasket } from "@/components/userComponents/OrderContext"
+=======
+>>>>>>> 0eea9c0 ( productdetail)
 import ProductListByCategory from "@/components/userComponents/ProductListByCategory"
 import Topbar from "@/components/userComponents/Topbar"
 import { useState } from "react"

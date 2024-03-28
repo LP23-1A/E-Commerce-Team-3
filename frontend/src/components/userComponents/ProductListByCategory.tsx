@@ -5,9 +5,18 @@ import axios from "axios";
 import useSWR from "swr";
 import { useRouter } from "next/navigation"
 import { useBasket } from "./OrderContext";
+<<<<<<< HEAD
 
 const ProductListByCategory = ({ selectedCategory }: any) => {
     const { addToCart } = useBasket();
+=======
+
+
+const ProductListByCategory = ({ selectedCategory }: any) => {
+
+    const {addToCart}= useBasket()
+
+>>>>>>> 0eea9c0 ( productdetail)
     const router = useRouter()
 
     const fetcher = async (url: string) => {
@@ -60,7 +69,11 @@ const ProductListByCategory = ({ selectedCategory }: any) => {
                                 <p className="text-[#9295AA]">{el.description}</p>
                             </div>
                             <div className="flex gap-2">
+<<<<<<< HEAD
                                 <div onClick={()=> addToCart(el)} className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><BasketIcon /></div>
+=======
+                                <div onClick={()=>addToCart(el)} className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><BasketIcon /></div>
+>>>>>>> 0eea9c0 ( productdetail)
                                 <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
                                 <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><SearchIcon /></div>
                             </div>
