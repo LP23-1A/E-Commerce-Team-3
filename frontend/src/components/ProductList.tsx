@@ -6,7 +6,7 @@ import { mutate } from "swr";
 import { useRouter } from "next/navigation"
 
 const ProductList = ({ productsData }: any) => {
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+ 
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
@@ -28,13 +28,10 @@ const ProductList = ({ productsData }: any) => {
     try {
       const res = await axios.delete(`http://localhost:8000/product/${productId}`);
       if (res.status === 200) {
-        // setFilteredProducts(filteredProducts.filter((product: any) => product._id !== productId));
         mutate("http://localhost:8000/product");
-      } else {
-        console.error("Delete request failed");
-      }
+      } 
+      
     } catch (error) {
-      console.log(error);
     }
   };
 

@@ -22,7 +22,6 @@ const LatestProduct = ({ data }: any) => {
   const productDetailPageHandler = ( productId : string) => {
     router.push("/user/productDetail");
     localStorage.setItem("productId", productId)
-    console.log(productId);
 
 }
 
