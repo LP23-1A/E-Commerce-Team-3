@@ -7,9 +7,10 @@ import OrderDayFilterInc from "@/components/OrderDayFilterInc";
 import { useInputOrderFilter } from "@/components/OrderFilterProvider";
 
 const Income = () => {
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data } = useSWR(
-    "http://localhost:8000/order",
+    `${backendPoint}/order`,
     fetcher
   );
 

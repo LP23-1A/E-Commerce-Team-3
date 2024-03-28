@@ -18,9 +18,10 @@ const ProductListByCategory = ({ selectedCategory }: any) => {
             throw error.response.data;
         }
     };
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const { data, error, isLoading } = useSWR(
-        "http://localhost:8000/product",
+        `${backendPoint}/product`,
         fetcher
     );
     if (isLoading) {

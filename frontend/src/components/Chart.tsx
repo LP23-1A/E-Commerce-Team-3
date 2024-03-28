@@ -6,8 +6,9 @@ import axios from "axios";
 import dayjs from "dayjs";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
+const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-const api = "http://localhost:8000/order"
+const api = `${backendPoint}/order`
 interface OrderData {
   amountPaid: number;
   createdAt: string;

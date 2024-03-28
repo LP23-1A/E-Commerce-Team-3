@@ -14,10 +14,11 @@ const EditProduct = () => {
     };
 
     const [image, setImage] = useState<FileList | []>([]);
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const fetchProduct = async (productId: string) => {
 
-        const api = `http://localhost:8000/product/${productId}`;
+        const api = `${backendPoint}/product/${productId}`;
 
         try {
             const response = await axios.get(api);
@@ -58,6 +59,7 @@ const EditProduct = () => {
     }, [id]);
 
 
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const editProduct = async () => {
 
@@ -65,7 +67,7 @@ const EditProduct = () => {
             return;
         }
 
-        const api = `http://localhost:8000/product/${id}`;
+        const api = `${backendPoint}/product/${id}`;
         
         try {
             const signedUrls = await axios.get('/api/upload-image');

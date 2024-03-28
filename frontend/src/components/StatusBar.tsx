@@ -11,10 +11,12 @@ const StatusBar = ({ selectedOrderId, onClick }: any) => {
     "New Order",
     "Cancelled",
   ];
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
   const postHandler = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:8000/order/${selectedOrderId}`,
+        `${backendPoint}/order/${selectedOrderId}`,
         {
           status: selected,
         }

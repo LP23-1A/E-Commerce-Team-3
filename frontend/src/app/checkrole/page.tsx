@@ -9,11 +9,11 @@ const Page = () => {
     const { user } = useAuth0()
     const router = useRouter()
     const [loading, setLoading] = useState(true) 
-
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.post('http://localhost:8000/sign/auth',{
+                const res = await axios.post(`${backendPoint}/sign/auth`,{
                     email:user?.email
                 })
                 const {data} = res

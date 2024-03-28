@@ -42,17 +42,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
             throw error.response.data;
         }
     };
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const { data, error, isLoading } = useSWR(
-        "http://localhost:8000/mainCategory",
+        `${backendPoint}/mainCategory`,
         fetcher
     );
 
     const [subCategory, setSubCategory] = useState<any[]>([]);
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const mapCategory = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/subCategory");
+            const res = await axios.get(`${backendPoint}/subCategory`);
             setSubCategory(res.data);
         } catch (error) {
         }

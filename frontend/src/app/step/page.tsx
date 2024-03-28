@@ -21,6 +21,8 @@ const StepPage = () => {
   })
 
   const router = useRouter()
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
   const { user } = useAuth0()
   const handleInput = (field: string, value: string | number) =>{
 
@@ -38,7 +40,7 @@ const StepPage = () => {
   const handleSubmit = async () => {
     const address = `${dataRef.current.city},${dataRef.current.district},${dataRef.current.khoroo} `
     try {
-      const res = await axios.post('http://localhost:8000/sign',{
+      const res = await axios.post(`${backendPoint}/sign`,{
         username:user?.given_name,
         email:user?.email,
         phoneNumber:dataRef.current.phoneNumber,
