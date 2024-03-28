@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "@/components/Sidebar";
@@ -9,8 +9,7 @@ import IconUser from "../../assets/IconUser";
 import App from "@/components/Chart";
 import BestSeller from "@/components/BestSeller";
 import ActivityCity from "@/components/ActivityCities";
-const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
-const api = backendPoint;
+const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || '';
 
 const Dashboard = () => {
   const [income, setIncome] = useState(0);
@@ -20,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(api);
+        const response = await axios.get(backendPoint);
         const { incomeData, orderCount, userCount } = response.data.data;
 
         setIncome(incomeData[0].amountPaid);
@@ -41,9 +40,21 @@ const Dashboard = () => {
         <Sidebar />
         <div className="flex flex-col w-screen mt-10 items-center">
           <div className="flex w-[1200px] justify-between">
-            <DashboardCard icon={<IconIncome />} title="Орлого" value={`${income}₮`} />
-            <DashboardCard icon={<IconOrder />} title="Захиалга" value={orderCount} />
-            <DashboardCard icon={<IconUser />} title="Хэрэглэгч" value={userCount} />
+            <DashboardCard
+              icon={<IconIncome />}
+              title="Орлого"
+              value={`${income}₮`}
+            />
+            <DashboardCard
+              icon={<IconOrder />}
+              title="Захиалга"
+              value={orderCount}
+            />
+            <DashboardCard
+              icon={<IconUser />}
+              title="Хэрэглэгч"
+              value={userCount}
+            />
           </div>
           <div className="flex w-[1200px] justify-between">
             <BestSeller />
