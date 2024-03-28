@@ -5,6 +5,7 @@ import List from "@/assets/List";
 import { UserFooter } from "@/components/userComponents/Footer";
 import UserNavbar from "@/components/userComponents/Navbar";
 import { useBasket } from "@/components/userComponents/OrderContext";
+import Topbar from "@/components/userComponents/Topbar";
 import { useRouter } from "next/navigation";
 import { destroyCookie } from "nookies";
 
@@ -19,6 +20,7 @@ const SuccesfulOrder = () => {
   return (
     <div className=" h-full">
       <UserNavbar />
+      <Topbar/>
       <div className="flex justify-center   h-[700px] mt-[100px] mb-[100px]">
         <Clock />
         <div className=" flex items-center w-[1000px]  flex-col justify-center gap-6">
