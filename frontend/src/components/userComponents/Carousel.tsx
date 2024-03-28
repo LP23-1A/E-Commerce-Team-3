@@ -1,10 +1,21 @@
-'use client'
-import { useEffect, useState } from "react";
+"use client";
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Drop from "@/assets/Drop";
 
-const Carousel = ({ data }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+type Product = {
+  _id: string;
+  description: string;
+  salePercent?: number;
+  images: string[];
+};
+
+type CarouselProps = {
+  data: Product[];
+};
+
+const Carousel: FC<CarouselProps> = ({ data }) => {
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +40,7 @@ const Carousel = ({ data }) => {
     );
   };
 
-  const productDetailPageHandler = (productId) => {
+  const productDetailPageHandler = (productId: string) => {
     router.push("/user/productDetail");
     localStorage.setItem("productId", productId);
   };
@@ -40,9 +51,7 @@ const Carousel = ({ data }) => {
         {data.map((e, index) => (
           <div
             key={index}
-            className={`slide ${
-              index === currentSlide ? "active" : "hidden"
-            }`}
+            className={`slide ${index === currentSlide ? "active" : "hidden"}`}
           >
             <div className="flex items-center gap-[100px]">
               <div className="flex flex-col gap-5">
@@ -64,11 +73,7 @@ const Carousel = ({ data }) => {
               </div>
               <div className="relative">
                 {e.salePercent && <Drop discount={e.salePercent} />}
-                <img
-                  className="w-[629px] h-[629px]"
-                  src={e.images[1]}
-                  alt=""
-                />
+                <img className="w-[629px] h-[629px]" src={e.images[1]} alt="" />
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 'use client'
 import  { useState, useEffect } from 'react'
-import { useRouter } from 'next/router' // Fixed import statement
+import { useRouter } from 'next/router' 
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import jwt from "jsonwebtoken"
@@ -18,7 +18,7 @@ const Page = () => {
                 })
                 const { data } = res
                 const token = data.token 
-                const code = jwt.decode(token) 
+                const code:any = jwt.decode(token) 
                 if (code && code.payload.email === user?.email) {
                     router.push("/dashboard")
                 } else {

@@ -1,7 +1,17 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
-const BasketContext = createContext({
+interface BasketItem {
+  id: string;
+}
+
+interface BasketContextType {
+  basket: BasketItem[];
+  addToCart: (item: BasketItem) => void;
+  setBasket: (basket: BasketItem[]) => void;
+}
+
+const BasketContext = createContext<BasketContextType>({
   basket: [],
   addToCart: () => {},
   setBasket: () => {},
@@ -9,10 +19,14 @@ const BasketContext = createContext({
 
 export const useBasket = () => useContext(BasketContext);
 
-export const BasketProvider = ({ children }:any) => {
-  const [basket, setBasket] = useState([]);
+interface BasketProviderProps {
+  children: ReactNode;
+}
 
-  const addToCart = (item:any) => {
+export const BasketProvider = ({ children }: BasketProviderProps) => {
+  const [basket, setBasket] = useState<BasketItem[]>([]);
+
+  const addToCart = (item: BasketItem) => {
     const itemIndex = basket.findIndex(
       (basketItem) => basketItem.id === item.id
     );

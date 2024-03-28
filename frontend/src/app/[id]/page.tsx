@@ -8,13 +8,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import PayDetail from "@/components/PayDetail";
 import DeliveryDetail from "@/components/DeliveryDetail";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-} from "react";
 import formatDate from "@/components/utils/FormatDate";
 import statusCellStyle from "@/components/utils/StatusColor";
 

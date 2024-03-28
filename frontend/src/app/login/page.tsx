@@ -26,7 +26,7 @@ const  Login = () => {
                 })
                 const { data } = res;
                 const token = data.token;
-              const code = jwt.decode(token)
+              const code:any = jwt.decode(token)
               if (code.payload.role as String === 'admin') {
                 router.push('/dashboard');
               } else {

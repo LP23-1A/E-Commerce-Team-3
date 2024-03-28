@@ -1,23 +1,30 @@
 import  { useState } from 'react';
 import { useInputOrderFilter } from './OrderFilterProvider';
 
-const OrderDayFilterInc = () => {
-    const { filters, setFilters } = useInputOrderFilter();
-    const [selectedFilter, setSelectedFilter] = useState(null);
+interface Filters {
+  filterByDay: boolean | null;
+  filterByWeek: boolean | null;
+  filterByMonth: boolean | null;
+}
 
-    const handleFilterClick = (filterType) => {
+const OrderDayFilterInc: React.FC = () => {
+    const { filters, setFilters } = useInputOrderFilter();
+    const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+    const handleFilterClick = (filterType: string) => {
         const isSameFilterClicked = selectedFilter === filterType;
         const newFilterValue = isSameFilterClicked ? null : filterType;
 
         setSelectedFilter(newFilterValue);
         
-        const updatedFilters = {
+        const updatedFilters: Filters = {
             filterByDay: filterType === 'day' ? !filters.filterByDay : null,
             filterByWeek: filterType === 'week' ? !filters.filterByWeek : null,
             filterByMonth: filterType === 'month' ? !filters.filterByMonth : null,
         };
         setFilters(updatedFilters);
     };
+    
     return (
      <div className='flex gap-2'>
                 {['day', 'week', 'month'].map(filterType => (

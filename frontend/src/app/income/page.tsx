@@ -19,7 +19,7 @@ const Income = () => {
   const getTotalPrice = () => {
     let totalPrice = 0;
     if (data && data.length > 0) {
-      data.forEach((product) => {
+      data.forEach((product:any) => {
         const amount = product?.amountToPaid;
         if (!isNaN(amount)) {
           totalPrice += amount;

@@ -17,7 +17,7 @@ const UserNavbar = () => {
   useEffect(() => {
     const cookies = parseCookies();
     const token = cookies.token;
-    const code = jwt.decode(token)
+    const code:any = jwt.decode(token)
 
     if (code) {
       setUser(code?.payload.email);
@@ -66,7 +66,6 @@ const UserNavbar = () => {
               saveBasketToCookie();
             }}
           >
-            {" "}
             <ShoppingCartOutlinedIcon />
           </button>
           {basket.length > 0 && (

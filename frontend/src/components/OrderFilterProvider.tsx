@@ -1,16 +1,44 @@
-'use client'
-import { createContext, useState, useContext } from 'react';
+"use client";
+import { createContext, useState, useContext, ReactNode } from "react";
 
-const OrderFilterContext = createContext({});
+type Filters = {
+  filterByDay: boolean;
+  filterByWeek: boolean;
+  filterByMonth: boolean;
+  filterByUsername: string;
+}
 
-export const useInputOrderFilter = () => useContext(OrderFilterContext);
+type OrderFilterContextType ={
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+}
 
-export const OrderInputFilterProvider = ({ children }:any) => {
-  const [filters, setFilters] = useState({
+const OrderFilterContext = createContext<OrderFilterContextType | undefined>(
+  undefined
+);
+
+export const useInputOrderFilter = () => {
+  const context = useContext(OrderFilterContext);
+  if (!context) {
+    throw new Error(
+      "errror"
+    );
+  }
+  return context;
+};
+
+interface OrderInputFilterProviderProps {
+  children: ReactNode;
+}
+
+export const OrderInputFilterProvider = ({
+  children,
+}: OrderInputFilterProviderProps) => {
+  const [filters, setFilters] = useState<Filters>({
     filterByDay: false,
-    filterByUsername: '',
-    filterByWeek:false,
-    filterByMonth :false
+    filterByUsername: "",
+    filterByWeek: false,
+    filterByMonth: false,
   });
 
   return (

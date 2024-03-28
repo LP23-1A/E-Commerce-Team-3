@@ -1,20 +1,30 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useBasket } from "./OrderContext";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
+type Product = {
+  _id: string;
+  id: string;
+  images: string[];
+  productName: string;
+  price: number;
+}
 
-const HighlightedProduct = ({ data }: any) => {
+type HighlightedProductProps ={
+  data: Product[];
+}
+
+const HighlightedProduct: React.FC<HighlightedProductProps> = ({ data }) => {
   const { addToCart } = useBasket();
-  const router = useRouter()
+  const router = useRouter();
 
   const productDetailPageHandler = (productId: string) => {
     router.push("/user/productDetail");
-    localStorage.setItem("productId", productId)
-
-  }
+    localStorage.setItem("productId", productId);
+  };
 
   return (
-    <div className=" flex flex-col items-center mt-[200px]">
+    <div className="flex flex-col items-center mt-[200px]">
       <p className="text-[#151875] text-[42px] font-bold">
         Онцлох бүтээгдэхүүн
       </p>
@@ -22,12 +32,15 @@ const HighlightedProduct = ({ data }: any) => {
         {data &&
           data.map((e) => {
             return (
-              <div  key={e.id} className="relative group">
+              <div key={e.id} className="relative group">
                 <div className="w-[270px]  h-[280px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
                   <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => addToCart(e)}><ShoppingCartOutlinedIcon /></button>
+                    <button onClick={() => addToCart(e)}>
+                      <ShoppingCartOutlinedIcon />
+                    </button>
                   </div>
-                  <img onClick={()=>productDetailPageHandler(e._id)}
+                  <img
+                    onClick={() => productDetailPageHandler(e._id)}
                     className="min-w-[201px]  min-h-[201px]"
                     src={e.images[1]}
                     alt=""
@@ -42,7 +55,6 @@ const HighlightedProduct = ({ data }: any) => {
                   </div>
                 </div>
               </div>
-
             );
           })}
       </div>

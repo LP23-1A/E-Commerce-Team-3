@@ -2,11 +2,24 @@ import { useMemo } from "react";
 import formatDate from "../utils/FormatDate";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useBasket } from "./OrderContext";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation";
 
-const LatestProduct = ({ data }: any) => {
+type Product = {
+  _id: string;
+  id: string;
+  images: string[];
+  productName: string;
+  price: number;
+  createdAt: string;
+}
+
+type LatestProductProps = {
+  data: Product[];
+}
+
+const LatestProduct: React.FC<LatestProductProps> = ({ data }) => {
   const { addToCart } = useBasket();
-  const router = useRouter()
+  const router = useRouter();
 
   const latest = useMemo(() => {
     const latest = new Date();
@@ -19,11 +32,10 @@ const LatestProduct = ({ data }: any) => {
     return createdDate >= latest;
   });
 
-  const productDetailPageHandler = ( productId : string) => {
+  const productDetailPageHandler = (productId: string) => {
     router.push("/user/productDetail");
-    localStorage.setItem("productId", productId)
-
-}
+    localStorage.setItem("productId", productId);
+  };
 
   return (
     <div className="flex items-center flex-col mt-[200px]">
@@ -33,11 +45,16 @@ const LatestProduct = ({ data }: any) => {
           <div key={e.id} className="relative group">
             <div className="w-[270px]  h-[280px] px-10 relative flex justify-center items-center rounded-md bg-[#F6F7FB] ">
               <div className="bg-white p-1  absolute left-3 bottom-3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={()=> addToCart(e)}>
+                <button onClick={() => addToCart(e)}>
                   <ShoppingCartOutlinedIcon />
                 </button>
               </div>
-              <img onClick={()=>productDetailPageHandler(e._id)} className="w-[201px] h-[201px]" src={e.images[1]} alt="" />
+              <img
+                onClick={() => productDetailPageHandler(e._id)}
+                className="w-[201px] h-[201px]"
+                src={e.images[1]}
+                alt=""
+              />
             </div>
             <div className="flex flex-col items-center">
               <p className="text-[18px] font-bold text-[#151875]">

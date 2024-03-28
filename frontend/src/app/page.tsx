@@ -12,17 +12,17 @@ import Topbar from "@/components/userComponents/Topbar";
 export default function Home() {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
+
   const { data, isLoading } = useSWR(`${backendPoint}/product`, fetcher);
-  console.log(data)
   if (isLoading) {
     return <div>LoadiinG....</div>;
   }
-  
+
   return (
     <div className=" h-auto">
       <UserNavbar />
-      <Topbar/>
+      <Topbar />
       <Carousel data={data} />
       <HighlightedProduct data={data} />
       <LatestProduct data={data} />

@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
-import ChevronDown from '@/assets/ChevronDown';
 import Search from '@/assets/Search';
 import { useInputOrderFilter } from './OrderFilterProvider';
 
-const OrderDayFilter = () => {
-    const { filters, setFilters } = useInputOrderFilter();
-    const [selectedFilter, setSelectedFilter] = useState(null);
+type Filters = {
+  filterByDay: boolean | null;
+  filterByWeek: boolean | null;
+  filterByMonth: boolean | null;
+  filterByUsername: string;
+}
 
-    const handleFilterClick = (filterType) => {
+const OrderDayFilter: React.FC = () => {
+    const { filters, setFilters } = useInputOrderFilter();
+    const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+    const handleFilterClick = (filterType: string) => {
         const isSameFilterClicked = selectedFilter === filterType;
         const newFilterValue = isSameFilterClicked ? null : filterType;
 
         setSelectedFilter(newFilterValue);
 
-        const updatedFilters = {
+        const updatedFilters: Filters = {
             filterByDay: filterType === 'day' ? !filters.filterByDay : null,
             filterByWeek: filterType === 'week' ? !filters.filterByWeek : null,
             filterByMonth: filterType === 'month' ? !filters.filterByMonth : null,
@@ -23,9 +29,10 @@ const OrderDayFilter = () => {
         setFilters(updatedFilters);
     };
 
-    const handleUsernameFilter = (e) => {
+    const handleUsernameFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilters({ ...filters, filterByUsername: e.target.value });
     };
+
     return (
         <div className='flex justify-between py-4 ml-5'>
             <div className='flex gap-4'>

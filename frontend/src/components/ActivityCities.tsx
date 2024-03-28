@@ -10,7 +10,7 @@ const citiesData = [
 
 const percent = ['70', '20', '10', '0']
 
-const CityProgressBar = ({ name, percentage }) => (
+const CityProgressBar = ({ name, percentage }:any) => (
   <div className="flex items-center justify-between p-6">
     <p className="w-[100px]">{name}</p>
     <div className="h-2 w-[353px] bg-slate-100 rounded-3xl">
