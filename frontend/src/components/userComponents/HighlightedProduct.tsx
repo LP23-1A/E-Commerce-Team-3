@@ -22,13 +22,8 @@ const HighlightedProduct = ({ data }: any) => {
         {data &&
           data.map((e) => {
             return (
-<<<<<<< HEAD
               <div  key={e.id} className="relative group">
                 <div className="w-[270px]  h-[280px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
-=======
-              <div key={e.id} className="relative group">
-                <div className="w-[270px]  h-[360px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
->>>>>>> b9ed825 (removed log and deleted unused files)
                   <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button onClick={() => addToCart(e)}><ShoppingCartOutlinedIcon /></button>
                   </div>
