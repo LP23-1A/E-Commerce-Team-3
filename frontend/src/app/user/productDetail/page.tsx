@@ -5,9 +5,11 @@ import Topbar from '@/components/userComponents/Topbar';
 import { UserFooter } from '@/components/userComponents/Footer';
 import ProductDetail from '@/components/userComponents/ProductDetail';
 import AdditionalInformation from '@/components/userComponents/AddtionalInformation';
+import UserNavbar from '@/components/userComponents/Navbar';
 
 const ProductDetailPage = () => {
     const [product, setProduct] = useState(null);
+
 
     useEffect(() => {
 
@@ -28,7 +30,7 @@ const ProductDetailPage = () => {
         return () => {
             localStorage.removeItem('productId');
         };
-    }, []); 
+    }, []);
 
     if (!product) {
         return <div>Loading product details...</div>;
@@ -36,10 +38,11 @@ const ProductDetailPage = () => {
 
     return (
         <div>
-         <Topbar/>
-         <ProductDetail productName={product.productName} price={product.price} description={product.description} image1={product.images[0]} image2={product.images[1]} image3={product.images[2]}/>
-         <AdditionalInformation category= {product.mainCategory.mainCategoryName} productName={product.productName}/>
-         <UserFooter/>
+            <UserNavbar />
+            <Topbar />
+            <ProductDetail id={product}  productName={product.productName} price={product.price} description={product.description} image1={product.images[0]} image2={product.images[1]} image3={product.images[2]} />
+            <AdditionalInformation category={product.mainCategory.mainCategoryName} productName={product.productName} />
+            <UserFooter />
         </div>
     );
 };

@@ -1,6 +1,10 @@
 import FavouriteIcon from "@/assets/FavouriteIcon"
+import { useBasket } from "./OrderContext"
 
-const ProductDetail = ({image1,image2,image3, productName, price, description }: any) => {
+const ProductDetail = ({image1,image2,image3, productName, price, description,id }: any) => {
+
+    const {addToCart} = useBasket()
+
     return (
         <div className="px-[350px] py-10">
             <div className="flex h-[487px] w-[1199px] p-4 ">
@@ -20,7 +24,7 @@ const ProductDetail = ({image1,image2,image3, productName, price, description }:
                         <p className="text-[#9295AA]">{description}</p>
                     </div>
                     <div className="flex gap-2 items-center">
-                        <button className="bg-[#FB2E86] font-bold text-[16px] w-fit h-fit rounded-[4px] px-[25px] py-[12px] text-[#FFFFFF] ">Continue Shipping</button>
+                        <button onClick={()=> addToCart(id)} className="bg-[#FB2E86] font-bold text-[16px] w-fit h-fit rounded-[4px] px-[25px] py-[12px] text-[#FFFFFF] ">Continue Shipping</button>
                         <div className=" h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
                     </div>
                 </div>
