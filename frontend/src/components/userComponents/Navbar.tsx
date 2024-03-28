@@ -8,11 +8,13 @@ import { useBasket } from "./OrderContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import jwt from 'jsonwebtoken'
+import { useDraft } from "./DraftContext";
 
 const UserNavbar = () => {
   const [user, setUser] = useState('')
   const router = useRouter();
   const { basket } = useBasket();
+  const {draft} = useDraft()
 
   useEffect(() => {
     const cookies = parseCookies();
@@ -30,6 +32,13 @@ const UserNavbar = () => {
       path: "/",
     });
   };
+
+  const saveDraftToCookie = () => {
+    setCookie(null, "draft", JSON.stringify(draft),{
+      maxAge: 20 * 30,
+      path: "/",
+    } )
+  }
 
   return (
     <div className="bg-[#7E37E0] text-white py-3 flex justify-between px-[340px]">
@@ -55,9 +64,15 @@ const UserNavbar = () => {
             <PersonOutlineIcon />
           </div>
         )}
-        <div className="flex gap-2 items-center">
-          <button>Хадгалах</button>
-          <FavoriteBorderOutlinedIcon />
+        <div className=" relative">
+          <button onClick={() => {router.push("/user/draft"); saveDraftToCookie() }}>
+             <FavoriteBorderOutlinedIcon />
+          </button>
+          {draft.length > 0 && (
+            <div className=" bg-[#EC42A2] rounded-[50%] w-[25px] h-[25px] flex justify-center  items-center absolute  top-[-10px] right-[-20px]">
+              <p>{draft.length}</p>
+            </div>
+          )}
         </div>
         <div className="relative">
           <button
