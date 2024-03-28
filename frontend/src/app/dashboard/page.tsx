@@ -69,7 +69,7 @@ const Dashboard = () => {
   );
 };
 
-const DashboardCard = ({ icon, title, value }) => {
+const DashboardCard = ({ icon, title, value }:any) => {
   return (
     <div className="text-black w-[374px] h-[136px] px-6 py-4 gap-4 mt-4 rounded-2xl bg-[#FFFFFF]">
       <div className="flex flex-col gap-2">
