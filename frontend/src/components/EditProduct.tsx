@@ -59,7 +59,6 @@ const EditProduct = () => {
     }, [id]);
 
 
-    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const editProduct = async () => {
 

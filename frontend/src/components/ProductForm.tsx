@@ -50,7 +50,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
     );
 
     const [subCategory, setSubCategory] = useState<any[]>([]);
-    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const mapCategory = async () => {
         try {
