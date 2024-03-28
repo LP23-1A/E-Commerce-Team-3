@@ -21,7 +21,6 @@ const ProductTableNavbar = ({ productsData, setProductsData }: any) => {
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // Memoized filtering function
   const filteredProducts = useMemo(() => {
     return productsData.filter((product: any) => {
       if (selectedCategory && product.mainCategory.mainCategoryName !== selectedCategory) {

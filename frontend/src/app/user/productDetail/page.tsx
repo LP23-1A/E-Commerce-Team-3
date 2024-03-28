@@ -27,9 +27,6 @@ const ProductDetailPage = () => {
         if (productId) {
             fetchProduct();
         }
-        return () => {
-            localStorage.removeItem('productId');
-        };
     }, []);
 
     if (!product) {

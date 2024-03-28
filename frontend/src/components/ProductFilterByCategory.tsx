@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AngilalIcon from "@/assets/AngilalIcon";
 import axios from "axios";
 import useSWR from "swr";
-
 interface ProductFilterByCategoryProps {
   onCategoryChange: (category: string | null) => void;
 }

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { productModel } from "../model/product";
-import { mainCategoryModel } from "../model/mainCategory";
 
 
 export const createProduct = async (req: Request, res: Response) => {

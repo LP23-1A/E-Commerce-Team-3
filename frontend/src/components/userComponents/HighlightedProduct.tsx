@@ -1,18 +1,17 @@
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useBasket } from "./OrderContext";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation"
 
 
 const HighlightedProduct = ({ data }: any) => {
   const { addToCart } = useBasket();
   const router = useRouter()
 
-  const productDetailPageHandler = ( productId : string) => {
+  const productDetailPageHandler = (productId: string) => {
     router.push("/user/productDetail");
     localStorage.setItem("productId", productId)
-    console.log(productId);
 
-}
+  }
 
   return (
     <div className=" flex flex-col items-center mt-[200px]">
@@ -23,8 +22,13 @@ const HighlightedProduct = ({ data }: any) => {
         {data &&
           data.map((e) => {
             return (
+<<<<<<< HEAD
               <div  key={e.id} className="relative group">
                 <div className="w-[270px]  h-[280px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
+=======
+              <div key={e.id} className="relative group">
+                <div className="w-[270px]  h-[360px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">
+>>>>>>> b9ed825 (removed log and deleted unused files)
                   <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button onClick={() => addToCart(e)}><ShoppingCartOutlinedIcon /></button>
                   </div>
@@ -38,7 +42,7 @@ const HighlightedProduct = ({ data }: any) => {
                       {e.productName}
                     </p>
                     <p className="text-[18px] font-normal  text-[#2F1AC4] group-hover:text-white ">
-                      {e.price}₮
+                      {e.price.toLocaleString()}₮
                     </p>
                   </div>
                 </div>

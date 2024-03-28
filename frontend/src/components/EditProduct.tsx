@@ -36,6 +36,7 @@ const EditProduct = () => {
         } catch (error) {
         }
     };
+    
     const [input, setInput] = useState({
         productName: "",
         description: "",
