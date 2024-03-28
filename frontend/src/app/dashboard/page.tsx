@@ -9,8 +9,8 @@ import IconUser from "../../assets/IconUser";
 import App from "@/components/Chart";
 import BestSeller from "@/components/BestSeller";
 import ActivityCity from "@/components/ActivityCities";
-
-const api = "http://localhost:8000/income";
+const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+const api = backendPoint;
 
 const Dashboard = () => {
   const [income, setIncome] = useState(0);

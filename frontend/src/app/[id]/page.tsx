@@ -19,11 +19,12 @@ import formatDate from "@/components/utils/FormatDate";
 import statusCellStyle from "@/components/utils/StatusColor";
 
 const OrderDetail = () => {
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const pathname = usePathname();
   const router = useRouter();
   const { data, error, isLoading } = useSWR(
-    `http://localhost:8000/order${pathname}`,
+    `${backendPoint}/order${pathname}`,
     fetcher
   );
   console.log(data);

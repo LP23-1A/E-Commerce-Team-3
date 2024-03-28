@@ -9,6 +9,7 @@ import UserNavbar from '@/components/userComponents/Navbar';
 
 const ProductDetailPage = () => {
     const [product, setProduct] = useState(null);
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 
     useEffect(() => {
@@ -17,7 +18,7 @@ const ProductDetailPage = () => {
 
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/product/${productId}`);
+                const response = await axios.get(`${backendPoint}/product/${productId}`);
                 setProduct(response.data);
             } catch (error) {
                 console.error('Error fetching product:', error);

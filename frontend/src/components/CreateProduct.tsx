@@ -38,8 +38,9 @@ const CreateProduct = () => {
         mainCategory: input.mainCategory,
         subCategory: input.subCategory
     }
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
-    const api = "http://localhost:8000/product"
+    const api = `${backendPoint}/product`
 
     const createProduct = async () => {
 

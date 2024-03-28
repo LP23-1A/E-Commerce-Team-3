@@ -14,6 +14,8 @@ const Order = () => {
   const { basket, setBasket } = useBasket();
   const [user, setUser] = useState("");
   const [error, setUserError] = useState(false);
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
   const input = useRef({
     phoneNumber: "",
     lastName: "",
@@ -71,7 +73,7 @@ const Order = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:8000/order", {
+      const res = await axios.post(`${backendPoint}/order`, {
         products: productsId,
         userId: user,
         quantity: productsCount,

@@ -12,6 +12,8 @@ import { setCookie } from "nookies";
 
 const userLogin = () => {
     const router = useRouter()
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
     const input = useRef({
         email: '',
         password: ''
@@ -21,7 +23,7 @@ const userLogin = () => {
     }
     const handlePost = async () => {
         try {
-            const res = await axios.post('http://localhost:8000/sign/auth', {
+            const res = await axios.post(`${backendPoint}/sign/auth`, {
                 email: input.current.email,
                 password: input.current.password,
             })

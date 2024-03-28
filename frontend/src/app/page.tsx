@@ -12,8 +12,9 @@ import Topbar from "@/components/userComponents/Topbar";
 export default function Home() {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-  const { data, isLoading } = useSWR("http://localhost:8000/product", fetcher);
-
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+  const { data, isLoading } = useSWR(`${backendPoint}/product`, fetcher);
+  console.log(data)
   if (isLoading) {
     return <div>LoadiinG....</div>;
   }

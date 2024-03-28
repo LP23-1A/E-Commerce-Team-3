@@ -23,12 +23,13 @@ const ProductList = ({ productsData }: any) => {
     const getId = productId
     localStorage.setItem("productId", getId)
   };
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
   const deleteHandler = async (productId: string) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/product/${productId}`);
+      const res = await axios.delete(`${backendPoint}/product/${productId}`);
       if (res.status === 200) {
-        mutate("http://localhost:8000/product");
+        mutate(`${backendPoint}/product`);
       } 
       
     } catch (error) {

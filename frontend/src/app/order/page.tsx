@@ -7,9 +7,10 @@ import Sidebar from "@/components/Sidebar";
 import OrderDayFilter from "@/components/OrderDayFilter";
 
 const Order = () => {
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data, error, isLoading } = useSWR(
-    "http://localhost:8000/order",
+    `${backendPoint}/order`,
     fetcher
   );
 

@@ -3,6 +3,6 @@
     "@types/react": "^18.2.61"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4 no.5"
   }
 }

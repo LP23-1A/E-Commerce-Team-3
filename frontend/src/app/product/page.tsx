@@ -10,11 +10,12 @@ import axios from "axios";
 const Product = () => {
     const [productsData, setProductsData] = useState([]);
     const [productsDataFiltered, setProductsDataFiltered] = useState([])
+    const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/product");
+                const response = await axios.get(`${backendPoint}/product`);
                 setProductsData(response.data);
                 
             } catch (error) {

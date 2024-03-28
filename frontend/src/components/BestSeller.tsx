@@ -5,9 +5,11 @@ import ChevronRight from "@/assets/ChevronRight";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from 'react';
 
 const BestSellers = () => {
+  const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
+
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data } = useSWR(
-    `http://localhost:8000/order`,
+    `${backendPoint}/order`,
     fetcher
   );
   console.log(data)
