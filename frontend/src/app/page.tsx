@@ -20,7 +20,7 @@ export default function Home() {
   
   return (
     <div className=" h-auto">
-      {/* <UserNavbar /> */}
+      <UserNavbar />
       <Topbar/>
       <Carousel data={data} />
       <HighlightedProduct data={data} />

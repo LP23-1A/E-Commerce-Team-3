@@ -4,9 +4,10 @@ import SearchIcon from "@/assets/SearchIcon"
 import axios from "axios";
 import useSWR from "swr";
 import { useRouter } from "next/navigation"
+import { useBasket } from "./OrderContext";
 
 const ProductListByCategory = ({ selectedCategory }: any) => {
-
+    const { addToCart } = useBasket();
     const router = useRouter()
 
     const fetcher = async (url: string) => {
@@ -39,7 +40,6 @@ const ProductListByCategory = ({ selectedCategory }: any) => {
     const productDetailPageHandler = ( productId : string) => {
         router.push("/user/productDetail");
         localStorage.setItem("productId", productId)
-        console.log(productId);
 
     }
 
@@ -60,7 +60,7 @@ const ProductListByCategory = ({ selectedCategory }: any) => {
                                 <p className="text-[#9295AA]">{el.description}</p>
                             </div>
                             <div className="flex gap-2">
-                                <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><BasketIcon /></div>
+                                <div onClick={()=> addToCart(el)} className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><BasketIcon /></div>
                                 <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
                                 <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><SearchIcon /></div>
                             </div>
