@@ -5,6 +5,7 @@ import AuthProvider from "@/components/AuthProvider";
 import { OrderFilterProvider } from "@/components/OrderByStatusProvider";
 import { OrderInputFilterProvider } from "@/components/OrderFilterProvider";
 import { BasketProvider } from "@/components/userComponents/OrderContext";
+import { DraftProvider } from "@/components/userComponents/DraftContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,11 @@ export default function RootLayout({
       <AuthProvider>
         <body className={inter.className}>
           <BasketProvider>
+            <DraftProvider>
             <OrderFilterProvider>
               <OrderInputFilterProvider>{children}</OrderInputFilterProvider>
             </OrderFilterProvider>
+            </DraftProvider>
           </BasketProvider>
         </body>
       </AuthProvider>

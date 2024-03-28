@@ -71,7 +71,7 @@ const Basket = () => {
     })
     router.push('/user/delivery')
    }
-
+   
   return (
     <div>
       <UserNavbar />
