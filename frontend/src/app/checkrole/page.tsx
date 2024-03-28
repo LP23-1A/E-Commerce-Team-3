@@ -1,6 +1,6 @@
 'use client'
 import  { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router' // Fixed import statement
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import jwt from "jsonwebtoken"
@@ -14,12 +14,12 @@ const Page = () => {
         const fetchData = async () => {
             try {
                 const res = await axios.post(`${backendPoint}/sign/auth`,{
-                    email:user?.email
+                    email: user?.email
                 })
-                const {data} = res
+                const { data } = res
                 const token = data.token 
                 const code = jwt.decode(token) 
-                if (code.payload.email === user?.email) {
+                if (code && code.payload.email === user?.email) {
                     router.push("/dashboard")
                 } else {
                     router.push('/step')
