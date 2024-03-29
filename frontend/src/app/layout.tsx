@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic"
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "@/components/AuthProvider";
 import { OrderFilterProvider } from "@/components/OrderByStatusProvider";
 import { OrderInputFilterProvider } from "@/components/OrderFilterProvider";
 import { BasketProvider } from "@/components/userComponents/OrderContext";
+
+const AuthProvider = dynamic(() => import('@/components/AuthProvider'), {
+  ssr: false,
+})
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +24,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className={inter.className}>
+
+      <body className={inter.className}>
+        <AuthProvider>
           <BasketProvider>
             <OrderFilterProvider>
               <OrderInputFilterProvider>{children}</OrderInputFilterProvider>
             </OrderFilterProvider>
           </BasketProvider>
-        </body>
-      </AuthProvider>
+        </AuthProvider>
+      </body>
+
     </html>
   );
 }
+
+
