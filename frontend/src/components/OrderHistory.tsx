@@ -65,14 +65,14 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ data }) => {
   );
 
   const filterByStatus = useMemo(
-    () => (order: Order, statusFilter: any) => {
+    () => (order: any, statusFilter: any) => {
       return !statusFilter || order.status === statusFilter;
     },
     []
   );
 
   const filterByWeek = useMemo(
-    () => (order: Order, filters: any, week: Date) => {
+    () => (order: any, filters: any, week: Date) => {
       const orderDate = new Date(order.createdAt);
       return !filters.filterByWeek || orderDate.getTime() >= week.getTime();
     },
@@ -126,7 +126,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ data }) => {
         </thead>
         <tbody>
           {filteredData && filteredData.length > 0 ? (
-            filteredData.map((order) => (
+            filteredData.map((order:any) => (
               <tr
                 key={order._id}
                 className="flex justify-between px-[80px] py-3"

@@ -3,10 +3,10 @@ import { createContext, useContext, useState } from "react";
 
 const OrderFilterContext = createContext({});
 
-export const useOrderFilter = () => useContext(OrderFilterContext);
+export const useOrderFilter:any = () => useContext(OrderFilterContext);
 
 export const OrderFilterProvider = ({ children }: any) => {
-  const [statusFilter, setStatusFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState<any>("");
 
   return (
     <OrderFilterContext.Provider value={{ statusFilter, setStatusFilter }}>
