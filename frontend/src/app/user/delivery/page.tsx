@@ -84,6 +84,7 @@ const Order = () => {
         zipCode: input.current.zipCode,
         description: input.current.description,
         apartment: input.current.apartment,
+        amountToPaid:totalPrices,
         createdAt: Date(),
       });
       router.push("/user/success");
