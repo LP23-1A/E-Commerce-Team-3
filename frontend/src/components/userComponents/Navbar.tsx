@@ -51,7 +51,7 @@ const UserNavbar = () => {
           </div>
         ) : (
           <div className="flex gap-2 items-center">
-            <button onClick={() => router.push('/userLogin')}>Нэвтрэх</button>
+            <button onClick={() => router.push('user/login')}>Нэвтрэх</button>
             <PersonOutlineIcon />
           </div>
         )}
