@@ -1,4 +1,4 @@
-const statusCellStyle = (status) => {
+const statusCellStyle = (status:any) => {
     switch (status) {
       case 'Ordered':
         return { backgroundColor: '#ff6347' }; 
