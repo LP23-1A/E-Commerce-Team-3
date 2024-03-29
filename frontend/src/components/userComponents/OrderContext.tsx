@@ -3,6 +3,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 interface BasketItem {
   id: string;
+  count:number
 }
 
 interface BasketContextType {

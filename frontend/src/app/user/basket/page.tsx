@@ -9,7 +9,6 @@ import { useBasket } from '@/components/userComponents/OrderContext';
 import OrderButton from '@/components/userComponents/OrderButton';
 import Topbar from '@/components/userComponents/Topbar';
 
-
 const Basket: NextPage = () => {
   const { basket, setBasket } = useBasket();
   const router = useRouter();
@@ -56,7 +55,7 @@ const Basket: NextPage = () => {
     setCookie(null, 'basket', JSON.stringify(updatedBasket));
   };
 
-  const totalPrices = basket.reduce((acc, curr) => acc + curr.price * curr.count, 0);
+  const totalPrices = basket.reduce((acc:any, curr:any) => acc + curr.price * curr.count, 0);
   const totalPrice = totalPrices;
 
   const clearCart = () => {
