@@ -39,6 +39,7 @@ const userSignUp = () => {
         email: input.current.email,
         password: input.current.password,
       });
+      router.push('/user/login')
     } catch (error) {
       console.log(error);
     }
