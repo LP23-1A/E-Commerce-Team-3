@@ -22,7 +22,7 @@ const Dashboard = () => {
         const response = await axios.get(backendPoint);
         const { incomeData, orderCount, userCount } = response.data.data;
 
-        setIncome(incomeData[0].amountPaid);
+        setIncome(incomeData[0].amountToPaid);
         setOrderCount(orderCount);
         setUserCount(userCount);
       } catch (error) {

@@ -159,6 +159,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ data }) => {
                   </div>
                 </td>
               </tr>
+        
             ))
           ) : (
             <tr>
@@ -167,6 +168,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ data }) => {
               </td>
             </tr>
           )}
+                {statusModal&&(<StatusBar onClick={statusModalHandler} selectedOrderId={selectedOrderId} />)}
         </tbody>
       </table>
     </div>
