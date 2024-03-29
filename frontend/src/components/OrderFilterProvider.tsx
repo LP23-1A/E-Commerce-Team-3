@@ -34,7 +34,7 @@ interface OrderInputFilterProviderProps {
 export const OrderInputFilterProvider = ({
   children,
 }: OrderInputFilterProviderProps) => {
-  const [filters, setFilters] = useState<Filters>({
+  const [filters, setFilters] = useState<Filters|boolean|any>({
     filterByDay: false,
     filterByUsername: "",
     filterByWeek: false,

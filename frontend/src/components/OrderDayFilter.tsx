@@ -19,7 +19,7 @@ const OrderDayFilter: React.FC = () => {
 
         setSelectedFilter(newFilterValue);
 
-        const updatedFilters: Filters = {
+        const updatedFilters: any = {
             filterByDay: filterType === 'day' ? !filters.filterByDay : null,
             filterByWeek: filterType === 'week' ? !filters.filterByWeek : null,
             filterByMonth: filterType === 'month' ? !filters.filterByMonth : null,
