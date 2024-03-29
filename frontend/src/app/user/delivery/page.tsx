@@ -13,7 +13,7 @@ import Topbar from "@/components/userComponents/Topbar";
 const Order = () => {
   const { basket, setBasket } = useBasket();
   const [user, setUser] = useState("");
-  const [error, setUserError] = useState(false);
+  const [error, setUserError] = useState<boolean | string>(false);
   const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
   const input = useRef({
@@ -29,13 +29,13 @@ const Order = () => {
   const handleBack = (field: string, value: string | number) => {
     input.current = { ...input.current, [field]: value };
   };
-  const productsId = basket.map((item) => item._id);
+  const productsId = basket.map((item: any) => item._id);
   const productsCount = basket.map((item) => item.count);
   const router = useRouter();
   useEffect(() => {
     const cookies = parseCookies();
     const token = cookies.token;
-    const code = jwt.decode(token);
+    const code: any = jwt.decode(token);
     if (code) {
       setUser(code?.payload.id);
     }
@@ -50,7 +50,7 @@ const Order = () => {
   }, []);
 
   const totalPrices = basket.reduce(
-    (acc, curr) => acc + curr.price * curr.count,
+    (acc, curr: any) => acc + curr.price * curr.count,
     0
   );
 
@@ -94,9 +94,9 @@ const Order = () => {
   return (
     <>
       <UserNavbar />
-      <Topbar/>
+      <Topbar />
       <div className="flex justify-center gap-5 mt-7 mb-7">
-        <div > 
+        <div >
           <p className="text-[#151875] font-bold text-[18px]">Hekto Demo</p>
           <p className="text-[#151875] text-[18px]">
             Cart/ Information/ Shipping/ Payment
@@ -178,7 +178,7 @@ const Order = () => {
             </div>
             <div>
               {basket &&
-                basket.map((e) => {
+                basket.map((e:any) => {
                   return (
                     <div
                       className="flex justify-between mt-[20px] p-4 border-b-2 w-[380px] gap-6 "

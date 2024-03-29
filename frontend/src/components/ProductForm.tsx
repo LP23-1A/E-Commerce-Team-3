@@ -32,7 +32,7 @@ interface ProductFormProps {
     setImage: React.Dispatch<React.SetStateAction<FileList | []>>
 }
 
-const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInput, image, setImage }) => {
+const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInput, image, setImage }:any) => {
 
     const fetcher = async (url: string) => {
         try {
@@ -80,16 +80,16 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 <div className='flex flex-col gap-4 p-4 bg-[#FFFFFF] rounded-[12px] '>
                     <div className=' flex flex-col gap-2'>
                         <p className='text-sm font-bold'>Бүтээгдэхүүний нэр</p>
-                        <input value={input.productName} onChange={(e) => setInput((prev) => ({ ...prev, productName: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Нэр' />
+                        <input value={input.productName} onChange={(e) => setInput((prev:any) => ({ ...prev, productName: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Нэр' />
 
                     </div>
                     <div className=' flex flex-col gap-2'>
                         <p className='text-sm font-bold'>Нэмэлт мэдээлэл</p>
-                        <input value={input.description} onChange={(e) => setInput((prev) => ({ ...prev, description: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full h-[72px] text-fit' placeholder='Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар.' />
+                        <input value={input.description} onChange={(e) => setInput((prev:any) => ({ ...prev, description: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full h-[72px] text-fit' placeholder='Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар.' />
                     </div>
                     <div className=' flex flex-col gap-2'>
                         <p className='text-sm font-bold'>Барааны код</p>
-                        <input value={input.productId} onChange={(e) => setInput((prev) => ({ ...prev, productId: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
+                        <input value={input.productId} onChange={(e) => setInput((prev:any) => ({ ...prev, productId: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='#12345678' />
                     </div>
                 </div>
                 <div className="flex flex-col p-6 gap-4 bg-[#FFFFFF] rounded-[12px] " >
@@ -97,22 +97,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                     <div className="flex justify-between items-center">
                         <div className=" flex justify-center p-2 items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                             <InsertPhotoOutlinedIcon />
-                            <input type="file" src="" alt="" onChange={(e) => {
-                                setImage(prev => [...prev, e.target.files[0]])
+                            <input type="file" src="" alt="" onChange={(e:any) => {
+                                setImage((prev:any)=> [...prev, e.target.files[0]])
                             }} multiple className="border-2 h-14 w-24 " />
 
                         </div>
                         <div className=" flex justify-center p-2  items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                             <InsertPhotoOutlinedIcon />
-                            <input type="file" src="" alt="" onChange={(e) => {
-                                setImage(prev => [...prev, e.target.files[0]])
+                            <input type="file" src="" alt="" onChange={(e:any) => {
+                                setImage((prev:any) => [...prev, e.target.files[0]])
                             }} multiple className="border-2 h-14 w-24 " />
 
                         </div>
                         <div className=" flex justify-center p-2  items-center h-[125px] w-[125px] rounded-2xl border-2 border-dashed border-[#D6D8DB] bg-[#FFFFFF]">
                             <InsertPhotoOutlinedIcon />
-                            <input type="file" src="" alt="" onChange={(e) => {
-                                setImage(prev => [...prev, e.target.files[0]])
+                            <input type="file" src="" alt="" onChange={(e:any) => {
+                                setImage((prev:any)  => [...prev, e.target.files[0]])
                             }} multiple className="border-2 h-14 w-24 " />
 
                         </div>
@@ -122,11 +122,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 <div className="flex   p-4 bg-[#FFFFFF] rounded-[12px] gap-4 ">
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Үндсэн үнэ</p>
-                        <input type='number' min={0} value={input.price} onChange={(e) => setInput((prev) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
+                        <input type='number' min={0} value={input.price} onChange={(e:any) => setInput((prev:any) => ({ ...prev, price: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үндсэн үнэ' />
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Үлдэгдэл тоо ширхэг</p>
-                        <input type='number' min={0} value={input.quantity} onChange={(e) => setInput((prev) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
+                        <input type='number' min={0} value={input.quantity} onChange={(e:any) => setInput((prev:any) => ({ ...prev, quantity: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-[250px] text-[18px]' placeholder='Үлдэгдэл тоо ширхэг' />
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 <div className="flex flex-col gap-4  p-4  bg-[#FFFFFF] rounded-[12px]  ">
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Ерөнхий ангилал</p>
-                        <select value={input.mainCategory} onChange={(e) => setInput((prev) => ({ ...prev, mainCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
+                        <select value={input.mainCategory} onChange={(e:any) => setInput((prev:any) => ({ ...prev, mainCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
                             <option>choose</option>
                             {data && data.map((el: any) => <option value={el._id}>{el.mainCategoryName}</option>)}
                         </select>
@@ -142,9 +142,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className='text-sm font-bold'>Дэд ангилал</p>
-                        <select value={input.subCategory} onChange={(e) => setInput((prev) => ({ ...prev, subCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
+                        <select value={input.subCategory} onChange={(e:any) => setInput((prev:any) => ({ ...prev, subCategory: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]'>
                             <option>choose</option>
-                            {subCategory && subCategory.map((e) => <option value={e._id}>{e.subCategoryName}</option>)}
+                            {subCategory && subCategory.map((e:any) => <option value={e._id}>{e.subCategoryName}</option>)}
                         </select>
 
                     </div>
@@ -163,7 +163,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ onClick, title, input, setInp
                 </div>
                 <div className="flex flex-col gap-2  p-4 h-[195px]  bg-[#FFFFFF] rounded-[12px] ">
                     <p className='text-sm font-bold'>Таг</p>
-                    <input value={input.tag} onChange={(e) => setInput((prev) => ({ ...prev, tag: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Таг нэмэх...' />
+                    <input value={input.tag} onChange={(e:any) => setInput((prev:any) => ({ ...prev, tag: e.target.value }))} className='bg-[#F7F7F8] border-2 border-[#D6D8DB] p-2 rounded-[8px] w-full text-[18px]' placeholder='Таг нэмэх...' />
                     <p>Санал болгох: Гутал , Цүнх , Эмэгтэй </p>
                 </div>
                 <div className="flex gap-4 justify-end">

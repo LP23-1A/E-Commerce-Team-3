@@ -7,7 +7,7 @@ import axios from "axios";
 
 const userSignUp = () => {
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [error, setError] = useState<boolean|string|null>("");
   const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
 
   const input = useRef({

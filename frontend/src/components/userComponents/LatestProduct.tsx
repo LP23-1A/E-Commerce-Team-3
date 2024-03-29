@@ -41,7 +41,7 @@ const LatestProduct: React.FC<LatestProductProps> = ({ data }) => {
     <div className="flex items-center flex-col mt-[200px]">
       <p className="text-[#151875] text-[42px] font-bold">Шинээр нэмэгдсэн</p>
       <div className="flex gap-6 justify-center flex-wrap w-[1200px] ">
-        {filteredData.map((e) => (
+        {filteredData.map((e:any) => (
           <div key={e.id} className="relative group">
             <div className="w-[270px]  h-[280px] px-10 relative flex justify-center items-center rounded-md bg-[#F6F7FB] ">
               <div className="bg-white p-1  absolute left-3 bottom-3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">

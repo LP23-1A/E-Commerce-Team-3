@@ -8,7 +8,7 @@ import AdditionalInformation from '@/components/userComponents/AddtionalInformat
 import UserNavbar from '@/components/userComponents/Navbar';
 
 const ProductDetailPage = () => {
-    const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState<any>(null);
     const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
 

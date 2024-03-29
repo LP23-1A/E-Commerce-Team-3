@@ -30,7 +30,7 @@ const HighlightedProduct: React.FC<HighlightedProductProps> = ({ data }) => {
       </p>
       <div className="flex justify-center gap-6 flex-wrap w-[1200px]">
         {data &&
-          data.map((e) => {
+          data.map((e:any) => {
             return (
               <div key={e.id} className="relative group">
                 <div className="w-[270px]  h-[280px] flex-col px-10 relative flex justify-center items-center rounded-md bg-white shadow-xl">

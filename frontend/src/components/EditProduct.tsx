@@ -13,7 +13,7 @@ const EditProduct = () => {
         router.push("/product");
     };
 
-    const [image, setImage] = useState<FileList | []>([]);
+    const [image, setImage] = useState<any>([]);
     const backendPoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT
 
     const fetchProduct = async (productId: string) => {
@@ -38,7 +38,7 @@ const EditProduct = () => {
         }
     };
     
-    const [input, setInput] = useState({
+    const [input, setInput] = useState<any>({
         productName: "",
         description: "",
         price: "",
