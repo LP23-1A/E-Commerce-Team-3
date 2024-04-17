@@ -1,9 +1,11 @@
 import FavouriteIcon from "@/assets/FavouriteIcon"
 import { useBasket } from "./OrderContext"
+import { useDraft } from "./DraftContext"
 
 const ProductDetail = ({image1,image2,image3, productName, price, description,id }: any) => {
 
     const {addToCart} = useBasket()
+    const {addToDraft} = useDraft()
 
     return (
         <div className="px-[350px] py-10">
@@ -25,7 +27,7 @@ const ProductDetail = ({image1,image2,image3, productName, price, description,id
                     </div>
                     <div className="flex gap-2 items-center">
                         <button onClick={()=> addToCart(id)} className="bg-[#FB2E86] font-bold text-[16px] w-fit h-fit rounded-[4px] px-[25px] py-[12px] text-[#FFFFFF] ">Continue Shipping</button>
-                        <div className=" h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
+                        <div  onClick={()=> addToDraft(id)} className=" h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
                     </div>
                 </div>
             </div>

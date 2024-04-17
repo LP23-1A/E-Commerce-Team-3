@@ -5,9 +5,11 @@ import axios from "axios";
 import useSWR from "swr";
 import { useRouter } from "next/navigation"
 import { useBasket } from "./OrderContext";
+import { useDraft } from "./DraftContext";
 
 const ProductListByCategory = ({ selectedCategory }: any) => {
     const { addToCart } = useBasket();
+    const {addToDraft} = useDraft()
     const router = useRouter()
 
     const fetcher = async (url: string) => {
@@ -61,7 +63,7 @@ const ProductListByCategory = ({ selectedCategory }: any) => {
                             </div>
                             <div className="flex gap-2">
                                 <div onClick={()=> addToCart(el)} className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><BasketIcon /></div>
-                                <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
+                                <div onClick={()=> addToDraft(el)}  className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><FavouriteIcon /></div>
                                 <div className="h-[34px] w-[34px] rounded-2xl bg-[#fff] flex justify-center items-center"><SearchIcon /></div>
                             </div>
                         </div>
