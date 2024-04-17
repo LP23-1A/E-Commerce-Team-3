@@ -5,6 +5,7 @@ import "./globals.css";
 import { OrderFilterProvider } from "@/components/OrderByStatusProvider";
 import { OrderInputFilterProvider } from "@/components/OrderFilterProvider";
 import { BasketProvider } from "@/components/userComponents/OrderContext";
+import { DraftProvider } from "@/components/userComponents/DraftContext";
 
 const AuthProvider = dynamic(() => import('@/components/AuthProvider'), {
   ssr: false,
@@ -28,9 +29,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <BasketProvider>
+            <DraftProvider>
             <OrderFilterProvider>
               <OrderInputFilterProvider>{children}</OrderInputFilterProvider>
             </OrderFilterProvider>
+            </DraftProvider>
           </BasketProvider>
         </AuthProvider>
       </body>
