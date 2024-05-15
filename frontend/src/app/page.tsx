@@ -16,7 +16,10 @@ export default function Home() {
 
   const { data, isLoading } = useSWR(`${backendPoint}/product`, fetcher);
   if (isLoading) {
-    return <div>LoadiinG....</div>;
+    return   <div className=" w-full h-screen flex justify-center items-center">
+<span className="loading loading-spinner loading-lg"></span>
+    </div>
+  
   }
 
   return (
